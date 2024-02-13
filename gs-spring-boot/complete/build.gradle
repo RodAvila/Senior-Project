@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'java'
+	id "com.github.node-gradle.node" version "3.5.1"
 }
 
 group = 'com.example'
@@ -10,6 +11,54 @@ sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
+}
+
+node {
+	// Version of node to use.
+	version = '20.11.0'
+
+	// Base URL for fetching node distributions (change if you have a mirror).
+//    distBaseUrl = 'https://nodejs.org/dist'
+
+	// If true, it will download node using above parameters.
+	// If false, it will try to use globally installed node.
+	download = true
+
+	// Set the work directory for unpacking node
+	workDir = file("${project.projectDir}/src/main/frontend/nodejs")
+
+	// Set the work directory for NPM
+	npmWorkDir = file("${project.projectDir}/src/main/frontend/npm")
+
+	// Set the work directory where node_modules should be located
+	nodeModulesDir = file("${project.projectDir}/src/main/frontend")
+}
+
+task npmInstallDependencies(type: NpmTask) {
+	dependsOn 'npmSetup'
+	execOverrides {
+		it.ignoreExitValue = true
+		it.workingDir = 'src/main/frontend'
+	}
+	args = ['install']
+}
+
+task npmBuild(type: NpmTask) {
+	dependsOn 'npmInstallDependencies'
+	execOverrides {
+		it.workingDir = 'src/main/frontend'
+	}
+	args = ['run', 'build']
+}
+
+task copyFrontendToBuild(type: Copy) {
+	dependsOn 'npmBuild'
+	from "$projectDir/src/main/frontend/build/"
+	into "$buildDir/resources/main/static"
+}
+
+processResources {
+	dependsOn 'copyFrontendToBuild'
 }
 
 dependencies {
