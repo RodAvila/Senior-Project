@@ -24,11 +24,17 @@ You can edit the /frontend/src/App.js file to change the frontend and it updates
 To run with Springboot:
 
 Navigate to the /complete/ director
+
 Run "gradlew build"
+
 Navigate to the "/complete/build/libs"
+
 Then using the name of a SNAPSHOT.jar file (not the PLAIN one), run it with java
+
 java -jar spring-boot-0.0.1-SNAPSHOT.jar
+
 Go to http://localhost:8080/
+
 Change the url to http://localhost:8080/index.html to see the HTML file generated with REACT
 
 
