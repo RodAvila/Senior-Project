@@ -2,7 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'java'
-	id "com.github.node-gradle.node" version "3.5.1"
+	id "org.araqnid.nextjs-set" version "0.0.1"
 }
 
 group = 'com.example'
@@ -25,13 +25,13 @@ node {
 	download = true
 
 	// Set the work directory for unpacking node
-	workDir = file("${project.projectDir}/src/main/frontend/nodejs")
+	workDir = file("${project.projectDir}/src/main/frontend_next/nodejs")
 
 	// Set the work directory for NPM
-	npmWorkDir = file("${project.projectDir}/src/main/frontend/npm")
+	npmWorkDir = file("${project.projectDir}/src/main/frontend_next/npm")
 
 	// Set the work directory where node_modules should be located
-	nodeModulesDir = file("${project.projectDir}/src/main/frontend")
+	nodeModulesDir = file("${project.projectDir}/src/main/frontend_next")
 }
 
 task npmInstallDependencies(type: NpmTask) {
