@@ -1,0 +1,2 @@
+udl4cs_frontend filter=lfs diff=lfs merge=lfs -text
+udl4cs_resources filter=lfs diff=lfs merge=lfs -text
