@@ -1,16 +1,35 @@
 package com.edugators.udl4cs_resources.controller;
+import com.edugators.udl4cs_resources.model.Resource;
+import com.edugators.udl4cs_resources.service.ResourceService;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class ResourceController {
+
+    private final ResourceService resourceService;
+
+    public ResourceController(ResourceService resourceService) {
+        this.resourceService = resourceService;
+        resourceService.saveResource(new Resource(1, "Resource 1", "A resource description"));
+        resourceService.saveResource(new Resource(2, "Resource 2", "A resource description"));
+        resourceService.saveResource(new Resource(3, "Resource 3", "A resource description"));
+    }
+
+    @PostMapping(value = "/resources", headers = "Accept=application/json")
+    public Resource saveResource(@RequestBody Map<String, Object> resource) {
+        System.out.println(resource.get("resourceTitle"));
+        Resource newResource = new Resource(0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
+        Resource returnedResource = resourceService.saveResource(newResource);
+        return returnedResource;
+    }
+
     @GetMapping(value = "/")
     public String index() {
         return "Hello there!";
@@ -18,47 +37,6 @@ public class ResourceController {
 
     @GetMapping(value = "/resources")
     public List<Resource> getAllResourcese() {
-        return Arrays.asList(
-            new Resource(1, "Resource 1", "A resource description"),
-            new Resource(2, "Resource 2", "A resource description"),
-            new Resource(3, "Resource 3", "A resource description")
-        );
-    }
-}
-
-class Resource {
-    private int id;
-    private String ResourceTitle;
-    private String ResourceDescription;
-
-    public Resource(int _id, String _ResourceTitle, String _ResourceDescription) {
-        super();
-        this.id = _id;
-        this.ResourceTitle = _ResourceTitle;
-        this.ResourceDescription = _ResourceDescription;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getResourceTitle() {
-        return ResourceTitle;
-    }
-
-    public String getResourceDesc() {
-        return ResourceDescription;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setResourceTitle(String _ResourceTitle) {
-        this.ResourceTitle = _ResourceTitle;
-    }
-
-    public void setResourceDescription(String _ResourceDescription) {
-        this.ResourceDescription = _ResourceDescription;
+        return resourceService.getAllResources();
     }
 }
