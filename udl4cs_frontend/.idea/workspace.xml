@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67cc054e-7d5c-4100-9e33-4e9de8404722" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/components/AddResource.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/Resource.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/ResourceTable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/globals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/pages/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/pages/signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/ResourceComponent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/components/navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/addresource.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/addresource.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/index.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/resources.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/resources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/service/resourceservice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tailwind.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/AddResource.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/AddResource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/addresource.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pages/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,25 +52,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.AddResource.js.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.ResourceComponent.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;mliamkin&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Mishka/Documents/UDL4CS_Resources/udl4cs_resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.AddResource.js.executor": "Run",
+    "Node.js.ResourceComponent.js.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "mliamkin",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
@@ -127,7 +115,7 @@
       <workItem from="1709584955963" duration="1081000" />
       <workItem from="1709586440240" duration="3456000" />
       <workItem from="1709589910119" duration="8862000" />
-      <workItem from="1709602585537" duration="1415000" />
+      <workItem from="1709602585537" duration="6222000" />
     </task>
     <servers />
   </component>

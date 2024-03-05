@@ -88,6 +88,8 @@ const AddResource = () => {
                 <br/>
             </div>
             <br/>
+            <hr />
+            <br />
             <ResourceTable resource = {responseResource}></ResourceTable>
         </>
     );

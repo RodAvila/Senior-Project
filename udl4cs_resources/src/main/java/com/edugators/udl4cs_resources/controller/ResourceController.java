@@ -24,7 +24,6 @@ public class ResourceController {
 
     @PostMapping(value = "/resources", headers = "Accept=application/json")
     public Resource saveResource(@RequestBody Map<String, Object> resource) {
-        System.out.println(resource.get("resourceTitle"));
         Resource newResource = new Resource(0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
         Resource returnedResource = resourceService.saveResource(newResource);
         return returnedResource;
