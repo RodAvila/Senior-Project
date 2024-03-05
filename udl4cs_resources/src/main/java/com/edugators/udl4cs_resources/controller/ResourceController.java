@@ -17,9 +17,9 @@ public class ResourceController {
 
     public ResourceController(ResourceService resourceService) {
         this.resourceService = resourceService;
-        resourceService.saveResource(new Resource(1, "Resource 1", "A resource description"));
-        resourceService.saveResource(new Resource(2, "Resource 2", "A resource description"));
-        resourceService.saveResource(new Resource(3, "Resource 3", "A resource description"));
+        resourceService.saveResource(new Resource(0, "Resource 1", "A resource description"));
+        resourceService.saveResource(new Resource(1, "Resource 2", "A resource description"));
+        resourceService.saveResource(new Resource(2, "Resource 3", "A resource description"));
     }
 
     @PostMapping(value = "/resources", headers = "Accept=application/json")
