@@ -1,17 +1,16 @@
-import {useEffect, useState} from "react";
-import {getRequest} from "../service/resourceservice";
-//import APIService from '../service/resourceservice'
+import Link from 'next/link'
+import AddResource from "../components/AddResource"
+import {React} from "react";
+import Navbar from "../components/Navbar";
 
 
 export default function Resources() {
-
-    async function getAllResources() {
-        const allResources = await getRequest("/resources");
-        setResourceList(allResources)
-    }
     return (
         <>
-            Here are our resources
+            <Navbar></Navbar>
+            <div className="container">
+                <AddResource></AddResource>
+            </div>
         </>
     )
 }

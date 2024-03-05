@@ -1,7 +1,10 @@
+import Navbar from "../components/Navbar";
+
 export default function AddResource() {
     return (
         <>
-            Add a resource
+            <Navbar></Navbar>
+            Add a resources
         </>
     )
 }
