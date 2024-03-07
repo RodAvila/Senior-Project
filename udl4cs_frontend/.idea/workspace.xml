@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67cc054e-7d5c-4100-9e33-4e9de8404722" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/components/ResourceComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/layout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/components/navbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/pages/addresource.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/pages/resources.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/service/resourceservice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/api/hello.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/next.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/vercel.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/styles/globals.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserServiceInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,14 +24,28 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/frontend" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mliamkin&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="26f5ae39-5575-4bbb-b538-1e23a03c70e6" />
+        <option name="url" value="https://github.com/RodAvila/Senior-Project" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2cy1DcmBUfCFtmwiNaKMhrbF93w" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -49,21 +53,48 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Node.js.AddResource.js.executor": "Run",
     "Node.js.ResourceComponent.js.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "mliamkin",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Mishka/Documents/UDL4CS_Resources/udl4cs_frontend",
+    "last_opened_file_path": "C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "D:\\Mishka\\Documents\\UDL4CS_Resources\\udl4cs_frontend\\frontend\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="udl4cs_frontend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="udl4cs_frontend" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -80,10 +111,23 @@
       <option name="presentableId" value="Default" />
       <updated>1709068887247</updated>
       <workItem from="1709068888050" duration="7240000" />
+      <workItem from="1709497338391" duration="39000" />
+      <workItem from="1709497462072" duration="823000" />
+      <workItem from="1709584955963" duration="1081000" />
+      <workItem from="1709586440240" duration="3456000" />
+      <workItem from="1709589910119" duration="8862000" />
+      <workItem from="1709602585537" duration="6222000" />
+      <workItem from="1709609478194" duration="729000" />
+      <workItem from="1709665102750" duration="140000" />
+      <workItem from="1709674067248" duration="716000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
