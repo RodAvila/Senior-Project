@@ -17,14 +17,14 @@ public class ResourceController {
 
     public ResourceController(ResourceService resourceService) {
         this.resourceService = resourceService;
-        resourceService.saveResource(new Resource(0, "Resource 1", "A resource description"));
-        resourceService.saveResource(new Resource(1, "Resource 2", "A resource description"));
-        resourceService.saveResource(new Resource(2, "Resource 3", "A resource description"));
+        resourceService.saveResource(new Resource(0, 0, 0, "Resource 1", "A resource description"));
+        resourceService.saveResource(new Resource(1, 1, 1, "Resource 2", "A resource description"));
+        resourceService.saveResource(new Resource(2, 2, 2,"Resource 3", "A resource description"));
     }
 
     @PostMapping(value = "/resources", headers = "Accept=application/json")
     public Resource saveResource(@RequestBody Map<String, Object> resource) {
-        Resource newResource = new Resource(0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
+        Resource newResource = new Resource(0, (Integer) resource.get("numLikes"), (Integer) resource.get("numComments"), resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
         Resource returnedResource = resourceService.saveResource(newResource);
         return returnedResource;
     }
