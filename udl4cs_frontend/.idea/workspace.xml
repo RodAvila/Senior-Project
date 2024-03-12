@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67cc054e-7d5c-4100-9e33-4e9de8404722" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserServiceInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_5_01_PM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/AddResource.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/AddResource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Resource.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/ResourceTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/ResourceTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="mliamkin" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -57,7 +64,7 @@
     "Node.js.ResourceComponent.js.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "mliamkin",
+    "git-widget-placeholder": "Jon",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend",
@@ -67,7 +74,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -79,21 +86,6 @@
         <entry key="com.intellij.reactbuddy.storybook" value="false" />
       </map>
     </option>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="udl4cs_frontend" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="udl4cs_frontend" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

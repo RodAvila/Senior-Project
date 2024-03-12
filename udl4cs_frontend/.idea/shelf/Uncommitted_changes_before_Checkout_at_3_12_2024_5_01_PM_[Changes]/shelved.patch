@@ -1,0 +1,213 @@
+Index: frontend/components/ResourceTable.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { React, useState, useEffect } from \"react\";\r\nimport Resource from \"./Resource\";\r\n\r\nconst ResourceTable = ({ resource }) => {\r\n    const RESOURCE_API_BASE_URL = \"http://localhost:8080/resources\";\r\n    const [resources, setResources] = useState(null);\r\n    const [loading, setLoading] = useState(true);\r\n\r\n    useEffect(() => {\r\n        const fetchData = async () => {\r\n            setLoading(true);\r\n            try {\r\n                const response = await fetch(RESOURCE_API_BASE_URL, {\r\n                    method: \"GET\",\r\n                    headers: {\r\n                        \"Content-Type\": \"application/json\",\r\n                    },\r\n                });\r\n                const resources = await response.json();\r\n                setResources(resources);\r\n            } catch (error) {\r\n                console.log(error);\r\n            }\r\n            setLoading(false);\r\n        };\r\n        fetchData();\r\n    }, [resource]);\r\n\r\n    return (\r\n        <div className=\"col-md-12\">\r\n            <table className=\"table\">\r\n                <thead className=\"bg-gray-50\">\r\n                    <tr>\r\n                        <th>Resource Id</th>\r\n                        <th>Resource Title</th>\r\n                        <th>Resource Description</th>\r\n                    </tr>\r\n                </thead>\r\n                {!loading && (\r\n                    <tbody className=\"bg-white\">\r\n                    {resources.map((resource) => (\r\n                        <Resource resource={resource} key={resource.id}/>\r\n                    ))}\r\n                    </tbody>\r\n                )}\r\n            </table>\r\n        </div>\r\n    )\r\n}\r\n\r\nexport default ResourceTable;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/components/ResourceTable.js b/frontend/components/ResourceTable.js
+--- a/frontend/components/ResourceTable.js	(revision 92715c1b59a4afa27895f8bcedef20e6a9b6bd9d)
++++ b/frontend/components/ResourceTable.js	(date 1710277004192)
+@@ -30,11 +30,13 @@
+         <div className="col-md-12">
+             <table className="table">
+                 <thead className="bg-gray-50">
+-                    <tr>
+-                        <th>Resource Id</th>
+-                        <th>Resource Title</th>
+-                        <th>Resource Description</th>
+-                    </tr>
++                <tr>
++                    <th>Resource Id</th>
++                    <th>Resource Likes</th>
++                    <th>Resource Comments</th>
++                    <th>Resource Title</th>
++                    <th>Resource Description</th>
++                </tr>
+                 </thead>
+                 {!loading && (
+                     <tbody className="bg-white">
+Index: frontend/components/Resource.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from \"react\";\r\nconst Resource = ({ resource }) => {\r\n    return (\r\n        <tr key={resource.id}>\r\n            <td>\r\n                {resource.id}\r\n            </td>\r\n            <td>\r\n                {resource.resourceTitle}\r\n            </td>\r\n            <td>\r\n                {resource.resourceDesc}\r\n            </td>\r\n        </tr>\r\n    )\r\n}\r\n\r\nexport default Resource;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/components/Resource.js b/frontend/components/Resource.js
+--- a/frontend/components/Resource.js	(revision 92715c1b59a4afa27895f8bcedef20e6a9b6bd9d)
++++ b/frontend/components/Resource.js	(date 1710276499063)
+@@ -6,6 +6,12 @@
+                 {resource.id}
+             </td>
+             <td>
++                {resource.numLikes}
++            </td>
++            <td>
++                {resource.numComments}
++            </td>
++            <td>
+                 {resource.resourceTitle}
+             </td>
+             <td>
+Index: frontend/components/AddResource.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from \"react\";\r\nimport {useState} from \"react\";\r\nimport ResourceTable from \"./ResourceTable\";\r\n\r\n\r\nconst AddResource = () => {\r\n    const RESOURCE_API_BASE_URL = \"http://localhost:8080/resources\";\r\n\r\n    const [resource, setResource] = useState({\r\n        id: \"\",\r\n        resourceTitle: \"\",\r\n        resourceDesc: \"\"\r\n    });\r\n\r\n    const [responseResource, setResponseResource] = useState({\r\n        id: \"\",\r\n        resourceTitle: \"\",\r\n        resourceDesc: \"\"\r\n    });\r\n\r\n    const handleChange = (event) => {\r\n        const value = event.target.value;\r\n        setResource({ ...resource, [event.target.name]: value });\r\n    };\r\n\r\n    const saveResource = async(e) => {\r\n        e.preventDefault();\r\n        console.log(JSON.stringify(resource));\r\n        const response = await fetch(RESOURCE_API_BASE_URL, {\r\n            method: \"POST\",\r\n            headers: {\r\n                \"Content-Type\": \"application/json\",\r\n            },\r\n            body: JSON.stringify(resource),\r\n        });\r\n        if (!response.ok) {\r\n            throw new Error(\"Something went wrong\");\r\n        }\r\n        const _resource = await response.json();\r\n        setResponseResource(_resource);\r\n        reset(e);\r\n    };\r\n\r\n    const reset = (e) => {\r\n        e.preventDefault();\r\n        setResource({\r\n            id: \"\",\r\n            resourceTitle: \"\",\r\n            resourceDesc: \"\"\r\n        });\r\n    };\r\n\r\n    return (\r\n        <>\r\n            <div>\r\n                {/*<br/>*/}\r\n                {/*<div className=\"col-md-12\">*/}\r\n\r\n                {/*    <button type=\"button\" className=\"btn btn-primary\">*/}\r\n                {/*        Add Resource (Should map to Modal)*/}\r\n                {/*    </button>*/}\r\n                {/*</div>*/}\r\n                <br/>\r\n                <h2>This is the form for adding a new resource</h2>\r\n                <br/>\r\n                <div className=\"form-group\">\r\n                    <label>Resource Title</label>\r\n                    <input type=\"text\"\r\n                           name=\"resourceTitle\"\r\n                           value={resource.resourceTitle}\r\n                           onChange={(e) => handleChange(e)}\r\n                           className=\"form-control\"\r\n                           placeholder=\"Resource Title\"></input>\r\n                    <br/>\r\n                    <label>Resource Description</label>\r\n                    <input type=\"text\"\r\n                           name=\"resourceDesc\"\r\n                           value={resource.resourceDesc}\r\n                           onChange={(e2) => handleChange(e2)}\r\n                           className=\"form-control\"\r\n                           placeholder=\"Resource Description\"></input>\r\n                </div>\r\n                <br/>\r\n                    <button onClick={saveResource}\r\n                        className=\"btn btn-success\">\r\n                        Add Resource\r\n                    </button>\r\n                <br/>\r\n            </div>\r\n            <br/>\r\n            <hr />\r\n            <br />\r\n            <ResourceTable resource = {responseResource}></ResourceTable>\r\n        </>\r\n    );\r\n};\r\n\r\nexport default AddResource;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/components/AddResource.js b/frontend/components/AddResource.js
+--- a/frontend/components/AddResource.js	(revision 92715c1b59a4afa27895f8bcedef20e6a9b6bd9d)
++++ b/frontend/components/AddResource.js	(date 1710276388029)
+@@ -8,12 +8,16 @@
+ 
+     const [resource, setResource] = useState({
+         id: "",
++        numLikes: "0",
++        numComments: "0",
+         resourceTitle: "",
+         resourceDesc: ""
+     });
+ 
+     const [responseResource, setResponseResource] = useState({
+         id: "",
++        numLikes: "0",
++        numComments: "0",
+         resourceTitle: "",
+         resourceDesc: ""
+     });
+@@ -45,6 +49,8 @@
+         e.preventDefault();
+         setResource({
+             id: "",
++            numLikes: "0",
++            numComments: "0",
+             resourceTitle: "",
+             resourceDesc: ""
+         });
+Index: ../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.edugators.udl4cs_resources.controller;\r\nimport com.edugators.udl4cs_resources.model.Resource;\r\nimport com.edugators.udl4cs_resources.service.ResourceService;\r\n\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\n\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\nimport java.util.Map;\r\n\r\n@RestController\r\n@CrossOrigin(origins = \"http://localhost:3000\")\r\npublic class ResourceController {\r\n\r\n    private final ResourceService resourceService;\r\n\r\n    public ResourceController(ResourceService resourceService) {\r\n        this.resourceService = resourceService;\r\n        resourceService.saveResource(new Resource(0, 0, 0, \"Resource 1\", \"A resource description\"));\r\n        resourceService.saveResource(new Resource(1, 1, 1, \"Resource 2\", \"A resource description\"));\r\n        resourceService.saveResource(new Resource(2, 2, 2,\"Resource 3\", \"A resource description\"));\r\n    }\r\n\r\n    @PostMapping(value = \"/resources\", headers = \"Accept=application/json\")\r\n    public Resource saveResource(@RequestBody Map<String, Object> resource) {\r\n        Resource newResource = new Resource(0, (Integer) resource.get(\"numLikes\"), (Integer) resource.get(\"numComments\"), resource.get(\"resourceTitle\").toString(), resource.get(\"resourceDesc\").toString());\r\n        Resource returnedResource = resourceService.saveResource(newResource);\r\n        return returnedResource;\r\n    }\r\n\r\n    @GetMapping(value = \"/\")\r\n    public String index() {\r\n        return \"Hello there!\";\r\n    }\r\n\r\n    @GetMapping(value = \"/resources\")\r\n    public List<Resource> getAllResourcese() {\r\n        return resourceService.getAllResources();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java b/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java
+--- a/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java	(revision 92715c1b59a4afa27895f8bcedef20e6a9b6bd9d)
++++ b/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java	(date 1710277022123)
+@@ -18,13 +18,14 @@
+     public ResourceController(ResourceService resourceService) {
+         this.resourceService = resourceService;
+         resourceService.saveResource(new Resource(0, 0, 0, "Resource 1", "A resource description"));
+-        resourceService.saveResource(new Resource(1, 1, 1, "Resource 2", "A resource description"));
+-        resourceService.saveResource(new Resource(2, 2, 2,"Resource 3", "A resource description"));
++        resourceService.saveResource(new Resource(1, 0, 0, "Resource 2", "A resource description"));
++        resourceService.saveResource(new Resource(2, 0, 0,"Resource 3", "A resource description"));
+     }
+ 
+     @PostMapping(value = "/resources", headers = "Accept=application/json")
+     public Resource saveResource(@RequestBody Map<String, Object> resource) {
+-        Resource newResource = new Resource(0, (Integer) resource.get("numLikes"), (Integer) resource.get("numComments"), resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
++        System.out.println(resource);
++        Resource newResource = new Resource(0, 0, 0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
+         Resource returnedResource = resourceService.saveResource(newResource);
+         return returnedResource;
+     }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"67cc054e-7d5c-4100-9e33-4e9de8404722\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/UserController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/model/User.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserServiceInterface.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mliamkin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"26f5ae39-5575-4bbb-b538-1e23a03c70e6\" />\r\n        <option name=\"url\" value=\"https://github.com/RodAvila/Senior-Project\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2cy1DcmBUfCFtmwiNaKMhrbF93w\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Node.js.AddResource.js.executor\": \"Run\",\r\n    \"Node.js.ResourceComponent.js.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"mliamkin\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\",\r\n    \"ts.external.directory.path\": \"C:\\\\Program Files\\\\JetBrains\\\\IntelliJ IDEA 2023.3.3\\\\plugins\\\\javascript-impl\\\\jsLanguageServicesImpl\\\\external\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ReactDesignerToolWindowState\">\r\n    <option name=\"myId2Visible\">\r\n      <map>\r\n        <entry key=\"com.intellij.reactbuddy.reactComponents\" value=\"false\" />\r\n        <entry key=\"com.intellij.reactbuddy.reactInspector\" value=\"false\" />\r\n        <entry key=\"com.intellij.reactbuddy.storybook\" value=\"false\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"udl4cs_frontend\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"udl4cs_frontend\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"67cc054e-7d5c-4100-9e33-4e9de8404722\" name=\"Changes\" comment=\"\" />\r\n      <created>1709068887247</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1709068887247</updated>\r\n      <workItem from=\"1709068888050\" duration=\"7240000\" />\r\n      <workItem from=\"1709497338391\" duration=\"39000\" />\r\n      <workItem from=\"1709497462072\" duration=\"823000\" />\r\n      <workItem from=\"1709584955963\" duration=\"1081000\" />\r\n      <workItem from=\"1709586440240\" duration=\"3456000\" />\r\n      <workItem from=\"1709589910119\" duration=\"8862000\" />\r\n      <workItem from=\"1709602585537\" duration=\"6222000\" />\r\n      <workItem from=\"1709609478194\" duration=\"729000\" />\r\n      <workItem from=\"1709665102750\" duration=\"140000\" />\r\n      <workItem from=\"1709674067248\" duration=\"716000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 92715c1b59a4afa27895f8bcedef20e6a9b6bd9d)
++++ b/.idea/workspace.xml	(date 1710277004374)
+@@ -5,11 +5,12 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="67cc054e-7d5c-4100-9e33-4e9de8404722" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/UserController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/model/User.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserServiceInterface.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM__Changes_.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/components/AddResource.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/AddResource.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/components/Resource.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Resource.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/components/ResourceTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/ResourceTable.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/ResourceController.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,6 +25,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$/.." value="mliamkin" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -57,7 +63,7 @@
+     "Node.js.ResourceComponent.js.executor": "Run",
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "git-widget-placeholder": "mliamkin",
++    "git-widget-placeholder": "Jon",
+     "ignore.virus.scanning.warn.message": "true",
+     "kotlin-language-version-configured": "true",
+     "last_opened_file_path": "C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend",
+@@ -67,7 +73,7 @@
+     "node.js.selected.package.tslint": "(autodetect)",
+     "nodejs_package_manager_path": "npm",
+     "settings.editor.selected.configurable": "preferences.pluginManager",
+-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
++    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
+@@ -79,21 +85,6 @@
+         <entry key="com.intellij.reactbuddy.storybook" value="false" />
+       </map>
+     </option>
+-  </component>
+-  <component name="RunManager">
+-    <configuration default="true" type="JetRunConfigurationType">
+-      <module name="udl4cs_frontend" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+-      <module name="udl4cs_frontend" />
+-      <option name="filePath" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+   </component>
+   <component name="SharedIndexes">
+     <attachedChunks>
+@@ -125,6 +116,17 @@
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
