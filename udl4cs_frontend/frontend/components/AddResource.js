@@ -8,12 +8,16 @@ const AddResource = () => {
 
     const [resource, setResource] = useState({
         id: "",
+        numLikes: "0",
+        numComments: "0",
         resourceTitle: "",
         resourceDesc: ""
     });
 
     const [responseResource, setResponseResource] = useState({
         id: "",
+        numLikes: "0",
+        numComments: "0",
         resourceTitle: "",
         resourceDesc: ""
     });
@@ -45,6 +49,8 @@ const AddResource = () => {
         e.preventDefault();
         setResource({
             id: "",
+            numLikes: "0",
+            numComments: "0",
             resourceTitle: "",
             resourceDesc: ""
         });

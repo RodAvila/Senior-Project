@@ -6,6 +6,12 @@ const Resource = ({ resource }) => {
                 {resource.id}
             </td>
             <td>
+                {resource.numLikes}
+            </td>
+            <td>
+                {resource.numComments}
+            </td>
+            <td>
                 {resource.resourceTitle}
             </td>
             <td>

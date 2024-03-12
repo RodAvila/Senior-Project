@@ -30,11 +30,13 @@ const ResourceTable = ({ resource }) => {
         <div className="col-md-12">
             <table className="table">
                 <thead className="bg-gray-50">
-                    <tr>
-                        <th>Resource Id</th>
-                        <th>Resource Title</th>
-                        <th>Resource Description</th>
-                    </tr>
+                <tr>
+                    <th>Resource Id</th>
+                    <th>Resource Likes</th>
+                    <th>Resource Comments</th>
+                    <th>Resource Title</th>
+                    <th>Resource Description</th>
+                </tr>
                 </thead>
                 {!loading && (
                     <tbody className="bg-white">
