@@ -9,12 +9,21 @@ export default function ResourceId({ resource }) {
     const {id, numLikes, numComments, resourceTitle, resourceDesc} = resource
     return (
         <>
-            <Navbar></Navbar>
-            <h1>{resourceTitle}</h1>
-            <p>{resourceDesc}</p>
-            <p>Likes: {numLikes}</p>
-            <p>Comments: {numComments}</p>
-            <CommentBox></CommentBox>
+            <Navbar />
+            <br />
+            <div style={{ maxWidth: '90%', margin: 'auto', padding: '20px', borderRadius: '16px', backgroundColor: '#F9F9F9', boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)' }}>
+                <h1 style={{ fontSize: '32px', marginBottom: '10px', color: '#333' }}>{resourceTitle}</h1>
+                <p style={{ fontSize: '16px', color: '#555', marginBottom: '20px' }}>{resourceDesc}</p>
+                <div style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', fontSize: '14px', color: '#777', marginBottom: '16px' }}>
+                    <div style={{ marginRight: '10px' }}>
+                        <span>Likes: {numLikes}</span>
+                    </div>
+                    <div>
+                        <span>Comments: {numComments}</span>
+                    </div>
+                </div>
+                <div> <CommentBox /> </div>
+            </div>
         </>
     )
 }
