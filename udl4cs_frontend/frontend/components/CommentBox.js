@@ -10,15 +10,16 @@ export function CommentBox() {
 
     const dynamicTextBoxArea = () => {
         const lines = comment.split('\n').length;
-        return `${lines * 45}px`;
+        return lines === 1 ? '60px' : `${lines * 25 + 12}px`;
     };
+
 
     //TODO Change to actually call user image from back end for now using local file
     return (
-        <form style={{ maxWidth: '60%', margin: 'auto', padding: '20px', borderRadius: '16px', backgroundColor: '#EAEAEA', boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)' }}>
-            <h2 style={{ textAlign: 'left', color: '#000000', marginBottom: '20px', fontStyle: 'normal', fontWeight: '400', fontSize: '26px', lineHeight: '35px' }}>Comments</h2>
+        <form style={{ maxWidth: '60%', margin: 'auto', padding: '16px', borderRadius: '16px', backgroundColor: '#EAEAEA', boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)' }}>
+            <h4 style={{ textAlign: 'left', color: '#000000', marginBottom: '20px', fontStyle: 'normal', fontWeight: '400', fontSize: '26px', lineHeight: '35px' }}>Comments</h4>
             <div className="commentBoxRow d-flex flex-column">
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row" style={{padding: '1x'}}>
                     <div style={{ marginRight: '10px'}}>
                         <Image src="/exampleuser_photo.jpg"
                                alt="Profile"
@@ -30,18 +31,20 @@ export function CommentBox() {
                     </div>
                     <textarea
                         className="commentBody"
-                        style={{ width: '100%', padding: '10px', borderRadius: '16px', marginBottom: '10px', height: dynamicTextBoxArea(), resize: 'none'}}
+                        style={{ width: '100%', padding: '5px', borderRadius: '16px', marginBottom: '10px', height: dynamicTextBoxArea(), resize: 'none', overflow: 'hidden'}}
                         placeholder="Add a comment..."
                         value={comment}
                         onChange={updateCommentState}
                     ></textarea>
                 </div>
-                <button
-                    type="submit"
-                    className="postButton"
-                    style={{ borderRadius: '16px', width: '100%', padding: '10px', cursor: 'pointer' }}>
-                    Comment
-                </button>
+                <div className="d-flex align-items-center justify-content-end">
+                    <button
+                        type="button"
+                        className="postButton"
+                        style={{ borderRadius: '16px', width: '33%', padding: '5px', cursor: 'pointer' }}>
+                        Comment
+                    </button>
+                </div>
             </div>
         </form>
     );
