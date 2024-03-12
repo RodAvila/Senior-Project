@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67cc054e-7d5c-4100-9e33-4e9de8404722" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../udl4cs_resources/src/main/java/com/edugators/udl4cs_resources/service/UserServiceInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/components/LoginComp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pages/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +61,7 @@
     "git-widget-placeholder": "mliamkin",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend",
+    "last_opened_file_path": "C:/Users/mliam/OneDrive/Documents/Code/SeniorProject/Senior-Project/udl4cs_resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,21 +80,6 @@
         <entry key="com.intellij.reactbuddy.storybook" value="false" />
       </map>
     </option>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="udl4cs_frontend" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="udl4cs_frontend" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -120,6 +106,8 @@
       <workItem from="1709609478194" duration="729000" />
       <workItem from="1709665102750" duration="140000" />
       <workItem from="1709674067248" duration="716000" />
+      <workItem from="1709675902872" duration="437000" />
+      <workItem from="1710256606548" duration="956000" />
     </task>
     <servers />
   </component>
