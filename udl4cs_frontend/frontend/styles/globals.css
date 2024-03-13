@@ -1,0 +1,17 @@
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.card{
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.10);
+
+}
