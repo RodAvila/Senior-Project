@@ -26,11 +26,13 @@ public class UserController {
     public User saveUser(@RequestBody Map<String, Object> user) {
         User newUser = new User(0, user.get("firstName").toString(), user.get("lastName").toString(), user.get("role").toString(), user.get("email").toString(), user.get("username").toString(), user.get("password").toString());
         User returnedUser = userService.saveUser(newUser);
+        //Create JWT Token
         return returnedUser;
     }
 
     @GetMapping(value = "/users")
     public List<User> getAllUsers() {
+        //Post JWT Token to front-end
         return userService.getAllUsers();
     }
 }
