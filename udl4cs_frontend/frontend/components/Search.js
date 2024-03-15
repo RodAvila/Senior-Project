@@ -32,7 +32,7 @@ export default function Search() {
         // </section>
         <div className=" py-5 border-bottom">
             <div class="row align-items-center justify-content-center">
-                <div class="col-md-5 ">
+                <div class="col-md-5 col-sm-5">
                     <div class="input-group">
                         <input class="form-control border-end-0 border" type="search" placeholder="Search resource" aria-label="Search resource" id="example-search-input" />
                         <button class="btn btn-outline-secondary border-spacing-0.5" type="button" id="button-addon2"><i class="bi bi-search"></i></button>

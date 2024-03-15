@@ -38,9 +38,14 @@ const ResourceCard = ({ resource }) => {
 
                 <section className="mt-5 px-3">
                     <div className="container-lg ">
-                        <div>
-                            <h2 className={`${firaSans.className}`} style={{ color: 'var(--bs-blue)' }}>Resources</h2>
-
+                        <div className="row">
+                            <div className="col-md-6">
+                                <h2 className={`${firaSans.className}`} style={{color: 'var(--bs-blue)'}}>Resources</h2>
+                            </div>
+                            <div className="col-md-6" style={{textAlign: 'right'}}>
+                                <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button">+ Upload
+                                Resource</a>
+                            </div>
                         </div>
 
                         <div className="row my-5 align-items-center justify-content-center g-5">
@@ -49,7 +54,7 @@ const ResourceCard = ({ resource }) => {
                                     <div className="card shadow border-0" key={resource.id}>
                                         <Image src={"/cover.png"} className='card-img-top'
                                                width={300}
-                                               height={200} />
+                                               height={200}/>
                                         <div className="card-body py-4">
                                             <h4 className={`${firaSans.className} card-title`}>{resource.resourceTitle}</h4>
                                             <p className="lead card-subtitle">
@@ -66,7 +71,6 @@ const ResourceCard = ({ resource }) => {
                     </div>
 
                 </section>
-
 
 
             )
