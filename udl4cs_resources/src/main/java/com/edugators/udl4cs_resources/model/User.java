@@ -1,12 +1,31 @@
 package com.edugators.udl4cs_resources.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "User")
 public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Column(name = "FIRSTNAME")
     private String firstName;
+
+    @Column(name = "LASTNAME")
     private String lastName;
+
+    @Column(name = "ROLE")
     private String role;
+
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "PASSWORD")
     private String password;
 
     public User(int _id, String _firstName, String _lastName, String _role, String _email, String _username, String _password) {
