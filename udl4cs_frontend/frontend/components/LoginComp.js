@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-export default function SignUpComp() {
+export default function LoginComp() {
     const USER_API_BASE_URL = "http://localhost:8080/users";
 
     const [user, setUser] = useState({
@@ -63,67 +63,14 @@ export default function SignUpComp() {
         <div className="container d-flex align-items-center justify-content-center">
             <div className="col-lg-6 col-sm-12 col-12">
                 <br/>
-                <h1>Signup</h1>
+                <h1>Login</h1>
                 <br/>
                 <form>
                     <div className="form-floating mb-3">
                         <input type="text"
-                               name="firstName"
-                               value={user.firstName}
-                               onChange={(e) => handleChange(e)}
-                               className="form-control"
-                               style={{borderRadius: '16px!important'}}
-                               id="inputFirstName"
-                               placeholder="First Name"
-                               required/>
-                        <label htmlFor="inputFirstName">First Name</label>
-                    </div>
-                    <br/>
-                    <div className="form-floating mb-3">
-                        <input type="text"
-                               name="lastName"
-                               value={user.lastName}
-                               onChange={(e2) => handleChange(e2)}
-                               className="form-control"
-                               style={{borderRadius: '16px!important'}}
-                               id="inputLastName"
-                               placeholder="Last Name"
-                               required/>
-                        <label htmlFor="inputLastName">Last Name</label>
-                    </div>
-                    <br/>
-                    <div className="form-floating mb-3">
-                        <input type="text"
-                               name="role"
-                               value={user.role}
-                               onChange={(e3) => handleChange(e3)}
-                               className="form-control"
-                               style={{borderRadius: '16px!important'}}
-                               id="inputRole"
-                               placeholder="Role"
-                               required/>
-                        <label htmlFor="inputRole">Role</label>
-                    </div>
-                    <br/>
-                    <div className="form-floating mb-3">
-                        <input type="email"
-                               name="email"
-                               value={user.email}
-                               onChange={(e4) => handleChange(e4)}
-                               className="form-control"
-                               style={{borderRadius: '16px!important'}}
-                               id="inputEmail"
-                               placeholder="Email"
-                               aria-describedby="emailHelp"
-                               required/>
-                        <label htmlFor="inputEmail">Email</label>
-                    </div>
-                    <br/>
-                    <div className="form-floating mb-3">
-                        <input type="text"
                                name="username"
                                value={user.username}
-                               onChange={(e5) => handleChange(e5)}
+                               onChange={(e) => handleChange(e)}
                                className="form-control"
                                style={{borderRadius: '16px!important'}}
                                id="inputUsername"
@@ -136,7 +83,7 @@ export default function SignUpComp() {
                         <input type="password"
                                name="password"
                                value={user.password}
-                               onChange={(e6) => handleChange(e6)}
+                               onChange={(e2) => handleChange(e2)}
                                className="form-control"
                                style={{borderRadius: '16px!important'}}
                                id="inputPassword"
@@ -148,7 +95,7 @@ export default function SignUpComp() {
                     <br/>
                     <div className="text-center">
                         <button type="submit" className="btn btn-primary" onClick={saveUser}
-                                style={{borderRadius: '16px!important', width: '200px', height: '50px'}}>Signup
+                                style={{borderRadius: '16px!important', width: '200px', height: '50px'}}>Login
                         </button>
                     </div>
                 </form>

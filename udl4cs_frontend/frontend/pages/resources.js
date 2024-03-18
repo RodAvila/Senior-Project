@@ -1,16 +1,25 @@
 import Link from 'next/link'
 import AddResource from "../components/AddResource"
-import {React} from "react";
+import ResourceCard from '../components/ResourceCard';
+import { React } from "react";
 import Navbar from "../components/Navbar";
+import Search from '../components/Search';
+
 
 
 export default function Resources() {
     return (
         <>
             <Navbar></Navbar>
-            <div className="container">
-                <AddResource></AddResource>
+            <Search></Search>
+
+            <div className="container my-3 ">
+
+                <ResourceCard></ResourceCard>
+
             </div>
+
+
         </>
     )
 }
