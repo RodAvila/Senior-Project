@@ -2,6 +2,8 @@ package com.edugators.udl4cs_resources.controller;
 import com.edugators.udl4cs_resources.model.Resource;
 import com.edugators.udl4cs_resources.service.ResourceService;
 
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -13,7 +15,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class ResourceController {
 
-    private final ResourceService resourceService;
+    @Autowired ResourceService resourceService;
 
     public ResourceController(ResourceService resourceService) {
         this.resourceService = resourceService;
@@ -23,10 +25,9 @@ public class ResourceController {
     }
 
     @PostMapping(value = "/resources", headers = "Accept=application/json")
-    public Resource saveResource(@RequestBody Map<String, Object> resource) {
-        Resource newResource = new Resource(0, 0, 0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
-        Resource returnedResource = resourceService.saveResource(newResource);
-        return returnedResource;
+    public void saveResource(@Valid @RequestBody Resource resource) {
+        //Resource newResource = new Resource(0, 0, 0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
+        resourceService.saveResource(resource);
     }
 
     @GetMapping(value = "/")
@@ -37,5 +38,11 @@ public class ResourceController {
     @GetMapping(value = "/resources")
     public List<Resource> getAllResourcese() {
         return resourceService.getAllResources();
+    }
+
+    @GetMapping("/resource/{id}")
+    private Resource getResource(@PathVariable("id") int id)
+    {
+        return resourceService.getResourceById(id);
     }
 }

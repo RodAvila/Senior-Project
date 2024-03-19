@@ -1,6 +1,13 @@
 package com.edugators.udl4cs_resources.model;
 
-public class User {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
+public class Users {
+    @Id
     private int id;
     private String firstName;
     private String lastName;
@@ -9,14 +16,19 @@ public class User {
     private String username;
     private String password;
 
-    public User(int _id, String _firstName, String _lastName, String _role, String _email, String _username, String _password) {
-        id = _id;
-        firstName = _firstName;
-        lastName = _lastName;
-        role = _role;
-        email = _email;
-        username = _username;
-        password = _password;
+    public Users(int _id, String _firstName, String _lastName, String _role, String _email, String _username, String _password) {
+        super();
+        this.id = _id;
+        this.firstName = _firstName;
+        this.lastName = _lastName;
+        this.role = _role;
+        this.email = _email;
+        this.username = _username;
+        this.password = _password;
+    }
+
+    public Users() {
+
     }
 
     public int getId() {

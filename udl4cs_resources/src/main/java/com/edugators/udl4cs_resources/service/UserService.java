@@ -1,31 +1,32 @@
 package com.edugators.udl4cs_resources.service;
 
-import com.edugators.udl4cs_resources.model.Resource;
-import com.edugators.udl4cs_resources.model.User;
+import com.edugators.udl4cs_resources.model.Users;
+import com.edugators.udl4cs_resources.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements UserServiceInterface {
+public class UserService {
 
-    private List<User> userRepository;
-    int count = 0;
+    @Autowired
+    UserRepository userRepository;
 
-    public UserService(List<User> userRepository) {
-        this.userRepository = userRepository;
+
+    public List<Users> getAllUsers() {
+        List<Users> users = new ArrayList<Users>();
+        userRepository.findAll().forEach(user -> users.add(user));
+        return users;
     }
 
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository;
+    public Users getUserById(int id)
+    {
+        return userRepository.findById(id).get();
     }
-
-    @Override
-    public User saveUser(User user) {
-        user.setId(count);
-        count++;
-        userRepository.add(user);
-        return user;
+    public void saveUser(Users user)
+    {
+        userRepository.save(user);
     }
 }

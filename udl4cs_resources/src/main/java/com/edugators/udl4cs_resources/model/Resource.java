@@ -1,12 +1,20 @@
 package com.edugators.udl4cs_resources.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table
 public class Resource {
+    @Id
     private int id;
     private int numLikes;
     private int numComments;
     private String ResourceTitle;
     private String ResourceDesc;
 
+    //public Resource(){}
     public Resource(int _id, int _numLikes, int _numComments, String _ResourceTitle, String _ResourceDescription) {
         super();
         this.id = _id;
@@ -16,9 +24,13 @@ public class Resource {
         this.ResourceDesc = _ResourceDescription;
     }
 
-    public int getId() {
-        return id;
+    public Resource() {
+
     }
+
+    //public int getId() {
+    //    return id;
+    //}
 
     public int getNumComments() { return numComments; }
 
@@ -31,9 +43,6 @@ public class Resource {
         return ResourceDesc;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void setResourceTitle(String _ResourceTitle) {
         this.ResourceTitle = _ResourceTitle;
@@ -41,5 +50,13 @@ public class Resource {
 
     public void setResourceDescription(String _ResourceDescription) {
         this.ResourceDesc = _ResourceDescription;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }
