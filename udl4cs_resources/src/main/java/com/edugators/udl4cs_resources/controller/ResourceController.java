@@ -19,9 +19,9 @@ public class ResourceController {
 
     public ResourceController(ResourceService resourceService) {
         this.resourceService = resourceService;
-        resourceService.saveResource(new Resource(0, 0, 0, "Resource 1", "A resource description"));
-        resourceService.saveResource(new Resource(1, 0, 0, "Resource 2", "A resource description"));
-        resourceService.saveResource(new Resource(2, 0, 0, "Resource 3", "A resource description"));
+        resourceService.saveResource(new Resource("ResourceName","Topic","Description","Audience","Link","CSTASTANDARD","GRADELEVEL","IMAGELINK","UPLOADDATE","UPLOADDATE", "MODULE", 1, 0));
+        resourceService.saveResource(new Resource("ResourceName","Topic","Description","Audience","Link","CSTASTANDARD","GRADELEVEL","IMAGELINK","UPLOADDATE","UPLOADDATE", "MODULE", 2, 0));
+        //resourceService.saveResource(new Resource(2, 0, 0, "Resource 3", "A resource description"));
     }
 
     @PostMapping(value = "/resources", headers = "Accept=application/json")
@@ -36,7 +36,7 @@ public class ResourceController {
     }
 
     @GetMapping(value = "/resources")
-    public List<Resource> getAllResourcese() {
+    public List<Resource> getAllResources() {
         return resourceService.getAllResources();
     }
 

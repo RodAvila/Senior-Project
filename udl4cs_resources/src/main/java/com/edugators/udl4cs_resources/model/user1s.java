@@ -6,28 +6,28 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table
-public class Users {
+public class user1s {
     @Id
     private int id;
     private String firstName;
     private String lastName;
     private String role;
     private String email;
-    private String username;
+    private String user1name;
     private String password;
 
-    public Users(int _id, String _firstName, String _lastName, String _role, String _email, String _username, String _password) {
+    public user1s(int _id, String _firstName, String _lastName, String _role, String _email, String _user1name, String _password) {
         super();
         this.id = _id;
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.role = _role;
         this.email = _email;
-        this.username = _username;
+        this.user1name = _user1name;
         this.password = _password;
     }
 
-    public Users() {
+    public user1s() {
 
     }
 
@@ -51,8 +51,8 @@ public class Users {
         return email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getuser1name() {
+        return user1name;
     }
 
     public String getPassword() {
@@ -79,8 +79,8 @@ public class Users {
         email = _email;
     }
 
-    public void setUsername(String _username) {
-        username = _username;
+    public void setuser1name(String _user1name) {
+        user1name = _user1name;
     }
 
     public void setPassword(String _password) {
