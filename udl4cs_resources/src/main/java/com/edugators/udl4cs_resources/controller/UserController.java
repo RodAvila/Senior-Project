@@ -5,6 +5,8 @@ import com.edugators.udl4cs_resources.service.ResourceService;
 import com.edugators.udl4cs_resources.service.UserService;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     private final UserService userService;
 
     public UserController(UserService userService) {
@@ -24,7 +28,9 @@ public class UserController {
 
     @PostMapping(value = "/users", headers = "Accept=application/json")
     public User saveUser(@RequestBody Map<String, Object> user) {
-        User newUser = new User(0, user.get("firstName").toString(), user.get("lastName").toString(), user.get("role").toString(), user.get("email").toString(), user.get("username").toString(), user.get("password").toString());
+        String plainPassword = user.get("password").toString();
+        String encodedPassword = passwordEncoder.encode(plainPassword);
+        User newUser = new User(0, user.get("firstName").toString(), user.get("lastName").toString(), user.get("role").toString(), user.get("email").toString(), user.get("username").toString(), encodedPassword);
         User returnedUser = userService.saveUser(newUser);
         //Create JWT Token
         return returnedUser;

@@ -60,7 +60,7 @@ const ResourceCard = ({ resource }) => {
                                             <p className="lead card-subtitle">
                                                 {resource.resourceDesc}
                                             </p>
-                                            <span class="badge rounded-pill text-bg-primary outline-1 ">Tags</span>
+                                            <span className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>
 
                                         </div>
                                     </div>

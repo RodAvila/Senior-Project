@@ -98,6 +98,42 @@ const AddResource = () => {
                                 <label htmlFor="inputResourceTitle">Add a title</label>
                             </div>
                             <br/>
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                       name="resourceTopic"
+                                       onChange={(e6) => handleChange(e6)}
+                                       className="form-control"
+                                       style={{borderRadius: '16px!important'}}
+                                       id="inputResourceTopic"
+                                       placeholder="Resource Topic"
+                                       required></input>
+                                <label htmlFor="inputResourceTopic">Add topic of the resource</label>
+                            </div>
+                            <br/>
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                       name="resourceAudience"
+                                       onChange={(e7) => handleChange(e7)}
+                                       className="form-control"
+                                       style={{borderRadius: '16px!important'}}
+                                       id="inputResourceAudience"
+                                       placeholder="Resource Audience"
+                                       required></input>
+                                <label htmlFor="inputResourceAudience">Add audience of the resource</label>
+                            </div>
+                            <br/>
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                       name="resourceGradeLevel"
+                                       onChange={(e8) => handleChange(e8)}
+                                       className="form-control"
+                                       style={{borderRadius: '16px!important'}}
+                                       id="inputResourceGrade"
+                                       placeholder="Resource Grade Level"
+                                       required></input>
+                                <label htmlFor="inputResourceGrade">Add grade level of resource</label>
+                            </div>
+                            <br/>
                             <div className="form-group mb-3">
                             <textarea rows="5" type="text"
                                       name="resourceDesc"
@@ -133,7 +169,7 @@ const AddResource = () => {
                                 ></input>
                                 <label htmlFor="inputUploadLink">Upload Link</label>
                             </div>
-                            <br />
+                            <br/>
                             <div className="form-group mb-3">
                                 <input className="form-control form-control-lg"
                                        id="formFileLg"
@@ -148,7 +184,7 @@ const AddResource = () => {
                             <br/>
                             <div class="row">
                                 <div class="col-md-4">
-                                <button onClick={saveResource}
+                                    <button onClick={saveResource}
                                             className="btn btn-primary"
                                             style={{borderRadius: '16px!important'}}>
                                         Submit for Approval
