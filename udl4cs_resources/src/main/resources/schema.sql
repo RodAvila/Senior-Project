@@ -1,3 +1,4 @@
+//DROP TABLE IF EXISTS Resource;
 CREATE TABLE IF NOT EXISTS Resource (
     id int,
     resourceName varchar(500),
@@ -23,4 +24,13 @@ CREATE TABLE IF NOT EXISTS User1 (
     email varchar(200),
     username varchar(100),
     password varchar(100)
+);
+
+CREATE TABLE IF NOT EXISTS Comment (
+    id int,
+    firstName varchar(100),
+    lastName varchar(100),
+    comment varchar(100),
+    username varchar(100),
+    uploaddate varchar(200)
 );

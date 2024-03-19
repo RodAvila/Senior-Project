@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Resource {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     //@Column(name = "NAME")
@@ -49,9 +49,8 @@ public class Resource {
     //@Column(name = "NUMCOMMENTS")
     private int numComments;
 
-    public Resource(int id, String resourceName, String topic, String resourceDesc, String audience, String resourceType, String resourceLink,
-                    String CSTA, String gradeLevel, String imageLink, String uploadDate, String module, int numLikes, int numComments) {
-        this.id = id;
+    public Resource(String resourceName, String topic, String resourceDesc, String audience, String resourceType, String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate, String module, int numLikes, int numComments) {
+        super();
         this.resourceName = resourceName;
         this.topic = topic;
         this.resourceDesc = resourceDesc;
@@ -67,9 +66,6 @@ public class Resource {
         this.numComments = numComments;
     }
 
-    public Resource(String resourceName, String topic, String description, String audience, String link, String cstastandard, String gradelevel, String imagelink, String uploaddate, String s, String module, int i, int i1) {
-
-    }
 
     public Resource() {
 

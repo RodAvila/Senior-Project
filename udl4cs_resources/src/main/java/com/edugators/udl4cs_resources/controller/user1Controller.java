@@ -20,8 +20,8 @@ public class user1Controller {
 
     public user1Controller(user1Service user1Service) {
         this.user1Service = user1Service;
-        //user1Service.saveuser1(new user1s(0, "John", "Doe", "Teacher", "jdoe@coe.edu", "johndoe", "password123"));
-        //user1Service.saveuser1(new user1s(1, "Mary", "Doer", "Professor", "mdoer@coe.edu", "maryjoe", "password1234"));
+        user1Service.saveuser1(new user1s("John", "Doe", "Teacher", "jdoe@coe.edu", "johndoe", "password123"));
+        user1Service.saveuser1(new user1s("Mary", "Doer", "Professor", "mdoer@coe.edu", "maryjoe", "password1234"));
         //user1Service.saveuser1(new user1s(2, "Juliet", "Doeseph", "Teacher", "jdoeseph@coe.edu", "julietdoe", "password12345"));
     }
 

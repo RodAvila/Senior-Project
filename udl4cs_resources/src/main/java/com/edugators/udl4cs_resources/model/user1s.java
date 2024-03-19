@@ -1,29 +1,27 @@
 package com.edugators.udl4cs_resources.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table
 public class user1s {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     private String firstName;
     private String lastName;
     private String role;
     private String email;
-    private String user1name;
+    private String username;
     private String password;
 
-    public user1s(int _id, String _firstName, String _lastName, String _role, String _email, String _user1name, String _password) {
+    public user1s(String _firstName, String _lastName, String _role, String _email, String _username, String _password) {
         super();
-        this.id = _id;
         this.firstName = _firstName;
         this.lastName = _lastName;
         this.role = _role;
         this.email = _email;
-        this.user1name = _user1name;
+        this.username = _username;
         this.password = _password;
     }
 
@@ -52,7 +50,7 @@ public class user1s {
     }
 
     public String getuser1name() {
-        return user1name;
+        return username;
     }
 
     public String getPassword() {
@@ -79,8 +77,8 @@ public class user1s {
         email = _email;
     }
 
-    public void setuser1name(String _user1name) {
-        user1name = _user1name;
+    public void setuser1name(String _username) {
+        username = _username;
     }
 
     public void setPassword(String _password) {

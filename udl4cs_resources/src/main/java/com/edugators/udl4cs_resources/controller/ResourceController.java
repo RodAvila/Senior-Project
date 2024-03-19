@@ -19,8 +19,8 @@ public class ResourceController {
 
     public ResourceController(ResourceService resourceService) {
         this.resourceService = resourceService;
-        resourceService.saveResource(new Resource("ResourceName","Topic","Description","Audience","Link","CSTASTANDARD","GRADELEVEL","IMAGELINK","UPLOADDATE","UPLOADDATE", "MODULE", 1, 0));
-        resourceService.saveResource(new Resource("ResourceName","Topic","Description","Audience","Link","CSTASTANDARD","GRADELEVEL","IMAGELINK","UPLOADDATE","UPLOADDATE", "MODULE", 2, 0));
+        resourceService.saveResource(new Resource("ResourceName1","Topic1","Description1","Audience1","Link1","CSTASTANDARD1","GRADELEVEL1","IMAGELINK1","UPLOADDATE1","UPLOADDATE1", "MODULE1", 1, 1));
+        resourceService.saveResource(new Resource("ResourceName2","Topic2","Description2","Audience2","Link2","CSTASTANDARD2","GRADELEVEL2","IMAGELINK2","UPLOADDATE2","UPLOADDATE2", "MODULE2", 2, 2));
         //resourceService.saveResource(new Resource(2, 0, 0, "Resource 3", "A resource description"));
     }
 
