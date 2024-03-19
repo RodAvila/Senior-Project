@@ -1,34 +1,34 @@
 package com.edugators.udl4cs_resources.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Resource")
+@Table
 public class Resource {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "NAME")
+    @Column(name = "RESOURCENAME")
     private String resourceName;
 
     @Column(name = "TOPIC")
     private String topic;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "RESOURCEDESC")
     private String resourceDesc;
 
     @Column(name = "AUDIENCE")
     private String audience;
 
-    @Column(name = "TYPE")
+    @Column(name = "RESOURCETYPE")
     private String resourceType;
 
-    @Column(name = "LINK")
+    @Column(name = "RESOURCELINK")
     private String resourceLink;
 
-    @Column(name = "CSTASTANDARD")
+    @Column(name = "CSTA")
     private String CSTA;
 
     @Column(name = "GRADELEVEL")
@@ -43,15 +43,16 @@ public class Resource {
     @Column(name = "MODULE")
     private String module;
 
-    @Column(name = "LIKES")
-    private int numLikes;
+    @Column(name = "NUMLIKES")
+    private Integer numLikes;
 
     @Column(name = "NUMCOMMENTS")
-    private int numComments;
+    private Integer numComments;
 
-    public Resource(int id, String resourceName, String topic, String resourceDesc, String audience, String resourceType, String resourceLink,
-                    String CSTA, String gradeLevel, String imageLink, String uploadDate, String module, int numLikes, int numComments) {
-        this.id = id;
+    public Resource(String resourceName, String topic, String resourceDesc, String audience, String resourceType,
+                    String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate,
+                    String module, int numLikes, int numComments) {
+        super();
         this.resourceName = resourceName;
         this.topic = topic;
         this.resourceDesc = resourceDesc;
@@ -66,6 +67,12 @@ public class Resource {
         this.numLikes = numLikes;
         this.numComments = numComments;
     }
+
+
+    public Resource() {
+
+    }
+
 
     public int getId() {
         return id;

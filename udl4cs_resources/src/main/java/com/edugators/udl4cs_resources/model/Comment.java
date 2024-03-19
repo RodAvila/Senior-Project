@@ -1,13 +1,14 @@
 package com.edugators.udl4cs_resources.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 
 @Entity
-@Table(name = "Comment")
+@Table
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "FIRSTNAME")
@@ -16,8 +17,8 @@ public class Comment {
     @Column(name = "LASTNAME")
     private String lastName;
 
-    @Column(name = "VALUE")
-    private String value;
+    @Column(name = "COMMENT")
+    private String comment;
 
     @Column(name = "UPLOADDATE")
     private String uploadDate;
@@ -25,13 +26,17 @@ public class Comment {
     @Column(name = "USERNAME")
     private String userName;
 
-    public Comment(int id, String firstName, String lastName, String value, String uploadDate, String userName) {
-        this.id = id;
+    public Comment(String firstName, String lastName, String comment, String uploadDate, String userName) {
+        super();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.value = value;
+        this.comment = comment;
         this.uploadDate = uploadDate;
         this.userName = userName;
+    }
+
+    public Comment() {
+
     }
 
     public int getId() {
@@ -46,8 +51,8 @@ public class Comment {
         return lastName;
     }
 
-    public String getValue() {
-        return value;
+    public String getComment() {
+        return comment;
     }
 
     public String getUploadDate() {
@@ -70,8 +75,8 @@ public class Comment {
         this.lastName = lastName;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public void setUploadDate(String uploadDate) {
