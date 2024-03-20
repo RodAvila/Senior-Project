@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
 export default function SignUpComp() {
-    const USER_API_BASE_URL = "http://localhost:8080/users";
+    const USER_API_BASE_URL = "http://localhost:8080/user1s";
 
     const [user, setUser] = useState({
         id: "",
@@ -9,7 +9,7 @@ export default function SignUpComp() {
         lastName: "",
         role: "",
         email: "",
-        username: "",
+        user1name: "",
         password: ""
     });
 
@@ -19,7 +19,7 @@ export default function SignUpComp() {
         lastName: "",
         role: "",
         email: "",
-        username: "",
+        user1name: "",
         password: ""
     });
 
@@ -30,7 +30,6 @@ export default function SignUpComp() {
 
     const saveUser = async(e) => {
         e.preventDefault();
-        console.log(JSON.stringify(user));
         const response = await fetch(USER_API_BASE_URL, {
             method: "POST",
             headers: {
@@ -41,8 +40,6 @@ export default function SignUpComp() {
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
-        const _user = await response.json();
-        setResponseUser(_user);
         reset(e);
     };
 
@@ -54,7 +51,7 @@ export default function SignUpComp() {
             lastName: "",
             role: "",
             email: "",
-            username: "",
+            user1name: "",
             password: ""
         });
     };
@@ -121,15 +118,15 @@ export default function SignUpComp() {
                     <br/>
                     <div className="form-floating mb-3">
                         <input type="text"
-                               name="username"
-                               value={user.username}
+                               name="user1name"
+                               value={user.user1name}
                                onChange={(e5) => handleChange(e5)}
                                className="form-control"
                                style={{borderRadius: '16px!important'}}
-                               id="inputUsername"
+                               id="inputuser1name"
                                placeholder="Username"
                                required/>
-                        <label htmlFor="inputUsername">Username</label>
+                        <label htmlFor="inputuser1name">Username</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">

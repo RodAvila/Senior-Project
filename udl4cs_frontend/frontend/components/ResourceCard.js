@@ -30,7 +30,6 @@ const ResourceCard = ({ resource }) => {
         fetchData();
     }, [resource]);
 
-
     return (
         <>
 
@@ -56,7 +55,7 @@ const ResourceCard = ({ resource }) => {
                                                width={300}
                                                height={200}/>
                                         <div className="card-body py-4">
-                                            <h4 className={`${firaSans.className} card-title`}>{resource.resourceTitle}</h4>
+                                            <h4 className={`${firaSans.className} card-title`}>{resource.resourceName}</h4>
                                             <p className="lead card-subtitle">
                                                 {resource.resourceDesc}
                                             </p>
