@@ -4,8 +4,8 @@ import SearchResultItem from "../components/SearchResultItem"
 
 export default function SearchResults({ results }) {
     return (
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 col-sm-5">
+        <div className="row align-items-center justify-content-center">
+            <div className="col-md-5 col-sm-5">
                 <div className="results-list">
                     {
                         results.map((result, id) => {

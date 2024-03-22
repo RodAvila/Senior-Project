@@ -26,10 +26,10 @@ export default function Search({ setResults }) {
     }
 
     return (
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 col-sm-5">
-                <div class="input-group">
-                    <input class="form-control border-end-0 border"
+        <div className="row align-items-center justify-content-center">
+            <div className="col-md-5 col-sm-5">
+                <div className="input-group">
+                    <input className="form-control border-end-0 border"
                            type="search"
                            placeholder="Search resource"
                            aria-label="Search resource"
@@ -37,7 +37,7 @@ export default function Search({ setResults }) {
                            value={input}
                            onChange={(e)=>handleChange(e.target.value)}
                     />
-                    <button class="btn btn-outline-secondary border-spacing-0.5" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+                    <button className="btn btn-outline-secondary border-spacing-0.5" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
                 </div>
             </div>
         </div>
