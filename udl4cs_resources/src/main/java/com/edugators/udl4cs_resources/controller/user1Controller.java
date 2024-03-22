@@ -7,6 +7,7 @@ import com.edugators.udl4cs_resources.service.user1Service;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000")
 public class user1Controller {
     @Autowired
+    PasswordEncoder passwordEncoder;
     user1Service user1Service;
 
     public user1Controller(user1Service user1Service) {
@@ -28,6 +30,8 @@ public class user1Controller {
     @PostMapping(value = "/user1s", headers = "Accept=application/json")
     public void saveuser1(@Valid @RequestBody user1s user1) {
         //Resource newResource = new Resource(0, 0, 0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
+        String plainPassword = user1.getPassword();
+        user1.setPassword(passwordEncoder.encode(plainPassword).toString());
         user1Service.saveuser1(user1);
     }
     @GetMapping(value = "/user1s")
