@@ -20,12 +20,12 @@ public class user1Controller {
     PasswordEncoder passwordEncoder;
     user1Service user1Service;
 
-    public user1Controller(user1Service user1Service) {
-        this.user1Service = user1Service;
-        user1Service.saveuser1(new user1s("John", "Doe", "Teacher", "jdoe@coe.edu", "johndoe", "password123"));
-        user1Service.saveuser1(new user1s("Mary", "Doer", "Professor", "mdoer@coe.edu", "maryjoe", "password1234"));
-        //user1Service.saveuser1(new user1s(2, "Juliet", "Doeseph", "Teacher", "jdoeseph@coe.edu", "julietdoe", "password12345"));
-    }
+//    public user1Controller(user1Service user1Service) {
+//        this.user1Service = user1Service;
+//        user1Service.saveuser1(new user1s("John", "Doe", "Teacher", "jdoe@coe.edu", "johndoe", "password123"));
+//        user1Service.saveuser1(new user1s("Mary", "Doer", "Professor", "mdoer@coe.edu", "maryjoe", "password1234"));
+//        //user1Service.saveuser1(new user1s(2, "Juliet", "Doeseph", "Teacher", "jdoeseph@coe.edu", "julietdoe", "password12345"));
+//    }
 
     @PostMapping(value = "/user1s", headers = "Accept=application/json")
     public void saveuser1(@Valid @RequestBody user1s user1) {
