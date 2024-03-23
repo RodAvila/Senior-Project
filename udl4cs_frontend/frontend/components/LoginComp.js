@@ -1,25 +1,23 @@
 import React, {useState} from "react"
 
 export default function LoginComp() {
-    const USER_API_BASE_URL = "http://localhost:8080/user1s";
+    const USER_API_BASE_URL = "http://localhost:8080/user1";
 
     const [user, setUser] = useState({
-        id: "",
         firstName: "",
         lastName: "",
         role: "",
         email: "",
-        user1name: "",
+        userName: "",
         password: ""
     });
 
     const [responseUser, setResponseUser] = useState({
-        id: "",
         firstName: "",
         lastName: "",
         role: "",
         email: "",
-        user1name: "",
+        userName: "",
         password: ""
     });
 
@@ -46,12 +44,11 @@ export default function LoginComp() {
     const reset = (e) => {
         e.preventDefault();
         setUser({
-            id: "",
             firstName: "",
             lastName: "",
             role: "",
             email: "",
-            user1name: "",
+            userName: "",
             password: ""
         });
     };
@@ -65,15 +62,15 @@ export default function LoginComp() {
                 <form>
                     <div className="form-floating mb-3">
                         <input type="text"
-                               name="user1name"
-                               value={user.user1name}
+                               name="userName"
+                               value={user.userName}
                                onChange={(e) => handleChange(e)}
                                className="form-control"
                                style={{borderRadius: '16px!important'}}
-                               id="inputuser1name"
+                               id="inputuserName"
                                placeholder="Username"
                                required/>
-                        <label htmlFor="inputuser1name">Username</label>
+                        <label htmlFor="inputuserName">Username</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">

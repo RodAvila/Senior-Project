@@ -8,23 +8,35 @@ const AddResource = () => {
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
 
     const [resource, setResource] = useState({
-        id: "",
         resourceName: "",
         topic: "",
-        audience: "",
-        gradeLevel: "",
         resourceDesc: "",
+        audience: "",
+        resourceType: "",
         resourceLink: "",
+        CSTA: "",
+        gradeLevel: "",
+        imageLink: "",
+        uploadDate: "",
+        module: "",
+        numLikes: "",
+        numComments: ""
     });
 
     const [responseResource, setResponseResource] = useState({
-        id: "",
         resourceName: "",
         topic: "",
-        audience: "",
-        gradeLevel: "",
         resourceDesc: "",
+        audience: "",
+        resourceType: "",
         resourceLink: "",
+        CSTA: "",
+        gradeLevel: "",
+        imageLink: "",
+        uploadDate: "",
+        module: "",
+        numLikes: "",
+        numComments: ""
     });
 
     const handleChange = (event) => {
@@ -50,13 +62,19 @@ const AddResource = () => {
     const reset = (e) => {
         e.preventDefault();
         setResource({
-            id: "",
             resourceName: "",
             topic: "",
-            audience: "",
-            gradeLevel: "",
             resourceDesc: "",
+            audience: "",
+            resourceType: "",
             resourceLink: "",
+            CSTA: "",
+            gradeLevel: "",
+            imageLink: "",
+            uploadDate: "",
+            module: "",
+            numLikes: "",
+            numComments: ""
         });
     };
 

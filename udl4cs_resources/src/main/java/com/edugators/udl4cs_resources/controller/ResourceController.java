@@ -18,12 +18,12 @@ public class ResourceController {
     @Autowired
     ResourceService resourceService;
 
-    /*public ResourceController(ResourceService resourceService) {
-        this.resourceService = resourceService;
-        resourceService.saveResource(new Resource(0, 0, 0, "Resource 1", "A resource description"));
-        resourceService.saveResource(new Resource(1, 0, 0, "Resource 2", "A resource description"));
-        resourceService.saveResource(new Resource(2, 0, 0, "Resource 3", "A resource description"));
-    }*/
+//    public ResourceController(ResourceService resourceService) {
+//        this.resourceService = resourceService;
+////        resourceService.saveResource(new Resource(0, 0, 0, "Resource 1", "A resource description"));
+////        resourceService.saveResource(new Resource(1, 0, 0, "Resource 2", "A resource description"));
+////        resourceService.saveResource(new Resource(2, 0, 0, "Resource 3", "A resource description"));
+//    }
 
     @PostMapping(value = "/resources", headers = "Accept=application/json")
     public void saveResource(@Valid @RequestBody Resource resource) {

@@ -14,8 +14,6 @@ public class ResourceService {
     @Autowired
     ResourceRepository resourceRepository;
 
-
-
     public List<Resource> getAllResources() {
         List<Resource> resources = new ArrayList<Resource>();
         resourceRepository.findAll().forEach(resource -> resources.add(resource));
@@ -31,5 +29,8 @@ public class ResourceService {
         return resourceRepository.findById(id).get();
     }
 
+    public void delete(int id)
+    {
+        resourceRepository.deleteById(id);
+    }
 }
-
