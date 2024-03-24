@@ -1,7 +1,5 @@
 package com.edugators.udl4cs_resources.controller;
 import com.edugators.udl4cs_resources.model.User1;
-import com.edugators.udl4cs_resources.model.Resource;
-import com.edugators.udl4cs_resources.service.ResourceService;
 import com.edugators.udl4cs_resources.service.User1Service;
 
 
