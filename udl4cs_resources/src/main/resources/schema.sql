@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Resource (
-    id int NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id int NOT NULL PRIMARY KEY,
     resourceName varchar(500),
     topic varchar(500),
     resourceDesc varchar(1000),
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Resource (
 );
 
 CREATE TABLE IF NOT EXISTS User1 (
-    id int NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id int NOT NULL PRIMARY KEY,
     firstName varchar(100),
     lastName varchar(100),
     role varchar(100),
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS User1 (
 );
 
 CREATE TABLE IF NOT EXISTS Comment (
-    id int NOT NULL PRIMARY KEY AUTOINCREMENT,
+    id int NOT NULL PRIMARY KEY,
     firstName varchar(100),
     lastName varchar(100),
     comment varchar(100),
