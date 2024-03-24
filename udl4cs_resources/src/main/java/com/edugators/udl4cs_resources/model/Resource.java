@@ -3,53 +3,55 @@ package com.edugators.udl4cs_resources.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Resource")
+@Table
 public class Resource {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //@Column(name = "NAME")
+    @Column(name = "RESOURCENAME")
     private String resourceName;
 
-    //@Column(name = "TOPIC")
+    @Column(name = "TOPIC")
     private String topic;
 
-    //@Column(name = "DESCRIPTION")
+    @Column(name = "RESOURCEDESC")
     private String resourceDesc;
 
-    //@Column(name = "AUDIENCE")
+    @Column(name = "AUDIENCE")
     private String audience;
 
-    //@Column(name = "TYPE")
+    @Column(name = "RESOURCETYPE")
     private String resourceType;
 
-    //@Column(name = "LINK")
+    @Column(name = "RESOURCELINK")
     private String resourceLink;
 
-    //@Column(name = "CSTASTANDARD")
+    @Column(name = "CSTA")
     private String CSTA;
 
-    //@Column(name = "GRADELEVEL")
+    @Column(name = "GRADELEVEL")
     private String gradeLevel;
 
-    //@Column(name = "IMAGELINK")
+    @Column(name = "IMAGELINK")
     private String imageLink;
 
-    //@Column(name = "UPLOADDATE")
+    @Column(name = "UPLOADDATE")
     private String uploadDate;
 
-    //@Column(name = "MODULE")
+    @Column(name = "MODULE")
     private String module;
 
-    //@Column(name = "LIKES")
-    private int numLikes;
+    @Column(name = "NUMLIKES")
+    private Integer numLikes;
 
-    //@Column(name = "NUMCOMMENTS")
-    private int numComments;
+    @Column(name = "NUMCOMMENTS")
+    private Integer numComments;
 
-    public Resource(String resourceName, String topic, String resourceDesc, String audience, String resourceType, String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate, String module, int numLikes, int numComments) {
+    public Resource(String resourceName, String topic, String resourceDesc, String audience, String resourceType,
+                    String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate,
+                    String module, int numLikes, int numComments) {
         super();
         this.resourceName = resourceName;
         this.topic = topic;

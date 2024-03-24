@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "Comment")
+@Table
 public class Comment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "FIRSTNAME")
@@ -17,7 +17,7 @@ public class Comment {
     @Column(name = "LASTNAME")
     private String lastName;
 
-    @Column(name = "comment")
+    @Column(name = "COMMENT")
     private String comment;
 
     @Column(name = "UPLOADDATE")
@@ -51,7 +51,7 @@ public class Comment {
         return lastName;
     }
 
-    public String getcomment() {
+    public String getComment() {
         return comment;
     }
 
@@ -75,7 +75,7 @@ public class Comment {
         this.lastName = lastName;
     }
 
-    public void setcomment(String comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 

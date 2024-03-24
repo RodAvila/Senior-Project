@@ -1,0 +1,37 @@
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.card{
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.10);
+
+}
+
+.results-list {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 0px 1px #ddd;
+    border-radius: 10px;
+    margin-top: 1rem;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.searchItem {
+    padding: 5px 10px;
+}
+
+.searchItem:hover {
+    background-color: #efefef;
+}

@@ -1,11 +1,6 @@
 package com.edugators.udl4cs_resources.controller;
-
 import com.edugators.udl4cs_resources.model.Comment;
 import com.edugators.udl4cs_resources.service.CommentService;
-
-
-
-
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +14,12 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    public CommentController(CommentService commentService) {
+    /*public CommentController(CommentService commentService) {
         this.commentService = commentService;
-        commentService.saveComment(new Comment("John", "Doe", "Comment1", "1-1-24", "johndoe"));
-        commentService.saveComment(new Comment("Mary", "Doer", "Comment2", "2-2-24", "maryjoe"));
+        //commentService.saveComment(new Comment("John", "Doe", "Comment1", "1-1-24", "johndoe"));
+        //commentService.saveComment(new Comment("Mary", "Doer", "Comment2", "2-2-24", "maryjoe"));
         //commentService.savecomment(new comments(2, "Juliet", "Doeseph", "Teacher", "jdoeseph@coe.edu", "julietdoe", "password12345"));
-    }
+    }*/
 
     @PostMapping(value = "/comments", headers = "Accept=application/json")
     public void savecomment(@Valid @RequestBody Comment comment) {
@@ -42,4 +37,3 @@ public class CommentController {
         return commentService.getCommentById(id);
     }
 }
-
