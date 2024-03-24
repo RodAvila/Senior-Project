@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db592a27-eb20-4d31-b228-cd60687ca45c" name="Changes" comment="Changes to repo, service,model, and added Comment stuff">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/udl4cs_resources/database/UDL4CS.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/udl4cs_resources/database/UDL4CS.mv.db" afterDir="false" />
+    <list default="true" id="db592a27-eb20-4d31-b228-cd60687ca45c" name="Changes" comment="Changes to file name">
+      <change beforePath="$PROJECT_DIR$/udl4cs_resources/Database/UDL4CS.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/udl4cs_resources/Database/UDL4CS.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/udl4cs_resources/database/UDL4CS.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/udl4cs_resources/database/UDL4CS.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/udl4cs_resources/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/udl4cs_resources/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/udl4cs_resources/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/udl4cs_resources/src/main/resources/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,38 +69,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.Udl4csResourcesApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/phill/Github/Senior-Project",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.Udl4csResourcesApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/phill/Github/Senior-Project&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
-      "H2"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/&quot;: [
+      &quot;H2&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "H2"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;H2&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\phill\Github\Senior-Project\udl4cs_resources\src\main\java\com\edugators\udl4cs_resources\controller" />
@@ -162,6 +159,7 @@
       <workItem from="1710878244226" duration="4000" />
       <workItem from="1710883854287" duration="250000" />
       <workItem from="1711285688865" duration="1901000" />
+      <workItem from="1711290847353" duration="326000" />
     </task>
     <task id="LOCAL-00001" summary="Trying to implement test DB">
       <option name="closed" value="true" />
@@ -243,7 +241,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711285783063</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Changes to file name">
+      <option name="closed" value="true" />
+      <created>1711291006396</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1711291006396</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Changes to file name">
+      <option name="closed" value="true" />
+      <created>1711291046565</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1711291046565</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,7 +291,8 @@
     <MESSAGE value="Changes to repo, service," />
     <MESSAGE value="Changes to repo, service,model" />
     <MESSAGE value="Changes to repo, service,model, and added Comment stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes to repo, service,model, and added Comment stuff" />
+    <MESSAGE value="Changes to file name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes to file name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
