@@ -7,8 +7,19 @@ section {
     padding: 60px 0;
 }
 
+.headerFont {
+    font-weight: 800;
+    color: #0B1873
+}
+
 .card{
     transition: all 0.3s;
+
+
+}
+.scrollable{
+    overflow-y: scroll;
+    max-height: 230px;
 }
 
 .card:hover {
@@ -35,3 +46,21 @@ section {
 .searchItem:hover {
     background-color: #efefef;
 }
+.col-lg-4 {
+    height: 450px;
+}
+
+.primary {
+    font-weight: 800;
+
+}
+.subheader {
+    font-weight: 700;
+}
+
+.primary, .subheader, a.nav-link{
+    color: #0B1873
+}
+/*.btn-bd-primary {*/
+/*    background-color: #0B1873 !important;*/
+/*}*/
