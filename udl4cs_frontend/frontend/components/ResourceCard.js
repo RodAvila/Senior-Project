@@ -4,7 +4,6 @@ import { firaSans } from '@/pages/index.js'
 import useResourceData from "../useResourceData"
 
 const ResourceCard = ({ resource }) => {
-
     //const { resources, loading } = useResourceData();
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
     const [resources, setResources] = useState(null);
@@ -46,27 +45,27 @@ const ResourceCard = ({ resource }) => {
                                 Resource</a>
                             </div>
                         </div>
-
-                        <div className="row my-5 align-items-center justify-content-center g-5">
-                            {resources.map((resource) => (
-                                <div className="col-8 col-lg-4 col-xl-3">
-                                    <div className="card shadow border-0" key={resource.id}>
-                                        <Image src={"/cover.png"} className='card-img-top'
-                                               width={300}
-                                               height={200}/>
-                                        <div className="card-body py-4">
-                                            <h4 className={`${firaSans.className} card-title`}>{resource.resourceName}</h4>
-                                            <p className="lead card-subtitle">
-                                                {resource.resourceDesc}
-                                            </p>
-                                            <span className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>
-
-                                        </div>
+                            <div className="row my-5 align-items-center justify-content-center g-5">
+                                {resources.map((resource) => (
+                                    <div className="col-8 col-lg-4 col-xl-3">
+                                        <a href={'/resources/' + resource.id} style={{textDecoration: 'none'}}>
+                                            <div className="card shadow border-0" key={resource.id}>
+                                                <Image src={"/cover.png"} className='card-img-top'
+                                                       width={300}
+                                                       height={200}/>
+                                                <div className="card-body py-4">
+                                                    <h4 className={`${firaSans.className} card-title`}>{resource.resourceName}</h4>
+                                                    <p className="lead card-subtitle">
+                                                        {resource.resourceDesc}
+                                                    </p>
+                                                    <span
+                                                        className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>
+                                                </div>
+                                            </div>
+                                        </a>
                                     </div>
-
-                                </div>
-                            ))}
-                        </div>
+                                    ))}
+                            </div>
                     </div>
 
                 </section>

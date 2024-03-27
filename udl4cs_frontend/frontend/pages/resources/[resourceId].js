@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 import { useRouter } from 'next/router';
-import {CommentBox} from "../../components/CommentBox";
+import CommentBox from "../../components/CommentBox";
 
 export default function ResourceId({ resource }) {
     //TODO need to update this later with resource attributes like likes, and num comments
@@ -22,7 +22,7 @@ export default function ResourceId({ resource }) {
                         <span>Comments: {numComments}</span>
                     </div>
                 </div>
-                <div> <CommentBox /> </div>
+                <div> <CommentBox resourceId={id}/> </div>
             </div>
         </>
     )

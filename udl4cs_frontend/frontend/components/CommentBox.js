@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 
-export function CommentBox() {
+const CommentBox = ({ resourceId }) => {
     const [comment, setComment] = useState('');
 
     const updateCommentState = (event) => {
@@ -49,3 +49,4 @@ export function CommentBox() {
         </form>
     );
 }
+export default CommentBox;
