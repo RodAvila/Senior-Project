@@ -58,9 +58,11 @@ const ResourceCard = ({ resource }) => {
 
                                         <div className="card-body scrollable">
                                             <h5 className="card-title">{resource.resourceName}</h5>
-                                                <p className="card-text">
-                                                    {resource.resourceDesc}
-                                                </p>
+                                            {resource.resourceDesc ? (
+                                                <p className="card-text">{resource.resourceDesc}</p>
+                                            ) : (
+                                                <p className="card-text">No description provided</p>
+                                            )}
                                         </div>
 
                                         <div className="card-footer">
