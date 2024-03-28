@@ -87,13 +87,4 @@ public class emails {
         Body.addBodyPart(textBodyPart2);
         return Body;
     }
-
-    public static void main(java.lang.String[] args) {
-        File pic = new File("out/production/Emails/arm.png");
-        String name = "FLEX GUIDE";
-
-        emails jeff = new emails();
-        jeff.sendEmail(pic, name);
-
-    }
 }
