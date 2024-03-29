@@ -1,25 +1,23 @@
 import React, {useState} from "react"
 
 export default function SignUpComp() {
-    const USER_API_BASE_URL = "http://localhost:8080/users";
+    const USER_API_BASE_URL = "http://localhost:8080/user1";
 
     const [user, setUser] = useState({
-        id: "",
         firstName: "",
         lastName: "",
         role: "",
         email: "",
-        username: "",
+        userName: "",
         password: ""
     });
 
     const [responseUser, setResponseUser] = useState({
-        id: "",
         firstName: "",
         lastName: "",
         role: "",
         email: "",
-        username: "",
+        userName: "",
         password: ""
     });
 
@@ -30,7 +28,6 @@ export default function SignUpComp() {
 
     const saveUser = async(e) => {
         e.preventDefault();
-        console.log(JSON.stringify(user));
         const response = await fetch(USER_API_BASE_URL, {
             method: "POST",
             headers: {
@@ -41,20 +38,17 @@ export default function SignUpComp() {
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
-        const _user = await response.json();
-        setResponseUser(_user);
         reset(e);
     };
 
     const reset = (e) => {
         e.preventDefault();
         setUser({
-            id: "",
             firstName: "",
             lastName: "",
             role: "",
             email: "",
-            username: "",
+            userName: "",
             password: ""
         });
     };
@@ -121,15 +115,15 @@ export default function SignUpComp() {
                     <br/>
                     <div className="form-floating mb-3">
                         <input type="text"
-                               name="username"
-                               value={user.username}
+                               name="userName"
+                               value={user.userName}
                                onChange={(e5) => handleChange(e5)}
                                className="form-control"
                                style={{borderRadius: '16px!important'}}
-                               id="inputUsername"
+                               id="inputuserName"
                                placeholder="Username"
                                required/>
-                        <label htmlFor="inputUsername">Username</label>
+                        <label htmlFor="inputuserName">Username</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">

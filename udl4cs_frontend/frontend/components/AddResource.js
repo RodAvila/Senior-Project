@@ -8,19 +8,35 @@ const AddResource = () => {
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
 
     const [resource, setResource] = useState({
-        id: "",
-        numLikes: "0",
-        numComments: "0",
-        resourceTitle: "",
-        resourceDesc: ""
+        resourceName: "",
+        topic: "",
+        resourceDesc: "",
+        audience: "",
+        resourceType: "",
+        resourceLink: "",
+        CSTA: "",
+        gradeLevel: "",
+        imageLink: "",
+        uploadDate: "",
+        module: "",
+        numLikes: "",
+        numComments: ""
     });
 
     const [responseResource, setResponseResource] = useState({
-        id: "",
-        numLikes: "0",
-        numComments: "0",
-        resourceTitle: "",
-        resourceDesc: ""
+        resourceName: "",
+        topic: "",
+        resourceDesc: "",
+        audience: "",
+        resourceType: "",
+        resourceLink: "",
+        CSTA: "",
+        gradeLevel: "",
+        imageLink: "",
+        uploadDate: "",
+        module: "",
+        numLikes: "",
+        numComments: ""
     });
 
     const handleChange = (event) => {
@@ -30,7 +46,6 @@ const AddResource = () => {
 
     const saveResource = async(e) => {
         e.preventDefault();
-        console.log(JSON.stringify(resource));
         const response = await fetch(RESOURCE_API_BASE_URL, {
             method: "POST",
             headers: {
@@ -41,19 +56,25 @@ const AddResource = () => {
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
-        const _resource = await response.json();
-        setResponseResource(_resource);
         reset(e);
     };
 
     const reset = (e) => {
         e.preventDefault();
         setResource({
-            id: "",
-            numLikes: "0",
-            numComments: "0",
-            resourceTitle: "",
-            resourceDesc: ""
+            resourceName: "",
+            topic: "",
+            resourceDesc: "",
+            audience: "",
+            resourceType: "",
+            resourceLink: "",
+            CSTA: "",
+            gradeLevel: "",
+            imageLink: "",
+            uploadDate: "",
+            module: "",
+            numLikes: "",
+            numComments: ""
         });
     };
 
@@ -74,8 +95,8 @@ const AddResource = () => {
                 {/*        Add Resource (Should map to Modal)*/}
                 {/*    </button>*/}
                 {/*</div>*/}
-                <div class="row">
-                    <div class="col-md-6">
+                <div className="row">
+                    <div className="col-md-6">
                         <h1 style={{fontSize: '32px', marginBottom: '10px', color: '#333'}}>Add Resource</h1>
                     </div>
                     <div className="col-md-6" style={{textAlign: 'right'}}>
@@ -83,19 +104,58 @@ const AddResource = () => {
                     </div>
                 </div>
                     <br/>
-                    <div class="col-md-12">
+                    <div className="col-md-12">
                         <form>
                             <div className="form-floating mb-3">
                                 <input type="text"
-                                       name="resourceTitle"
-                                       value={resource.resourceTitle}
+                                       name="resourceName"
+                                       value={resource.resourceName}
                                        onChange={(e) => handleChange(e)}
                                        className="form-control"
                                        style={{borderRadius: '16px!important'}}
-                                       id="inputResourceTitle"
+                                       id="inputresourceName"
                                        placeholder="Resource Title"
                                        required></input>
-                                <label htmlFor="inputResourceTitle">Add a title</label>
+                                <label htmlFor="inputresourceName">Add a title</label>
+                            </div>
+                            <br/>
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                       name="topic"
+                                       value={resource.topic}
+                                       onChange={(e6) => handleChange(e6)}
+                                       className="form-control"
+                                       style={{borderRadius: '16px!important'}}
+                                       id="inputResourceTopic"
+                                       placeholder="Resource Topic"
+                                       required></input>
+                                <label htmlFor="inputResourceTopic">Add topic of the resource</label>
+                            </div>
+                            <br/>
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                       name="audience"
+                                       value={resource.audience}
+                                       onChange={(e7) => handleChange(e7)}
+                                       className="form-control"
+                                       style={{borderRadius: '16px!important'}}
+                                       id="inputResourceAudience"
+                                       placeholder="Resource Audience"
+                                       required></input>
+                                <label htmlFor="inputResourceAudience">Add audience of the resource</label>
+                            </div>
+                            <br/>
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                       name="gradeLevel"
+                                       value={resource.gradeLevel}
+                                       onChange={(e8) => handleChange(e8)}
+                                       className="form-control"
+                                       style={{borderRadius: '16px!important'}}
+                                       id="inputResourceGrade"
+                                       placeholder="Resource Grade Level"
+                                       required></input>
+                                <label htmlFor="inputResourceGrade">Add grade level of resource</label>
                             </div>
                             <br/>
                             <div className="form-group mb-3">
@@ -125,6 +185,7 @@ const AddResource = () => {
                             <div className="form-floating mb-3">
                                 <input type="text"
                                        name="resourceLink"
+                                       value={resource.resourceLink}
                                        onChange={(e4) => handleChange(e4)}
                                        className="form-control"
                                        style={{borderRadius: '16px!important'}}
@@ -133,7 +194,7 @@ const AddResource = () => {
                                 ></input>
                                 <label htmlFor="inputUploadLink">Upload Link</label>
                             </div>
-                            <br />
+                            <br/>
                             <div className="form-group mb-3">
                                 <input className="form-control form-control-lg"
                                        id="formFileLg"
@@ -146,9 +207,9 @@ const AddResource = () => {
                                        placeholder="Attach File"/>
                             </div>
                             <br/>
-                            <div class="row">
-                                <div class="col-md-4">
-                                <button onClick={saveResource}
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <button onClick={saveResource}
                                             className="btn btn-primary"
                                             style={{borderRadius: '16px!important'}}>
                                         Submit for Approval

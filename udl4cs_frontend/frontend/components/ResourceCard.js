@@ -30,7 +30,6 @@ const ResourceCard = ({ resource }) => {
         fetchData();
     }, [resource]);
 
-
     return (
         <>
 
@@ -56,11 +55,11 @@ const ResourceCard = ({ resource }) => {
                                                width={300}
                                                height={200}/>
                                         <div className="card-body py-4">
-                                            <h4 className={`${firaSans.className} card-title`}>{resource.resourceTitle}</h4>
+                                            <h4 className={`${firaSans.className} card-title`}>{resource.resourceName}</h4>
                                             <p className="lead card-subtitle">
                                                 {resource.resourceDesc}
                                             </p>
-                                            <span class="badge rounded-pill text-bg-primary outline-1 ">Tags</span>
+                                            <span className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>
 
                                         </div>
                                     </div>
