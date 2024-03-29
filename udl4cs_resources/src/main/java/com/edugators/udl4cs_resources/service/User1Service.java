@@ -20,6 +20,10 @@ public class User1Service {
         return user1s;
     }
 
+    public void clearAllUsers() {
+        user1Repository.deleteAll();
+    }
+
     public User1 getuser1ById(int id)
     {
         return user1Repository.findById(id).get();
@@ -28,4 +32,5 @@ public class User1Service {
     {
         user1Repository.save(user1);
     }
+    public User1 findByUsername(String username) {return user1Repository.findByUsername(username);}
 }

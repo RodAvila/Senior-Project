@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
 export default function LoginComp() {
-    const USER_API_BASE_URL = "http://localhost:8080/user1";
+    const USER_API_BASE_URL = "http://localhost:3000/api/auth/login";
 
     const [user, setUser] = useState({
         firstName: "",
@@ -36,7 +36,8 @@ export default function LoginComp() {
             body: JSON.stringify(user),
         });
         if (!response.ok) {
-            throw new Error("Something went wrong");
+            console.log(response.status)
+            //throw new Error("Something went wrong");
         }
         reset(e);
     };
