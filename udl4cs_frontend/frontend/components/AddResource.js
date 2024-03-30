@@ -18,9 +18,7 @@ const AddResource = () => {
         gradeLevel: "",
         imageLink: "",
         uploadDate: "",
-        module: "",
-        numLikes: "",
-        numComments: ""
+        module: ""
     });
 
     const [responseResource, setResponseResource] = useState({
@@ -34,9 +32,7 @@ const AddResource = () => {
         gradeLevel: "",
         imageLink: "",
         uploadDate: "",
-        module: "",
-        numLikes: "",
-        numComments: ""
+        module: ""
     });
 
     const handleChange = (event) => {
@@ -72,9 +68,7 @@ const AddResource = () => {
             gradeLevel: "",
             imageLink: "",
             uploadDate: "",
-            module: "",
-            numLikes: "",
-            numComments: ""
+            module: ""
         });
     };
 

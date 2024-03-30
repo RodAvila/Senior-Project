@@ -37,7 +37,7 @@ export default function Search({ setResults }) {
                            value={input}
                            onChange={(e)=>handleChange(e.target.value)}
                     />
-                    <button className="btn btn-outline-secondary border-spacing-0.5" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+                    <button className="btn btn-outline-secondary border-spacing-0.5" type="button" id="button-addon2"><i className="bi bi-search"></i></button>
                 </div>
             </div>
         </div>

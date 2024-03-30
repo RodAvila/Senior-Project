@@ -3,7 +3,7 @@ package com.edugators.udl4cs_resources.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "Resource")
 public class Resource {
 
     @Id
@@ -43,15 +43,9 @@ public class Resource {
     @Column(name = "MODULE")
     private String module;
 
-    @Column(name = "NUMLIKES")
-    private Integer numLikes;
-
-    @Column(name = "NUMCOMMENTS")
-    private Integer numComments;
-
     public Resource(String resourceName, String topic, String resourceDesc, String audience, String resourceType,
                     String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate,
-                    String module, int numLikes, int numComments) {
+                    String module) {
         super();
         this.resourceName = resourceName;
         this.topic = topic;
@@ -64,8 +58,6 @@ public class Resource {
         this.imageLink = imageLink;
         this.uploadDate = uploadDate;
         this.module = module;
-        this.numLikes = numLikes;
-        this.numComments = numComments;
     }
 
 
@@ -122,14 +114,6 @@ public class Resource {
         return module;
     }
 
-    public int getNumLikes() {
-        return numLikes;
-    }
-
-    public int getNumComments() {
-        return numComments;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -178,11 +162,4 @@ public class Resource {
         this.module = module;
     }
 
-    public void setNumLikes(int numLikes) {
-        this.numLikes = numLikes;
-    }
-
-    public void setNumComments(int numComments) {
-        this.numComments = numComments;
-    }
 }
