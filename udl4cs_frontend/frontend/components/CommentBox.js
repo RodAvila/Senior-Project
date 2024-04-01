@@ -38,7 +38,6 @@ const CommentBox = ({ resourceId }) => {
                                   borderRadius: '16px!important',
                                   width: '100%',
                                   padding: '5px',
-                                  borderRadius: '16px',
                                   marginBottom: '10px',
                                   height: dynamicTextBoxArea(),
                                   resize: 'none',

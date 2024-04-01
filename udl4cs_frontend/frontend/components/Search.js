@@ -28,7 +28,7 @@ export default function Search({ setResults }) {
     return (
         <div className="row align-items-center justify-content-center">
             <div className="col-md-5 col-sm-5">
-                <div className="input-group">
+                <div className="input-group" id="search-box">
                     <input className="form-control border-end-0 border"
                            type="search"
                            placeholder="Search resource"

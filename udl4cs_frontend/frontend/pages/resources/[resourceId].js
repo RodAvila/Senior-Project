@@ -37,56 +37,79 @@ export default function ResourceId({ resource }) {
                         </div>
                     </div>
                     <br/>
-                    <div className="col-md-12">
-                        <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>{resourceDesc}</p>
-                        <Image src={"/cover.png"} className='card-img-top'
-                               width={500}
-                               height={600}/>
-                        <br />
-                        <br />
-                        <h2 style={{fontSize: '20px', marginBottom: '10px', color: '#333'}}>{topic}</h2>
-                        <br/>
-                        <h3 style={{fontSize: '20px', marginBottom: '10px', color: '#333'}}>Audience:
-                            For {audience}</h3>
-                        <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>Resource
-                            Type: {resourceType}</p>
-                        <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>Resource Link: <a
-                            href={resourceLink}>{resourceLink}</a></p>
-                        <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>CSTA: {csta}</p>
-                        <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>Grade Level: {gradeLevel}</p>
-                        <button className="btn btn-block btn-primary me-1"
-                                style={{
-                                    width: 'fit-content',
-                                    borderRadius: '16px!important'
-                                }}
-                        ><i className="bi bi-hand-thumbs-up"></i> Like
-                        </button>
-                        <a className="btn btn-block btn-secondary"
-                           style={{
-                               width: 'fit-content',
-                               borderRadius: '16px!important'
-                           }}>
-                            <i class="bi bi-chat"></i> Comment
-                        </a>
-                        <br/>
-
-                        <br/>
-                        <div style={{
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div style={{
+                                display: 'flex',
+                                justifyContent: 'start',
+                                alignItems: 'center',
+                                fontSize: '14px',
+                                color: '#777',
+                                marginBottom: '16px'
+                            }}>
+                                <div style={{marginRight: '10px'}}>
+                                    <span>Likes: {0}</span>
+                                </div>
+                                <div>
+                                    <span>Comments: {0}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-3">
+                            <Image src={"/cover.png"} className='card-img-top'
+                                   width={200}
+                                   height={150}/>
+                        </div>
+                        <div className="col-md-9">
+                            {resourceDesc && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Summary: </b>{resourceDesc}</p>}
+                            {topic && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Topic: </b>{topic}</p>}
+                            {audience && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Audience: </b>{audience}</p>}
+                            {resourceType && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Resource Type: </b>{resourceType}</p>}
+                            {resourceLink && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px', wordWrap: "break-word"}}>
+                                <b>Resource Link: </b><a target="_blank" href={resourceLink} className="position-relative link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover text-wrap">{resourceLink}</a></p>}
+                            {csta && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>CSTA: </b>{csta}</p>}
+                            {csta && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <a target="_blank" href="https://csteachers.org/k12standards/interactive/" className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i>Learn more about CSTA Standards</i></a></p>}
+                            {gradeLevel && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Grade Level: </b>{gradeLevel}</p>}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12" style={{
                             display: 'flex',
                             justifyContent: 'start',
                             alignItems: 'center',
-                            fontSize: '14px',
-                            color: '#777',
-                            marginBottom: '16px'
-                        }}>
-                            <div style={{marginRight: '10px'}}>
-                                <span>Likes: {0}</span>
-                            </div>
-                            <div>
-                                <span>Comments: {0}</span>
-                            </div>
+                            marginBottom: '16px'}}
+                        >
+                            <button className="btn btn-block btn-primary me-1"
+                                    style={{
+                                        width: 'fit-content',
+                                        borderRadius: '16px!important'
+                                    }}
+                            ><i className="bi bi-hand-thumbs-up"></i> Like
+                            </button>
+                            <a className="btn btn-block btn-secondary"
+                               style={{
+                                   width: 'fit-content',
+                                   borderRadius: '16px!important'
+                               }}>
+                                <i className="bi bi-chat"></i> Comment
+                            </a>
+                            <br/>
+
+                            <br/>
                         </div>
-                        <br />
+                    </div>
+                    <div className="col-md-12">
+
+                        <br/>
                         <div><CommentBox resourceId={id}/></div>
                     </div>
                 </div>
@@ -111,14 +134,14 @@ export async function getServerSideProps({params}) {
         const resource = resources.find(item => item.id == resourceId);
         return {
             props: {
-              resource
+                resource
             },
         }
     } catch (error) {
         console.error("Error fetching data", error);
         return {
             props: {
-              resource: {},
+                resource: {},
             },
         }
     }
