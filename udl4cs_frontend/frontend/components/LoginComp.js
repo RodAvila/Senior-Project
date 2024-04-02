@@ -35,9 +35,17 @@ export default function LoginComp() {
             },
             body: JSON.stringify(user),
         });
-        if (!response.ok) {
-            console.log(response.status)
-            //throw new Error("Something went wrong");
+        if (response.ok) {
+            const responseData = await response.json();
+            const { cookie } = responseData;
+
+            if (cookie) {
+                window.location.reload();
+            } else {
+                console.error('No cookie received');
+            }
+        } else {
+            console.error(response.status)
         }
         reset(e);
     };

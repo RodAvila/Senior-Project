@@ -2,11 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { firaSans } from '@/pages/index.js'
 import Button from '@mui/material/Button'
-
-
+import { useState, useEffect, useContext } from 'react';
+import { useAuth } from '@/AuthContext'
+import { useRouter } from "next/router";
 
 export default function Navbar() {
-    const isUserLoggedIn = false;
+    const {isAuthenticated } = useAuth()
+    const isUserLoggedIn = false
     return (
         <>
             <nav className="navbar bg-light navbar-expand-lg border p-4">
