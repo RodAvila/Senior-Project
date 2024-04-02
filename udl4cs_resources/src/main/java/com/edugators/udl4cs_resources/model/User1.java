@@ -3,7 +3,7 @@ package com.edugators.udl4cs_resources.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "User1")
+@Table
 public class User1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

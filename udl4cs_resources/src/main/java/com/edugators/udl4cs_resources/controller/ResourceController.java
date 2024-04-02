@@ -18,17 +18,9 @@ public class ResourceController {
     @Autowired
     ResourceService resourceService;
 
-    /*public ResourceController(ResourceService resourceService) {
-        this.resourceService = resourceService;
-        resourceService.saveResource(new Resource(0, 0, 0, "Resource 1", "A resource description"));
-        resourceService.saveResource(new Resource(1, 0, 0, "Resource 2", "A resource description"));
-        resourceService.saveResource(new Resource(2, 0, 0, "Resource 3", "A resource description"));
-    }*/
-
-    @PostMapping(value = "/resources", headers = "Accept=application/json")
-    public void saveResource(@Valid @RequestBody Resource resource) {
-        //Resource newResource = new Resource(0, 0, 0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
-        resourceService.saveResource(resource);
+    @PostMapping(value = "/resources/user1/{id}")
+    public void saveResource(@Valid @RequestBody Resource resource, @PathVariable("id") int userID) {
+        resourceService.saveResource(resource, userID);
     }
 
     @GetMapping(value = "/resources")
@@ -36,9 +28,21 @@ public class ResourceController {
         return resourceService.getAllResources();
     }
 
-    @GetMapping("/resource/{id}")
-    private Resource getResource(@PathVariable("id") int id)
+    @GetMapping("/resources/{id}")
+    public Resource getResource(@PathVariable("id") int id)
     {
         return resourceService.getResourceById(id);
+    }
+
+    @DeleteMapping("/resources/{id}/user1/{userid}")
+    public void deleteResource(@PathVariable("id") int id, @PathVariable("userid") int userID)
+    {
+        resourceService.deleteResource(id, userID);
+    }
+
+    @PutMapping("/resources/like/{id}/user1/{userid}")
+    public void likResourceHandler(@PathVariable("id") int id, @PathVariable("userid") int userID)
+    {
+        resourceService.likeResource(id, userID);
     }
 }

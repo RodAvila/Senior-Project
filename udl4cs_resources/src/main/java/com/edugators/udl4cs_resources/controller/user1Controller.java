@@ -17,26 +17,30 @@ public class User1Controller {
     @Autowired
     User1Service user1Service;
 
-   /* public User1Controller(User1Service user1Service) {
-        this.user1Service = user1Service;
-        //user1Service.saveuser1(new User1("John", "Doe", "Teacher", "jdoe@coe.edu", "johndoe", "password123"));
-        //user1Service.saveuser1(new User1("Mary", "Doer", "Professor", "mdoer@coe.edu", "maryjoe", "password1234"));
-        //user1Service.saveuser1(new User1(2, "Juliet", "Doeseph", "Teacher", "jdoeseph@coe.edu", "julietdoe", "password12345"));
-    }*/
-
-    @PostMapping(value = "/user1", headers = "Accept=application/json")
+    @PostMapping(value = "/user1")
     public void saveuser1(@Valid @RequestBody User1 user1) {
-        //Resource newResource = new Resource(0, 0, 0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
         user1Service.saveuser1(user1);
     }
+
     @GetMapping(value = "/user1")
     public List<User1> getAlluser1s() {
         return user1Service.getAlluser1s();
     }
 
     @GetMapping("/user1/{id}")
-    private User1 getuser1(@PathVariable("id") int id)
+    public User1 getuser1(@PathVariable("id") int id)
     {
         return user1Service.getuser1ById(id);
+    }
+
+    @PutMapping(value = "/user1/{id}", headers = "Accept=application/json")
+    public void updateUser1(@RequestBody User1 user, @PathVariable("id") int id) {
+        user1Service.updateuser1(user, id);
+    }
+
+    @DeleteMapping("/user1/{id}")
+    public void deleteUser1(@PathVariable("id") int id)
+    {
+        user1Service.deleteuser1(id);
     }
 }
