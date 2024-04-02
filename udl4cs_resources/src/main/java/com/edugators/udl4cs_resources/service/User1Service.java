@@ -11,7 +11,7 @@ import java.util.List;
 public class User1Service {
 
     @Autowired
-    User1Repository user1Repository;
+    private User1Repository user1Repository;
 
 
     public List<User1> getAlluser1s() {
@@ -24,8 +24,34 @@ public class User1Service {
     {
         return user1Repository.findById(id).get();
     }
+
     public void saveuser1(User1 user1)
     {
+        User1 newUser = new User1();
+        newUser.setFirstName(user1.getFirstName());
+        newUser.setLastName(user1.getLastName());
+        newUser.setRole(user1.getRole());
+        newUser.setEmail(user1.getEmail());
+        newUser.setUserName(user1.getUserName());
+        newUser.setPassword(user1.getPassword());
         user1Repository.save(user1);
+    }
+
+    public void updateuser1(User1 user1, int id)
+    {
+        User1 oldUser = user1Repository.findById(id).get();
+        oldUser.setFirstName(user1.getFirstName());
+        oldUser.setLastName(user1.getLastName());
+        oldUser.setRole(user1.getRole());
+        oldUser.setEmail(user1.getEmail());
+        oldUser.setUserName(user1.getUserName());
+        oldUser.setPassword(user1.getPassword());
+
+        user1Repository.save(oldUser);
+    }
+
+    public void deleteuser1(int id)
+    {
+        user1Repository.delete(user1Repository.findById(id).get());
     }
 }

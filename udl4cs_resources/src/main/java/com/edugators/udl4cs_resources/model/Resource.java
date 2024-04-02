@@ -1,13 +1,19 @@
 package com.edugators.udl4cs_resources.model;
 
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
 public class Resource {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "RESOURCENAME")
@@ -43,16 +49,29 @@ public class Resource {
     @Column(name = "MODULE")
     private String module;
 
-    @Column(name = "NUMLIKES")
-    private Integer numLikes;
+    @ManyToOne
+    private User1 user;
 
-    @Column(name = "NUMCOMMENTS")
-    private Integer numComments;
+    @OneToMany(mappedBy = "resource", orphanRemoval = true)
+    private List<Likes> likes = new ArrayList<>();
 
-    public Resource(String resourceName, String topic, String resourceDesc, String audience, String resourceType,
-                    String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate,
-                    String module, int numLikes, int numComments) {
-        super();
+    @OneToMany(mappedBy = "resource", orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
+    /*@Transient
+    private int numLikes;
+
+    @Transient
+    private int numComments; */
+
+    public Resource() {
+
+    }
+
+    public Resource(int id, String resourceName, String topic, String resourceDesc, String audience, String resourceType,
+                    String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate, String module, User1 user,
+                    List<Likes> likedUsers, List<Comment> comments) {
+        this.id = id;
         this.resourceName = resourceName;
         this.topic = topic;
         this.resourceDesc = resourceDesc;
@@ -64,15 +83,10 @@ public class Resource {
         this.imageLink = imageLink;
         this.uploadDate = uploadDate;
         this.module = module;
-        this.numLikes = numLikes;
-        this.numComments = numComments;
+        this.user = user;
+        this.likes = likedUsers;
+        this.comments = comments;
     }
-
-
-    public Resource() {
-
-    }
-
 
     public int getId() {
         return id;
@@ -122,13 +136,6 @@ public class Resource {
         return module;
     }
 
-    public int getNumLikes() {
-        return numLikes;
-    }
-
-    public int getNumComments() {
-        return numComments;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -178,11 +185,44 @@ public class Resource {
         this.module = module;
     }
 
-    public void setNumLikes(int numLikes) {
+    public User1 getUser() {
+        return user;
+    }
+
+    public void setUser(User1 user1) {
+        this.user = user1;
+    }
+
+    public List<Likes> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Likes> likedUsers) {
+        this.likes = likedUsers;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+   /* public void setNumLikes(int resourceID) {
+        this.numLikes = ((Number)entityManager.createQuery("select count(like) from Likes like where Likes.resource.id = :resourceID")
+                .setParameter("resourceID", resourceID).getSingleResult()).intValue();
+    }
+
+    public int getNumLikes(int numLikes) {
         this.numLikes = numLikes;
+    }
+
+    public int getNumComments() {
+        return numComments;
     }
 
     public void setNumComments(int numComments) {
         this.numComments = numComments;
-    }
+    } */
 }
