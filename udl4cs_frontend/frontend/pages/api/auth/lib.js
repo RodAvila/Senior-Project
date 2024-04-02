@@ -6,14 +6,17 @@ const jwtKey = new TextEncoder().encode(process.env.REACT_APP_JWT_KEY)
 
 export async function authenticateToken(jwtToken) {
     try {
-        if (!jwtKey || jwtKey.length == 0 ) {
+        if (!jwtKey || jwtKey.length === 0 ) {
             throw new Error("No key has been set")
         }
+
+
         const authenticated = await jwtVerify(jwtToken, jwtKey, {algorithms: ["HS256"]})
         return authenticated.payload
 
-    } catch {
-        throw new Error("Token expired")
+    } catch (error) {
+        //console.error(error)
+        throw new Error("Failed to authenticate token");
     }
 }
 
@@ -27,9 +30,14 @@ export async function signToken(payload) {
 
 export async function generateToken(userName) {
     const minute = 1000 * 60
-    const expiration = new Date(Date.now() + minute)
+    const expiration = new Date(Date.now() + minute * 10)
     const token = await signToken({ userName, expiration})
-    const cookie = serialize ("jwt-token", token, {maxAge: expiration, httpOnly: true})
+    const cookie = serialize ("jwt-token", token, {
+        maxAge: expiration,
+        path: '/',
+        sameSite: 'None',
+        secure: true
+    })
     return cookie
 }
 
@@ -47,8 +55,9 @@ async function validateCredentials(userName, password) {
             },
             body: JSON.stringify(loginData)
         })
+        const validated = await response.json()
 
-        if (response.ok) {
+        if (validated) {
             return true
         } else {
             console.error('Failed to validate user')

@@ -4,7 +4,7 @@ import com.edugators.udl4cs_resources.model.User1;
 import com.edugators.udl4cs_resources.model.Resource;
 import com.edugators.udl4cs_resources.service.ResourceService;
 import com.edugators.udl4cs_resources.service.User1Service;
-
+import org.springframework.http.ResponseEntity;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +38,15 @@ public class User1Controller {
     }
 
     @PostMapping(value = "/validate", headers = "Accept=application/json")
-    public boolean login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Boolean> login(@RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
         User1 user = user1Service.findByUsername(username);
 
-        if (user != null) {
-            return passwordEncoder.matches(password, user.getPassword());
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return ResponseEntity.ok(true);
         } else {
-            return false;
+            return ResponseEntity.ok(false);
         }
     }
 

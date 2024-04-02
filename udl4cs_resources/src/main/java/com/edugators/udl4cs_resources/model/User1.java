@@ -61,9 +61,7 @@ public class User1 {
         return email;
     }
 
-    public String getUserName() {
-        return userName;
-    }
+    public String getUserName() { return userName; }
 
     public String getPassword() {
         return password;

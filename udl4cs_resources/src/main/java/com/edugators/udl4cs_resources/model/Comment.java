@@ -24,15 +24,15 @@ public class Comment {
     private String uploadDate;
 
     @Column(name = "USERNAME")
-    private String userName;
+    private String username;
 
-    public Comment(String firstName, String lastName, String comment, String uploadDate, String userName) {
+    public Comment(String firstName, String lastName, String comment, String uploadDate, String username) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.comment = comment;
         this.uploadDate = uploadDate;
-        this.userName = userName;
+        this.username = username;
     }
 
     public Comment() {
@@ -60,7 +60,7 @@ public class Comment {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setId(int id) {
@@ -83,7 +83,7 @@ public class Comment {
         this.uploadDate = uploadDate;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 }
