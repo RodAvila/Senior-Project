@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 export default function EditProfile({ }) {
     // for now
-    const USER_API_BASE_URL = "http://localhost:8080/user1s/1";
+    const USER_API_BASE_URL = "http://localhost:8080/user1/1";
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(true);
 
