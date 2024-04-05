@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "Comment")
+@Table
 public class Comment {
 
     @Id

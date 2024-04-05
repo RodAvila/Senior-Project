@@ -1,23 +1,52 @@
-import React, { useState } from 'react';
+import React, {useEffect} from "react";
+import {useState} from "react";
 import Image from 'next/image';
+import SearchResultItem from "./SearchResultItem";
 
-const CommentBox = ({ resourceId }) => {
-    const [comment, setComment] = useState('');
+const CommentBox = ({ resourceId, refreshData }) => {
 
-    const updateCommentState = (event) => {
-        setComment(event.target.value);
+    const COMMENT_BASE_API = "http://localhost:8080/comments/resources/" + resourceId + "/user1/1";
+
+    const [comment, setComment] = useState({
+        comment: ""
+    });
+
+    const [responseComment, setResponseComment] = useState({
+        comment: ""
+    });
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setComment({ ...comment, [event.target.name]: value });
     };
 
-    const dynamicTextBoxArea = () => {
-        const lines = comment.split('\n').length;
-        return lines === 1 ? '60px' : `${lines * 25 + 12}px`;
+    const saveComment = async(e) => {
+        e.preventDefault();
+        const response = await fetch(COMMENT_BASE_API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(comment),
+        });
+        if (!response.ok) {
+            throw new Error("Something went wrong");
+        }
+        reset(e);
+        refreshData();
+    };
+
+    const reset = (e) => {
+        e.preventDefault();
+        setComment({
+            comment: ""
+        });
     };
 
 
     //TODO Change to actually call user image from back end for now using local file
     return (
-        <form style={{ maxWidth: '90%', margin: 'auto', padding: '16px', borderRadius: '16px', backgroundColor: '#EAEAEA', boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)' }}>
-            <h4 style={{ textAlign: 'left', color: '#000000', marginBottom: '20px', fontStyle: 'normal', fontWeight: '400', fontSize: '26px', lineHeight: '35px' }}>Comments</h4>
+        <form>
             <div className="commentBoxRow d-flex flex-column">
                 <div className="d-flex flex-row" style={{padding: '1x'}}>
                     <div style={{marginRight: '10px'}}>
@@ -30,27 +59,21 @@ const CommentBox = ({ resourceId }) => {
                         />
                     </div>
                     <textarea rows="5" type="text"
-                              name="resourceDesc"
-                              value={comment}
-                              onChange={updateCommentState}
+                              name="comment"
+                              value={comment.comment}
+                              onChange={(e2) => handleChange(e2)}
                               className="form-control"
-                              style={{
-                                  borderRadius: '16px!important',
-                                  width: '100%',
-                                  padding: '5px',
-                                  marginBottom: '10px',
-                                  height: dynamicTextBoxArea(),
-                                  resize: 'none',
-                                  overflow: 'hidden'
-                                }}
+                              style={{borderRadius: '16px!important'}}
                               id="inputResourceDesc"
                               placeholder="Add a comment..."
                               required></textarea>
                 </div>
+                <br />
                 <div className="d-flex align-items-center justify-content-end">
                     <button
                         type="button"
                         className="postButton"
+                        onClick={saveComment}
                         style={{borderRadius: '16px', width: '33%', padding: '5px', cursor: 'pointer'}}>
                         Comment
                     </button>

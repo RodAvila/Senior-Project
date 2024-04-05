@@ -1,13 +1,73 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Navbar from "../../components/Navbar";
 import { useRouter } from 'next/router';
 import CommentBox from "../../components/CommentBox";
 import Image from 'next/image'
 
 export default function ResourceId({ resource }) {
+    const {id, resourceName, resourceDesc, topic, audience, resourceType, resourceLink, csta, gradeLevel, imageLink, uploadDate, module, comments, likes} = resource;
     //TODO need to update this later with resource attributes like likes, and num comments
     //TODO need to do API call to get and structure comments
-    const {id, resourceName, resourceDesc, topic, audience, resourceType, resourceLink, csta, gradeLevel, imageLink, uploadDate, module} = resource
+    const router = useRouter();
+
+    const refreshData = () => {
+        router.replace(router.asPath);
+    }
+
+    const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
+    const LIKE_BASE_API = "http://localhost:8080/resources/like/" + id + "/user1/1";
+    const [resources, setResources] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await fetch(RESOURCE_API_BASE_URL, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+                const resources = await response.json();
+                setResources(resources);
+            } catch (error) {
+                console.log(error);
+            }
+            setLoading(false);
+        };
+        fetchData();
+    }, [resource]);
+
+    const [like, setLike] = useState({
+        id: resource.id,
+        userId: "1"
+    });
+
+    const [responseLike, setResponseLike] = useState({
+        id: resource.id,
+        userId: "1"
+    });
+
+    const likeFunc = async(e) => {
+        fetch(LIKE_BASE_API, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(like),
+        });
+        refreshData();
+    };
+
+    const reset = (e) => {
+        e.preventDefault();
+        setLike({
+            id: resource.id,
+            userId: "1"
+        });
+    };
+
     return (
         <>
             <Navbar/>
@@ -29,7 +89,7 @@ export default function ResourceId({ resource }) {
                     {/*</div>*/}
                     <div className="row">
                         <div className="col-md-10">
-                            <h1 style={{fontSize: '32px', marginBottom: '10px', color: '#333'}}>{resourceName}</h1>
+                            <h1 style={{fontSize: '32px', marginBottom: '10px', color: '#333'}}>{resource.resourceName}</h1>
                         </div>
                         <div className="col-md-2" style={{textAlign: 'right'}}>
                             <a href="/resources" style={{borderRadius: '16px!important'}}
@@ -63,22 +123,31 @@ export default function ResourceId({ resource }) {
                                    height={150}/>
                         </div>
                         <div className="col-md-9">
-                            {resourceDesc && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>Summary: </b>{resourceDesc}</p>}
-                            {topic && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>Topic: </b>{topic}</p>}
-                            {audience && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>Audience: </b>{audience}</p>}
-                            {resourceType && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>Resource Type: </b>{resourceType}</p>}
-                            {resourceLink && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px', wordWrap: "break-word"}}>
-                                <b>Resource Link: </b><a target="_blank" href={resourceLink} className="position-relative link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover text-wrap">{resourceLink}</a></p>}
-                            {csta && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>CSTA: </b>{csta}</p>}
-                            {csta && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <a target="_blank" href="https://csteachers.org/k12standards/interactive/" className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i>Learn more about CSTA Standards</i></a></p>}
-                            {gradeLevel && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>Grade Level: </b>{gradeLevel}</p>}
+                            {resource.resourceDesc && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Summary: </b>{resource.resourceDesc}</p>}
+                            {resource.topic && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Topic: </b>{resource.topic}</p>}
+                            {resource.audience && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Audience: </b>{resource.audience}</p>}
+                            {resource.resourceType && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Resource Type: </b>{resource.resourceType}</p>}
+                            {resource.resourceLink && <p style={{
+                                fontSize: '16px',
+                                color: '#555',
+                                marginBottom: '20px',
+                                wordWrap: "break-word"
+                            }}>
+                                <b>Resource Link: </b><a target="_blank" href={resource.resourceLink}
+                                                         className="position-relative link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover text-wrap">{resource.resourceLink}</a>
+                            </p>}
+                            {resource.csta && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>CSTA: </b>{resource.csta}</p>}
+                            {resource.csta && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <a target="_blank" href="https://csteachers.org/k12standards/interactive/"
+                                   className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i>Learn
+                                    more about CSTA Standards</i></a></p>}
+                            {resource.gradeLevel && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <b>Grade Level: </b>{resource.gradeLevel}</p>}
                         </div>
                     </div>
                     <div className="row">
@@ -86,13 +155,15 @@ export default function ResourceId({ resource }) {
                             display: 'flex',
                             justifyContent: 'start',
                             alignItems: 'center',
-                            marginBottom: '16px'}}
+                            marginBottom: '16px'
+                        }}
                         >
                             <button className="btn btn-block btn-primary me-1"
                                     style={{
                                         width: 'fit-content',
                                         borderRadius: '16px!important'
                                     }}
+                                    onClick={likeFunc}
                             ><i className="bi bi-hand-thumbs-up"></i> Like
                             </button>
                             <a className="btn btn-block btn-secondary"
@@ -108,9 +179,27 @@ export default function ResourceId({ resource }) {
                         </div>
                     </div>
                     <div className="col-md-12">
-
                         <br/>
-                        <div><CommentBox resourceId={id}/></div>
+                        <div>
+                            <div style={{ maxWidth: '90%', margin: 'auto', padding: '16px', borderRadius: '16px', backgroundColor: '#EAEAEA', boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)' }}>
+                                <h4 style={{ textAlign: 'left', color: '#000000', marginBottom: '20px', fontStyle: 'normal', fontWeight: '400', fontSize: '26px', lineHeight: '35px' }}>Comments</h4>
+                            {resource.comments.map((commentItem, index) => {
+                                return (
+                                    <div key={`${commentItem.comment}_{commentItem.uploadDate}`} style={{backgroundColor: '#FFFFFF', width: '100%', marginBottom: '10px', paddingTop: '10px', paddingBottom: '0.5px', paddingLeft: '10px', paddingRight: '10px', borderRadius: '16px', boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)' }}>
+                                        {/*{(commentItem.user).map((userItem, index2) => {*/}
+                                        {/*    <p key={`${userItem.firstName}_{userItem.lastName}`}>*/}
+                                        {/*        {userItem.firstName} + ' ' + {userItem.lastName}*/}
+                                        {/*    </p>*/}
+                                        {/*})}*/}
+                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b>
+                                        <p>{commentItem.comment}</p>
+                                    </div>
+                                );
+                            })}
+                                <br />
+                            <CommentBox refreshData={refreshData} resourceId={resource.id}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

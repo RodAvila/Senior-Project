@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "Likes")
+@Table
 public class Likes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
