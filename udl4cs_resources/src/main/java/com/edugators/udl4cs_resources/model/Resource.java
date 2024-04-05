@@ -58,6 +58,12 @@ public class Resource {
     @OneToMany(mappedBy = "resource", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "resource_tags",
+                joinColumns = @JoinColumn(name = "resource_id"),
+                inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags = new ArrayList<>();
     /*@Transient
     private int numLikes;
 
@@ -70,7 +76,7 @@ public class Resource {
 
     public Resource(int id, String resourceName, String topic, String resourceDesc, String audience, String resourceType,
                     String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate, String module, User1 user,
-                    List<Likes> likedUsers, List<Comment> comments) {
+                    List<Likes> likedUsers, List<Comment> comments,List<Tag> tags) {
         this.id = id;
         this.resourceName = resourceName;
         this.topic = topic;
@@ -86,6 +92,7 @@ public class Resource {
         this.user = user;
         this.likes = likedUsers;
         this.comments = comments;
+        this.tags = tags;
     }
 
     public int getId() {
@@ -207,6 +214,14 @@ public class Resource {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public List<Tag> getTag() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
    /* public void setNumLikes(int resourceID) {
