@@ -14,6 +14,7 @@
     "@fontsource/fira-sans": "^5.0.19",
     "@headlessui/react": "^1.7.18",
     "@mui/material": "^5.15.13",
+    "@next/font": "^14.1.4",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
