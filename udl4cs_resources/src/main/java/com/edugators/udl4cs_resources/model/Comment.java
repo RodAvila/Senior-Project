@@ -1,7 +1,10 @@
 package com.edugators.udl4cs_resources.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -16,7 +19,8 @@ public class Comment {
     private String comment;
 
     @Column(name = "UPLOADDATE")
-    private String uploadDate;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private LocalDateTime uploadDate;
 
     @ManyToOne
     @JsonIgnore
@@ -30,8 +34,7 @@ public class Comment {
 
     }
 
-    public Comment(int id, String comment, String uploadDate, Resource resource, User1 user) {
-        super();
+    public Comment(int id, String comment, LocalDateTime uploadDate, Resource resource, User1 user) {
         this.id = id;
         this.comment = comment;
         this.uploadDate = uploadDate;
@@ -55,11 +58,11 @@ public class Comment {
         this.comment = comment;
     }
 
-    public String getUploadDate() {
+    public LocalDateTime getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(String uploadDate) {
+    public void setUploadDate(LocalDateTime uploadDate) {
         this.uploadDate = uploadDate;
     }
 

@@ -1,6 +1,8 @@
 package com.edugators.udl4cs_resources.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import java.util.Base64;
 
 @Entity
 @Table
@@ -27,14 +29,23 @@ public class User1 {
     @Column(name = "PASSWORD")
     private String password;
 
-    public User1(String _firstName, String _lastName, String _role, String _email, String _username, String _password) {
-        super();
-        this.firstName = _firstName;
-        this.lastName = _lastName;
-        this.role = _role;
-        this.email = _email;
-        this.userName = _username;
-        this.password = _password;
+    @Transient
+    private String base64ImageData;
+
+    @Column(name = "PFP")
+    @JsonIgnore
+    private byte[] imageData = new byte[524288];
+
+    public User1(int id, String firstName, String lastName, String role, String email, String userName, String password, String base64ImageData, byte[] imageData) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.base64ImageData = base64ImageData;
+        this.imageData = imageData;
     }
 
     public User1() {
@@ -97,4 +108,28 @@ public class User1 {
         this.password = _password;
     }
 
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData() {
+        this.imageData = Base64.getDecoder().decode(this.base64ImageData);
+    }
+
+    public String getBase64ImageData() {
+        return base64ImageData;
+    }
+
+    public void setBase64ImageData(String base64ImageData) {
+        this.base64ImageData = base64ImageData;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof User1)) {
+            return false;
+        }
+        User1 u = (User1) obj;
+        return this.id == u.getId();
+    }
 }

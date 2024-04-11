@@ -33,7 +33,7 @@ public class User1Controller {
         return user1Service.getuser1ById(id);
     }
 
-    @PutMapping(value = "/user1/{id}", headers = "Accept=application/json")
+    @PutMapping(value = "/user1/{id}")
     public void updateUser1(@RequestBody User1 user, @PathVariable("id") int id) {
         user1Service.updateuser1(user, id);
     }
