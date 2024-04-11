@@ -8,4 +8,7 @@ import java.util.List;
 @Repository
 public interface ResourceRepository extends CrudRepository<Resource, Integer> {
 
+    List<Resource> findResourcesByTagsId(int id);
+
+    List<Resource> findResourcesByTagsName(String name);
 }

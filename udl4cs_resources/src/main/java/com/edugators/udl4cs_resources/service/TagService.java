@@ -1,5 +1,4 @@
 package com.edugators.udl4cs_resources.service;
-import com.edugators.udl4cs_resources.model.Comment;
 import com.edugators.udl4cs_resources.model.Tag;
 import com.edugators.udl4cs_resources.repository.TagRepository;
 import com.edugators.udl4cs_resources.repository.ResourceRepository;
@@ -15,9 +14,11 @@ import com.edugators.udl4cs_resources.model.User1;
 
 @Service
 public class TagService {
+
     @Autowired
     private TagRepository tagRepository;
-
+    @Autowired
+    private ResourceRepository resourceRepository;
     @Autowired
     private User1Repository user1Repository;
     @Autowired
@@ -30,24 +31,21 @@ public class TagService {
         return tags;
     }
 
-    public void newTag(Tag tag,int userid) {
-        User1 user = user1Service.getuser1ById(userid);
-        if (user.getRole().equalsIgnoreCase("Admin"))
-            tagRepository.save(tag);
-
-    }
-
     public Tag getTagById(int id) {
         return tagRepository.findById(id).get();
     }
+
     public void deleteTag(int id, int userid)
     {
         User1 user = user1Service.getuser1ById(userid);
         Tag tag = getTagById(id);
-
-
         if (user.getRole().equalsIgnoreCase("Admin"))
             tagRepository.delete(tag);
     }
 
+    public void saveTag(Tag tag, int userID) {
+        Tag newTag = new Tag();
+        newTag.setTagName(tag.getTagName());
+        tagRepository.save(newTag);
+    }
 }

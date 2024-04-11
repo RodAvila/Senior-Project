@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS Comment (
     username varchar(100),
     uploaddate varchar(200)
     );
-
+DROP TABLE IF EXISTS Tag;
 CREATE TABLE IF NOT EXISTS Tag (
     id int,
-    tagName varchar(100)
+    name varchar(100)
 
 )

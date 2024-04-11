@@ -92,7 +92,6 @@ public class Resource {
         this.user = user;
         this.likes = likedUsers;
         this.comments = comments;
-        this.tags = tags;
     }
 
     public int getId() {
@@ -142,6 +141,29 @@ public class Resource {
     public String getModule() {
         return module;
     }
+
+    public List<Tag> getTags(){
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags){
+        this.tags = tags;
+    }
+
+    public void addTag(Tag tag){
+        this.tags.add(tag);
+        tag.getResources().add(this);
+    }
+
+    public void removeTag(int id){
+        Tag tag = this.tags.stream().filter(t->t.getId()==id).findFirst().orElse(null);
+        if(tag != null){
+            this.tags.remove(tag);
+            tag.getResources().remove(this);
+        }
+
+    }
+
 
 
     public void setId(int id) {
@@ -216,13 +238,7 @@ public class Resource {
         this.comments = comments;
     }
 
-    public List<Tag> getTag() {
-        return tags;
-    }
 
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
 
    /* public void setNumLikes(int resourceID) {
         this.numLikes = ((Number)entityManager.createQuery("select count(like) from Likes like where Likes.resource.id = :resourceID")
