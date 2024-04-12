@@ -1,10 +1,7 @@
 package com.edugators.udl4cs_resources.service;
 
 import com.edugators.udl4cs_resources.model.*;
-import com.edugators.udl4cs_resources.repository.LikesRepository;
-import com.edugators.udl4cs_resources.repository.ResourceRepository;
-import com.edugators.udl4cs_resources.repository.ResourceTagRepository;
-import com.edugators.udl4cs_resources.repository.TagRepository;
+import com.edugators.udl4cs_resources.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -27,6 +24,9 @@ public class ResourceService {
     private User1Service userService;
 
     @Autowired
+    private User1Repository user1Repository;
+
+    @Autowired
     private TagRepository tagRepository;
 
     @Autowired
@@ -43,13 +43,9 @@ public class ResourceService {
     @Transactional
     public void saveResource(Resource resource, int userid) {
         User1 user = userService.getuser1ById(userid);
-
-        //Gathers tagsIds from json
-        Iterable<Tag> tagIterable = tagRepository.findAllById(resource.getTagIds());
+        Iterable<Tag> tagIterable;
         List<Tag> tags = new ArrayList<>();
-        for (Tag tag : tagIterable) {
-            tags.add(tag);
-        }
+
 
         Resource newResource = new Resource();
         newResource.setResourceName(resource.getResourceName());
@@ -66,15 +62,23 @@ public class ResourceService {
         newResource.setUser(user);
         newResource.setUploadDate(LocalDateTime.now());
 
-        //Populates Resource_Tag Table
-        for (Tag tag : tags) {
-            ResourceTag resourceTag = new ResourceTag();
-            resourceTag.setTag(tag);
-            resourceTag.setResource(newResource);
-            newResource.getTags().add(resourceTag);
-            resourceTagRepository.save(resourceTag);
-        }
+        if (resource.getTagIds() != null)
+        {
+            //Gathers tagsIds from json
+            tagIterable = tagRepository.findAllById(resource.getTagIds());
+            for (Tag tag : tagIterable) {
+                tags.add(tag);
+            }
 
+            //Populates Resource_Tag Table
+            for (Tag tag : tags) {
+                ResourceTag resourceTag = new ResourceTag();
+                resourceTag.setTag(tag);
+                resourceTag.setResource(newResource);
+                newResource.getTags().add(resourceTag);
+                resourceTagRepository.save(resourceTag);
+            }
+        }
 
         resourceRepository.save(newResource);
     }
@@ -91,7 +95,10 @@ public class ResourceService {
         User1 u = userService.getuser1ById(userid);
 
         if (r.getUser().getId() == u.getId() || r.getUser().getRole().equalsIgnoreCase("Admin"))
+        {
+            resourceTagRepository.deleteByResource(id);
             resourceRepository.delete(r);
+        }
     }
 
     public void likeResource(int id, int userid)
@@ -116,15 +123,17 @@ public class ResourceService {
     {
         Likes existingLike = likesRepository.findByUserAndResource(resourceid, userid);
         Resource resource = getResourceById(resourceid);
+
         if (existingLike != null)
         {
             likesRepository.delete(existingLike);
+
             resource.getLikes().remove(existingLike);
             resourceRepository.save(resource);
         }
     }
 
-    public void updateresource(Resource resource, int id, int userID)
+    public void updateResource(Resource resource, int id, int userID)
     {
         Resource oldResource = resourceRepository.findById(id).get();
 

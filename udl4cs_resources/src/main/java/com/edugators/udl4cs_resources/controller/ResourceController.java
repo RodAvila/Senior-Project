@@ -49,6 +49,6 @@ public class ResourceController {
 
     @PutMapping(value = "/resources/{id}/user1/{userid}")
     public void updateResource(@RequestBody Resource resource, @PathVariable("id") int id, @PathVariable("userid") int userID) {
-        resourceService.updateresource(resource, id, userID);
+        resourceService.updateResource(resource, id, userID);
     }
 }
