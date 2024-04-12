@@ -14,18 +14,11 @@ public class CommentController {
     @Autowired
     CommentService commentService;
 
-    /*public CommentController(CommentService commentService) {
-        this.commentService = commentService;
-        //commentService.saveComment(new Comment("John", "Doe", "Comment1", "1-1-24", "johndoe"));
-        //commentService.saveComment(new Comment("Mary", "Doer", "Comment2", "2-2-24", "maryjoe"));
-        //commentService.savecomment(new comments(2, "Juliet", "Doeseph", "Teacher", "jdoeseph@coe.edu", "julietdoe", "password12345"));
-    }*/
-
-    @PostMapping(value = "/comments", headers = "Accept=application/json")
-    public void savecomment(@Valid @RequestBody Comment comment) {
-        //Resource newResource = new Resource(0, 0, 0, resource.get("resourceTitle").toString(), resource.get("resourceDesc").toString());
-        commentService.saveComment(comment);
+    @PostMapping(value = "/comments/resources/{resourceID}/user1/{userID}")
+    public void savecomment(@Valid @RequestBody Comment comment, @PathVariable("resourceID") int rID, @PathVariable("userID") int userID) {
+        commentService.saveComment(comment, rID, userID);
     }
+
     @GetMapping(value = "/comments")
     public List<Comment> getAllcomments() {
         return commentService.getAllComments();
@@ -35,5 +28,11 @@ public class CommentController {
     private Comment getcomment(@PathVariable("id") int id)
     {
         return commentService.getCommentById(id);
+    }
+
+    @DeleteMapping("/comments/{id}/resources/{resourceID}/user1/{userID}")
+    public void deleteComment(@PathVariable("id") int id, @PathVariable("resourceID") int rID, @PathVariable("userID") int userID)
+    {
+        commentService.deleteComment(id, rID, userID);
     }
 }

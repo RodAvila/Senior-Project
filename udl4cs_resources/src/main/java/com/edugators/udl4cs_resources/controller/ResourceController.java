@@ -4,6 +4,9 @@ import com.edugators.udl4cs_resources.service.ResourceService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -12,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
+@RestController
 @RestController
 public class ResourceController {
 
