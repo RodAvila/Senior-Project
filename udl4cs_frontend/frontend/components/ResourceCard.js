@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from 'next/image'
 import Link from "next/link";
 import useResourceData from "../useResourceData"
@@ -52,10 +52,13 @@ const ResourceCard = ({ resource }) => {
                             {resources.map((resource) => (
                                 <div className="col-8 col-lg-4 col-xl-3" >
                                     <div className="card h-100" key={resource.id}>
-                                        <img src={"/cover.png"} className='card-img-top'
-                                             width={300}
-                                             height={200}/>
-
+                                        <div style={{width: '100%', height: '100%', position: 'relative'}}>
+                                            {resource.imageLink && <img src={resource.imageLink} className='card-img-top'
+                                                                        layout='fill'
+                                                                        objectFit='contain'/>}
+                                            {!resource.imageLink && <div style={{paddingRight: '50px', paddingLeft: '50px', paddingTop: '50px', paddingBottom: '50px'}}><img src={"/Resources_icon.png"} className='card-img-top' layout='fill'
+                                                                                         objectFit='contain'/></div>}
+                                        </div>
                                         <div className="card-body scrollable">
                                             <h5 className="card-title">{resource.resourceName}</h5>
                                             {resource.resourceDesc ? (

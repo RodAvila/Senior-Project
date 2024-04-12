@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import Navbar from "../../components/Navbar";
 import { useRouter } from 'next/router';
 import CommentBox from "../../components/CommentBox";
-import Image from 'next/image'
+import Image from 'next/image';
+import moment from "moment";
 
 export default function ResourceId({ resource }) {
     const {id, resourceName, resourceDesc, topic, audience, resourceType, resourceLink, csta, gradeLevel, imageLink, uploadDate, module, comments, likes} = resource;
@@ -108,19 +109,23 @@ export default function ResourceId({ resource }) {
                                 marginBottom: '16px'
                             }}>
                                 <div style={{marginRight: '10px'}}>
-                                    <span>Likes: {0}</span>
+                                    <span>Likes: {resource.numLikes}</span>
                                 </div>
                                 <div>
-                                    <span>Comments: {0}</span>
+                                    <span>Comments: {resource.numComments}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-3">
-                            <Image src={"/cover.png"} className='card-img-top'
-                                   width={200}
-                                   height={150}/>
+                            <div id="imageDiv" style={{width: '100%', height: '100%', position: 'relative'}}>
+                                {resource.imageLink && <Image src={resource.imageLink} className='card-img-top'
+                                                              layout='fill'
+                                                              objectFit='contain'/>}
+                                {!resource.imageLink && <Image src={'/Resources_icon.png'} className='card-img-top' layout='fill'
+                                                               objectFit='contain'/>}
+                            </div>
                         </div>
                         <div className="col-md-9">
                             {resource.resourceDesc && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
@@ -148,6 +153,8 @@ export default function ResourceId({ resource }) {
                                     more about CSTA Standards</i></a></p>}
                             {resource.gradeLevel && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
                                 <b>Grade Level: </b>{resource.gradeLevel}</p>}
+                            {resource.uploadDate && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                <i>Uploaded {moment(resource.uploadDate).format("DD/MM/YYYY, h:mm a")}</i></p>}
                         </div>
                     </div>
                     <div className="row">
@@ -191,7 +198,7 @@ export default function ResourceId({ resource }) {
                                         {/*        {userItem.firstName} + ' ' + {userItem.lastName}*/}
                                         {/*    </p>*/}
                                         {/*})}*/}
-                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b>
+                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b> <i>Uploaded {moment(commentItem.uploadDate).format("DD/MM/YYYY, h:mm:ss a")}</i>
                                         <p>{commentItem.comment}</p>
                                     </div>
                                 );

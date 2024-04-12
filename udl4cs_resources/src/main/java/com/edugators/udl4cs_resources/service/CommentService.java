@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import com.edugators.udl4cs_resources.model.Resource;
@@ -42,12 +43,11 @@ public class CommentService {
         newComment.setUser(user);
         newComment.setResource(resource);
         newComment.setComment(comment.getComment());
-        newComment.setUploadDate(comment.getUploadDate());
+        newComment.setUploadDate(LocalDateTime.now());
+        commentRepository.save(newComment);
 
         resource.getComments().add(newComment);
-
         resourceRepository.save(resource);
-        commentRepository.save(newComment);
     }
 
     public Comment getCommentById(int id) {
@@ -62,6 +62,10 @@ public class CommentService {
 
 
         if (c.getUser().getId() == user.getId() || r.getUser().getId() == user.getId() || r.getUser().getRole().equalsIgnoreCase("Admin"))
+        {
             commentRepository.delete(c);
+            r.getComments().remove(c);
+            resourceRepository.save(r);
+        }
     }
 }

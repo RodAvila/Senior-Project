@@ -34,18 +34,38 @@ public class User1Service {
         newUser.setEmail(user1.getEmail());
         newUser.setUserName(user1.getUserName());
         newUser.setPassword(user1.getPassword());
+        newUser.setBase64ImageData(user1.getBase64ImageData());
+        newUser.setImageData();
         user1Repository.save(user1);
     }
 
     public void updateuser1(User1 user1, int id)
     {
         User1 oldUser = user1Repository.findById(id).get();
-        oldUser.setFirstName(user1.getFirstName());
-        oldUser.setLastName(user1.getLastName());
-        oldUser.setRole(user1.getRole());
-        oldUser.setEmail(user1.getEmail());
-        oldUser.setUserName(user1.getUserName());
-        oldUser.setPassword(user1.getPassword());
+
+        if (user1.getFirstName() != null)
+            oldUser.setFirstName(user1.getFirstName());
+
+        if (user1.getLastName() != null)
+            oldUser.setLastName(user1.getLastName());
+
+        if (user1.getRole() != null)
+            oldUser.setRole(user1.getRole());
+
+        if (user1.getEmail() != null)
+            oldUser.setEmail(user1.getEmail());
+
+        if (user1.getUserName() != null)
+            oldUser.setUserName(user1.getUserName());
+
+        if (user1.getPassword() != null)
+            oldUser.setPassword(user1.getPassword());
+
+        if (user1.getBase64ImageData() != null)
+        {
+            oldUser.setBase64ImageData(user1.getBase64ImageData());
+            oldUser.setImageData();
+        }
 
         user1Repository.save(oldUser);
     }

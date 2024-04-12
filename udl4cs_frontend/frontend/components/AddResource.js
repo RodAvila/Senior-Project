@@ -5,7 +5,7 @@ import {CommentBox} from "./CommentBox";
 
 
 const AddResource = () => {
-    const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
+    const RESOURCE_API_BASE_URL = "http://localhost:8080/resources/user1/1";
 
     const [resource, setResource] = useState({
         resourceName: "",
@@ -189,16 +189,17 @@ const AddResource = () => {
                                 <label htmlFor="inputUploadLink">Upload Link</label>
                             </div>
                             <br/>
-                            <div className="form-group mb-3">
-                                <input className="form-control form-control-lg"
-                                       id="formFileLg"
-                                       type="file"
-                                       name="resourceFile"
-                                       onChange={(e5) => handleChange(e5)}
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                       name="imageLink"
+                                       value={resource.imageLink}
+                                       onChange={(e9) => handleChange(e9)}
                                        className="form-control"
                                        style={{borderRadius: '16px!important'}}
-                                       id="inputFile"
-                                       placeholder="Attach File"/>
+                                       id="inputImageLink"
+                                       placeholder="Upload Image Link"
+                                ></input>
+                                <label htmlFor="inputUploadLink">Upload Link</label>
                             </div>
                             <br/>
                             <div className="row">

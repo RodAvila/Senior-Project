@@ -31,7 +31,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/comments/{id}/resources/{resourceID}/user1/{userID}")
-    public void deleteResource(@PathVariable("id") int id, @PathVariable("resourceID") int rID, @PathVariable("userID") int userID)
+    public void deleteComment(@PathVariable("id") int id, @PathVariable("resourceID") int rID, @PathVariable("userID") int userID)
     {
         commentService.deleteComment(id, rID, userID);
     }

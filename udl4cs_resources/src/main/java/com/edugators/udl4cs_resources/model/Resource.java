@@ -1,10 +1,12 @@
 package com.edugators.udl4cs_resources.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,8 @@ public class Resource {
     private String imageLink;
 
     @Column(name = "UPLOADDATE")
-    private String uploadDate;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private LocalDateTime uploadDate;
 
     @Column(name = "MODULE")
     private String module;
@@ -58,19 +61,22 @@ public class Resource {
     @OneToMany(mappedBy = "resource", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
-    /*@Transient
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private int numLikes;
 
     @Transient
-    private int numComments; */
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private int numComments;
 
     public Resource() {
 
     }
 
-    public Resource(int id, String resourceName, String topic, String resourceDesc, String audience, String resourceType,
-                    String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate, String module, User1 user,
-                    List<Likes> likedUsers, List<Comment> comments) {
+    public Resource(int id, String resourceName, String topic, String resourceDesc, String audience,
+                    String resourceType, String resourceLink, String CSTA, String gradeLevel,
+                    String imageLink, LocalDateTime uploadDate, String module, User1 user,
+                    List<Likes> likes, List<Comment> comments, int numLikes, int numComments) {
         this.id = id;
         this.resourceName = resourceName;
         this.topic = topic;
@@ -84,8 +90,10 @@ public class Resource {
         this.uploadDate = uploadDate;
         this.module = module;
         this.user = user;
-        this.likes = likedUsers;
+        this.likes = likes;
         this.comments = comments;
+        this.numLikes = numLikes;
+        this.numComments = numComments;
     }
 
     public int getId() {
@@ -128,7 +136,7 @@ public class Resource {
         return imageLink;
     }
 
-    public String getUploadDate() {
+    public LocalDateTime getUploadDate() {
         return uploadDate;
     }
 
@@ -177,7 +185,7 @@ public class Resource {
         this.imageLink = imageLink;
     }
 
-    public void setUploadDate(String uploadDate) {
+    public void setUploadDate(LocalDateTime uploadDate) {
         this.uploadDate = uploadDate;
     }
 
@@ -209,20 +217,19 @@ public class Resource {
         this.comments = comments;
     }
 
-   /* public void setNumLikes(int resourceID) {
-        this.numLikes = ((Number)entityManager.createQuery("select count(like) from Likes like where Likes.resource.id = :resourceID")
-                .setParameter("resourceID", resourceID).getSingleResult()).intValue();
+   public void setNumLikes() {
+        this.numLikes = this.likes.size();
     }
 
-    public int getNumLikes(int numLikes) {
-        this.numLikes = numLikes;
+    public int getNumLikes() {
+        return numLikes;
     }
 
     public int getNumComments() {
         return numComments;
     }
 
-    public void setNumComments(int numComments) {
-        this.numComments = numComments;
-    } */
+    public void setNumComments() {
+        this.numComments = this.comments.size();
+    }
 }
