@@ -1,5 +1,6 @@
 package com.edugators.udl4cs_resources.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.springframework.data.jpa.repository.Query;
@@ -56,10 +57,18 @@ public class Resource {
     private User1 user;
 
     @OneToMany(mappedBy = "resource", orphanRemoval = true)
+    @JsonIgnore
     private List<Likes> likes = new ArrayList<>();
 
     @OneToMany(mappedBy = "resource", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "resource", orphanRemoval = true)
+    private List<ResourceTag> tags = new ArrayList<>();
+
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Iterable<Integer> tagIds;
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -76,7 +85,7 @@ public class Resource {
     public Resource(int id, String resourceName, String topic, String resourceDesc, String audience,
                     String resourceType, String resourceLink, String CSTA, String gradeLevel,
                     String imageLink, LocalDateTime uploadDate, String module, User1 user,
-                    List<Likes> likes, List<Comment> comments, int numLikes, int numComments) {
+                    List<Likes> likes, List<Comment> comments, List<ResourceTag> tags, int numLikes, int numComments) {
         this.id = id;
         this.resourceName = resourceName;
         this.topic = topic;
@@ -92,6 +101,7 @@ public class Resource {
         this.user = user;
         this.likes = likes;
         this.comments = comments;
+        this.tags = tags;
         this.numLikes = numLikes;
         this.numComments = numComments;
     }
@@ -143,7 +153,6 @@ public class Resource {
     public String getModule() {
         return module;
     }
-
 
     public void setId(int id) {
         this.id = id;
@@ -231,5 +240,21 @@ public class Resource {
 
     public void setNumComments() {
         this.numComments = this.comments.size();
+    }
+
+    public List<ResourceTag> getTags(){
+        return tags;
+    }
+
+    public void setTags(List<ResourceTag> tags){
+        this.tags = tags;
+    }
+
+    public Iterable<Integer> getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(Iterable<Integer> tagIds) {
+        this.tagIds = tagIds;
     }
 }

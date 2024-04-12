@@ -1,5 +1,6 @@
 package com.edugators.udl4cs_resources.controller;
 import com.edugators.udl4cs_resources.model.Resource;
+import com.edugators.udl4cs_resources.model.User1;
 import com.edugators.udl4cs_resources.service.ResourceService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class ResourceController {
     public void likResourceHandler(@PathVariable("id") int id, @PathVariable("userid") int userID)
     {
         resourceService.likeResource(id, userID);
+    }
+
+    @PutMapping(value = "/resources/{id}/user1/{userid}")
+    public void updateResource(@RequestBody Resource resource, @PathVariable("id") int id, @PathVariable("userid") int userID) {
+        resourceService.updateresource(resource, id, userID);
     }
 }
