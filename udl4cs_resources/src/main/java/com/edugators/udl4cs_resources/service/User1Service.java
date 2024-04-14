@@ -90,4 +90,9 @@ public class User1Service {
         resourceRepository.deleteByUser(id);
         user1Repository.delete(user1Repository.findById(id).get());
     }
+    
+    public User1 findByUsername(String username)
+    {
+        return user1Repository.findByUsername(username);
+    }
 }

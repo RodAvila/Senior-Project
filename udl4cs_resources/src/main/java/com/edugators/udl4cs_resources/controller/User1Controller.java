@@ -16,10 +16,28 @@ import java.util.List;
 public class User1Controller {
     @Autowired
     User1Service user1Service;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-    @PostMapping(value = "/user1")
+    @PostMapping(value = "/user1", headers = "Accept=application/json")
     public void saveuser1(@Valid @RequestBody User1 user1) {
+        System.out.println(user1.getUserName());
+        String plainPassword = user1.getPassword();
+        user1.setPassword(passwordEncoder.encode(plainPassword).toString());
         user1Service.saveuser1(user1);
+    }
+
+    @PostMapping(value = "/validate", headers = "Accept=application/json")
+    public ResponseEntity<Boolean> login(@RequestBody LoginRequest loginRequest) {
+        String username = loginRequest.getUsername();
+        String password = loginRequest.getPassword();
+        User1 user = user1Service.findByUsername(username);
+
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return ResponseEntity.ok(true);
+        } else {
+            return ResponseEntity.ok(false);
+        }
     }
 
     @GetMapping(value = "/user1")

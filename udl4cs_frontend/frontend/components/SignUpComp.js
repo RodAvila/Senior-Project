@@ -1,6 +1,58 @@
-import React from "react"
+import React, {useState} from "react"
 
 export default function SignUpComp() {
+    const USER_API_BASE_URL = "http://localhost:8080/user1";
+
+    const [user, setUser] = useState({
+        firstName: "",
+        lastName: "",
+        role: "",
+        email: "",
+        userName: "",
+        password: ""
+    });
+
+    const [responseUser, setResponseUser] = useState({
+        firstName: "",
+        lastName: "",
+        role: "",
+        email: "",
+        userName: "",
+        password: ""
+    });
+
+    const handleChange = (event) => {
+        const value = event.target.value;
+        setUser({ ...user, [event.target.name]: value });
+    };
+
+    const saveUser = async(e) => {
+        e.preventDefault();
+        const response = await fetch(USER_API_BASE_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+        });
+        if (!response.ok) {
+            throw new Error("Something went wrong");
+        }
+        reset(e);
+    };
+
+    const reset = (e) => {
+        e.preventDefault();
+        setUser({
+            firstName: "",
+            lastName: "",
+            role: "",
+            email: "",
+            userName: "",
+            password: ""
+        });
+    };
+
     return (
         <div className="container d-flex align-items-center justify-content-center">
             <div className="col-lg-6 col-sm-12 col-12">
@@ -9,50 +61,87 @@ export default function SignUpComp() {
                 <br/>
                 <form>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" style={{borderRadius: '16px!important'}}
-                               id="inputFirstName" placeholder="First Name"
+                        <input type="text"
+                               name="firstName"
+                               value={user.firstName}
+                               onChange={(e) => handleChange(e)}
+                               className="form-control"
+                               style={{borderRadius: '16px!important'}}
+                               id="inputFirstName"
+                               placeholder="First Name"
                                required/>
                         <label htmlFor="inputFirstName">First Name</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" style={{borderRadius: '16px!important'}}
-                               id="inputLastName" placeholder="Last Name"
+                        <input type="text"
+                               name="lastName"
+                               value={user.lastName}
+                               onChange={(e2) => handleChange(e2)}
+                               className="form-control"
+                               style={{borderRadius: '16px!important'}}
+                               id="inputLastName"
+                               placeholder="Last Name"
                                required/>
                         <label htmlFor="inputLastName">Last Name</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" style={{borderRadius: '16px!important'}}
-                               id="inputRole" placeholder="Role"
+                        <input type="text"
+                               name="role"
+                               value={user.role}
+                               onChange={(e3) => handleChange(e3)}
+                               className="form-control"
+                               style={{borderRadius: '16px!important'}}
+                               id="inputRole"
+                               placeholder="Role"
                                required/>
                         <label htmlFor="inputRole">Role</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">
-                        <input type="email" className="form-control" style={{borderRadius: '16px!important'}}
-                               id="inputEmail" placeholder="Email"
-                               aria-describedby="emailHelp" required/>
+                        <input type="email"
+                               name="email"
+                               value={user.email}
+                               onChange={(e4) => handleChange(e4)}
+                               className="form-control"
+                               style={{borderRadius: '16px!important'}}
+                               id="inputEmail"
+                               placeholder="Email"
+                               aria-describedby="emailHelp"
+                               required/>
                         <label htmlFor="inputEmail">Email</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" style={{borderRadius: '16px!important'}}
-                               id="inputUsername" placeholder="Username"
+                        <input type="text"
+                               name="userName"
+                               value={user.userName}
+                               onChange={(e5) => handleChange(e5)}
+                               className="form-control"
+                               style={{borderRadius: '16px!important'}}
+                               id="inputuserName"
+                               placeholder="Username"
                                required/>
-                        <label htmlFor="inputUsername">Username</label>
+                        <label htmlFor="inputuserName">Username</label>
                     </div>
                     <br/>
                     <div className="form-floating mb-3">
-                        <input type="password" className="form-control" style={{borderRadius: '16px!important'}}
-                               id="inputPassword" placeholder="Password"
+                        <input type="password"
+                               name="password"
+                               value={user.password}
+                               onChange={(e6) => handleChange(e6)}
+                               className="form-control"
+                               style={{borderRadius: '16px!important'}}
+                               id="inputPassword"
+                               placeholder="Password"
                                required/>
                         <label htmlFor="inputPassword">Password</label>
                     </div>
                     <br/>
                     <br/>
                     <div className="text-center">
-                        <button type="submit" className="btn btn-primary"
+                        <button type="submit" className="btn btn-primary" onClick={saveUser}
                                 style={{borderRadius: '16px!important', width: '200px', height: '50px'}}>Signup
                         </button>
                     </div>

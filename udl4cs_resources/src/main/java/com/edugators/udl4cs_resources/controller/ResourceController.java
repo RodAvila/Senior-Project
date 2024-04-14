@@ -26,6 +26,7 @@ public class ResourceController {
 
     @GetMapping(value = "/resources")
     public List<Resource> getAllResources() {
+    public List<Resource> getAllResources() {
         return resourceService.getAllResources();
     }
 

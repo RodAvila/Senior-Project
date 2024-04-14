@@ -106,6 +106,12 @@ public class Resource {
         this.numComments = numComments;
     }
 
+
+    public Resource() {
+
+    }
+
+
     public int getId() {
         return id;
     }
