@@ -23,6 +23,9 @@ public class Resource {
     @Column(name = "RESOURCENAME")
     private String resourceName;
 
+    @Column(name = "ISPUBLIC")
+    private Boolean isPublic;
+
     @Column(name = "TOPIC")
     private String topic;
 
@@ -104,6 +107,7 @@ public class Resource {
         this.tags = tags;
         this.numLikes = numLikes;
         this.numComments = numComments;
+        this.isPublic = false;
     }
 
     public int getId() {
@@ -153,6 +157,8 @@ public class Resource {
     public String getModule() {
         return module;
     }
+
+    public Boolean getIsPublic(){return isPublic;}
 
     public void setId(int id) {
         this.id = id;
@@ -257,4 +263,6 @@ public class Resource {
     public void setTagIds(Iterable<Integer> tagIds) {
         this.tagIds = tagIds;
     }
+
+    public void setIsPublic(Boolean isPublic){this.isPublic = isPublic;}
 }

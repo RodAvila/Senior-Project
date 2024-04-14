@@ -61,6 +61,7 @@ public class ResourceService {
         newResource.setModule(resource.getModule());
         newResource.setUser(user);
         newResource.setUploadDate(LocalDateTime.now());
+        newResource.setIsPublic(resource.getIsPublic());
 
         if (resource.getTagIds() != null)
         {
@@ -168,6 +169,8 @@ public class ResourceService {
 
             if (resource.getModule() != null)
                 oldResource.setModule(resource.getModule());
+
+            oldResource.setIsPublic(true);
 
             if (resource.getTagIds() != null)
             {

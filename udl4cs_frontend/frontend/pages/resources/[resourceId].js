@@ -7,7 +7,7 @@ import moment from "moment";
 import EditResource from "../../components/EditResource";
 
 export default function ResourceId({ resource }) {
-    const {id, resourceName, resourceDesc, topic, audience, resourceType, resourceLink, csta, gradeLevel, imageLink, uploadDate, module, comments, likes} = resource;
+    const {id, resourceName, resourceDesc, topic, audience, resourceType, resourceLink, csta, gradeLevel, imageLink, uploadDate, module, comments, likes, isPublic} = resource;
     //TODO need to update this later with resource attributes like likes, and num comments
     //TODO need to do API call to get and structure comments
     const router = useRouter();
@@ -182,9 +182,15 @@ export default function ResourceId({ resource }) {
                             {resource.uploadDate && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
                                 <i>Uploaded {moment(resource.uploadDate).format("MM/DD/YYYY, h:mm a")}</i></p>}
                             <div>
-                                <a style={{borderRadius: '16px!important'}}
-                                   className="btn btn-secondary border-spacing-0.5"
-                                   data-bs-toggle="modal" data-bs-target="#editresource" role="button">Edit Resource</a>
+                                {isPublic ? (
+                                    <a style={{ borderRadius: '16px!important' }}
+                                        className="btn btn-secondary border-spacing-0.5"
+                                        data-bs-toggle="modal" data-bs-target="#editresource" role="button">Edit Resource</a>
+                                ) : (
+                                    <a style={{ borderRadius: '16px!important' }}
+                                        className="btn btn-secondary border-spacing-0.5"
+                                            data-bs-toggle="modal" data-bs-target="#editresource" role="button">Approve Resource</a>
+                                )}
                                 <EditResource resource={resource} refetchData={refreshData}></EditResource>
                                 &nbsp;
                                 <a style={{borderRadius: '16px!important'}}
