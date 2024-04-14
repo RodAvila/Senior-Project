@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import CommentBox from "../../components/CommentBox";
 import Image from 'next/image';
 import moment from "moment";
+import EditResource from "../../components/EditResource";
 
 export default function ResourceId({ resource }) {
     const {id, resourceName, resourceDesc, topic, audience, resourceType, resourceLink, csta, gradeLevel, imageLink, uploadDate, module, comments, likes} = resource;
@@ -17,35 +18,32 @@ export default function ResourceId({ resource }) {
 
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
     const LIKE_BASE_API = "http://localhost:8080/resources/like/" + id + "/user1/1";
+    const DELETE_BASE_API = "http://localhost:8080/resources/" + id + "/user1/1";
     const [resources, setResources] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch(RESOURCE_API_BASE_URL, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const resources = await response.json();
+            setResources(resources);
+        } catch (error) {
+            console.log(error);
+        }
+        setLoading(false);
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch(RESOURCE_API_BASE_URL, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                const resources = await response.json();
-                setResources(resources);
-            } catch (error) {
-                console.log(error);
-            }
-            setLoading(false);
-        };
         fetchData();
     }, [resource]);
 
     const [like, setLike] = useState({
-        id: resource.id,
-        userId: "1"
-    });
-
-    const [responseLike, setResponseLike] = useState({
         id: resource.id,
         userId: "1"
     });
@@ -60,6 +58,22 @@ export default function ResourceId({ resource }) {
         });
         refreshData();
     };
+
+    const [deleteRes, setDeleteRes] = useState({
+        id: resource.id,
+        userId: "1"
+    })
+
+    const deleteResourceFunc = async(e) => {
+        fetch(DELETE_BASE_API, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(deleteRes),
+        });
+        refreshData();
+    }
 
     const reset = (e) => {
         e.preventDefault();
@@ -81,37 +95,36 @@ export default function ResourceId({ resource }) {
                     backgroundColor: '#F9F9F9',
                     boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)'
                 }}>
-                    {/*<br/>*/}
-                    {/*<div className="col-md-12">*/}
-
-                    {/*    <button type="button" className="btn btn-primary">*/}
-                    {/*        Add Resource (Should map to Modal)*/}
-                    {/*    </button>*/}
-                    {/*</div>*/}
+                    { /*FOR ADMIN USERS ONLY */}
                     <div className="row">
                         <div className="col-md-10">
-                            <h1 style={{fontSize: '32px', marginBottom: '10px', color: '#333'}}>{resource.resourceName}</h1>
+                            <h1 style={{
+                                fontSize: '32px',
+                                marginBottom: '10px',
+                                color: '#333'
+                            }}>{resource.resourceName}</h1>
                         </div>
                         <div className="col-md-2" style={{textAlign: 'right'}}>
                             <a href="/resources" style={{borderRadius: '16px!important'}}
                                className="btn btn-secondary border-spacing-0.5" role="button">Go Back</a>
                         </div>
-                    </div>
-                    <br/>
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div style={{
-                                display: 'flex',
-                                justifyContent: 'start',
-                                alignItems: 'center',
-                                fontSize: '14px',
-                                color: '#777',
-                                marginBottom: '16px'
-                            }}>
-                                <div style={{marginRight: '10px'}}>
-                                    <span>Likes: {resource.numLikes}</span>
-                                </div>
-                                <div>
+                    { /*FOR ADMIN USERS ONLY */}
+                </div>
+                <br/>
+                <div className="row">
+                    <div className="col-md-12">
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'start',
+                            alignItems: 'center',
+                            fontSize: '14px',
+                            color: '#777',
+                            marginBottom: '16px'
+                        }}>
+                            <div style={{marginRight: '10px'}}>
+                                <span>Likes: {resource.numLikes}</span>
+                            </div>
+                            <div>
                                     <span>Comments: {resource.numComments}</span>
                                 </div>
                             </div>
@@ -128,14 +141,16 @@ export default function ResourceId({ resource }) {
                             </div>
                         </div>
                         <div className="col-md-9">
-                            {resource.resourceDesc && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>Summary: </b>{resource.resourceDesc}</p>}
+                            {resource.resourceDesc &&
+                                <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                    <b>Summary: </b>{resource.resourceDesc}</p>}
                             {resource.topic && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
                                 <b>Topic: </b>{resource.topic}</p>}
                             {resource.audience && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
                                 <b>Audience: </b>{resource.audience}</p>}
-                            {resource.resourceType && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <b>Resource Type: </b>{resource.resourceType}</p>}
+                            {resource.resourceType &&
+                                <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                    <b>Resource Type: </b>{resource.resourceType}</p>}
                             {resource.resourceLink && <p style={{
                                 fontSize: '16px',
                                 color: '#555',
@@ -149,14 +164,61 @@ export default function ResourceId({ resource }) {
                                 <b>CSTA: </b>{resource.csta}</p>}
                             {resource.csta && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
                                 <a target="_blank" href="https://csteachers.org/k12standards/interactive/"
-                                   className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i>Learn
-                                    more about CSTA Standards</i></a></p>}
+                                   className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i>🛈 Learn more about CSTA
+                                    Standards</i></a></p>}
                             {resource.gradeLevel && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
                                 <b>Grade Level: </b>{resource.gradeLevel}</p>}
+                            {resource.tags && resource.tags.length > 0 &&
+                                <div style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
+                                    <b>Tags: </b>{resource.tags.map(txt => <span
+                                    style={{whiteSpace: "nowrap ", display: "inline-block", margin: '3px 3px 3px 3px'}}><span
+                                    style={{
+                                        border: "1px solid #0B1A73",
+                                        paddingBottom: '3px',
+                                        color: "white",
+                                        backgroundColor: "#0B1A73",
+                                        borderRadius: "10px"
+                                    }}> &nbsp; {txt.tag.tagName} &nbsp; </span> &nbsp;</span>)}</div>}
                             {resource.uploadDate && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <i>Uploaded {moment(resource.uploadDate).format("DD/MM/YYYY, h:mm a")}</i></p>}
+                                <i>Uploaded {moment(resource.uploadDate).format("MM/DD/YYYY, h:mm a")}</i></p>}
+                            <div>
+                                <a style={{borderRadius: '16px!important'}}
+                                   className="btn btn-secondary border-spacing-0.5"
+                                   data-bs-toggle="modal" data-bs-target="#editresource" role="button">Edit Resource</a>
+                                <EditResource resource={resource} refetchData={refreshData}></EditResource>
+                                &nbsp;
+                                <a style={{borderRadius: '16px!important'}}
+                                   className="btn btn-danger border-spacing-0.5"
+                                   data-bs-toggle="modal" data-bs-target="#deleteResource" role="button">Delete Resource</a>
+                                <div className="modal fade" id="deleteResource" tabindex="-1" aria-labelledby="deleteResourceLabel" aria-hidden="true">
+                                    <div className="modal-dialog">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h1 className="modal-title fs-5" id="deleteResourceLabel">Delete
+                                                    Resource</h1>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div className="modal-body">
+                                                <p>Are you sure you want to delete this resource?</p>
+                                                <p><b>{resource.resourceName}</b></p>
+                                                <p><i>{resource.resourceDesc}</i></p>
+                                            </div>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary"
+                                                        data-bs-dismiss="modal" onClick={refreshData}>Close
+                                                </button>
+                                                <a href="/resources" type="button" className="btn btn-primary"
+                                                        onClick={deleteResourceFunc}>Confirm Delete
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <br/>
                     <div className="row">
                         <div className="col-md-12" style={{
                             display: 'flex',
@@ -168,12 +230,12 @@ export default function ResourceId({ resource }) {
                             <button className="btn btn-block btn-primary me-1"
                                     style={{
                                         width: 'fit-content',
-                                        borderRadius: '16px!important'
+                                        borderRadius: '16px!important',
                                     }}
                                     onClick={likeFunc}
                             ><i className="bi bi-hand-thumbs-up"></i> Like
                             </button>
-                            <a className="btn btn-block btn-secondary"
+                            <a href="#inputCommentBox" className="btn btn-block btn-light"
                                style={{
                                    width: 'fit-content',
                                    borderRadius: '16px!important'
@@ -198,14 +260,14 @@ export default function ResourceId({ resource }) {
                                         {/*        {userItem.firstName} + ' ' + {userItem.lastName}*/}
                                         {/*    </p>*/}
                                         {/*})}*/}
-                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b> <i>Uploaded {moment(commentItem.uploadDate).format("DD/MM/YYYY, h:mm:ss a")}</i>
+                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b> <i>Uploaded {moment(commentItem.uploadDate).format("MM/DD/YYYY, h:mm a")}</i>
                                         <p>{commentItem.comment}</p>
                                     </div>
                                 );
                             })}
                                 <br />
-                            <CommentBox refreshData={refreshData} resourceId={resource.id}/>
-                            </div>
+                                    <CommentBox refreshData={refreshData} resourceId={resource.id}/>
+                                </div>
                         </div>
                     </div>
                 </div>

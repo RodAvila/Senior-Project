@@ -64,7 +64,7 @@ const CommentBox = ({ resourceId, refreshData }) => {
                               onChange={(e2) => handleChange(e2)}
                               className="form-control"
                               style={{borderRadius: '16px!important'}}
-                              id="inputResourceDesc"
+                              id="inputCommentBox"
                               placeholder="Add a comment..."
                               required></textarea>
                 </div>

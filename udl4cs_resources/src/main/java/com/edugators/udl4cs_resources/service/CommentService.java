@@ -2,6 +2,7 @@ package com.edugators.udl4cs_resources.service;
 import com.edugators.udl4cs_resources.model.Comment;
 import com.edugators.udl4cs_resources.repository.CommentRepository;
 import com.edugators.udl4cs_resources.repository.ResourceRepository;
+import com.edugators.udl4cs_resources.repository.User1Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class CommentService {
 
     @Autowired
     private ResourceRepository resourceRepository;
+
+    @Autowired
+    private User1Repository user1Repository;
 
     @Autowired
     private ResourceService resourceService;
@@ -64,6 +68,7 @@ public class CommentService {
         if (c.getUser().getId() == user.getId() || r.getUser().getId() == user.getId() || r.getUser().getRole().equalsIgnoreCase("Admin"))
         {
             commentRepository.delete(c);
+
             r.getComments().remove(c);
             resourceRepository.save(r);
         }

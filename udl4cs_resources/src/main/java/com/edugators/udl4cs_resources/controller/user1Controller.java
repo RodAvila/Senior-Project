@@ -19,7 +19,6 @@ public class User1Controller {
 
     @PostMapping(value = "/user1")
     public void saveuser1(@Valid @RequestBody User1 user1) {
-        System.out.println(user1.getImageData());
         user1Service.saveuser1(user1);
     }
 

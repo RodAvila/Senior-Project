@@ -3,8 +3,6 @@ import React, {useRef, useState} from "react";
 export default function SignUpComp() {
     const USER_API_BASE_URL = "http://localhost:8080/user1";
 
-    const inputFile = useRef(null);
-
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -26,21 +24,6 @@ export default function SignUpComp() {
     });
 
     const[image, setImage] = useState("")
-
-    const convertBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            };
-
-            fileReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    };
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -76,29 +59,6 @@ export default function SignUpComp() {
             password: "",
             base64ImageData : ""
         });
-        if (inputFile.current) {
-            inputFile.current.value = "";
-            inputFile.current.type = "file";
-        }
-    };
-
-    const handleFileRead = async (event) => {
-        const file = event.target.files[0];
-        var base64 = await convertBase64(file);
-        console.log("Before:" + base64);
-        base64 = base64.slice(11);
-        var count = 0;
-        for (let i = 0; i < base64.length; i++) {
-            if (base64[i] == ',') {
-                count++;
-                break;
-            }
-            count++;
-        }
-        base64 = base64.slice(count);
-        console.log("After:" + base64);
-        setUser({ ...user, base64ImageData : base64 });
-        console.log(image);
     };
 
     return (
@@ -187,18 +147,17 @@ export default function SignUpComp() {
                         <label htmlFor="inputPassword">Password</label>
                     </div>
                     <br/>
-                    <div className="form-group mb-3">
-                        <input className="form-control form-control-lg"
-                               id="formFileLg"
-                               type="file"
-                               accept="image/*"
-                               name="base64ImageData"
-                               onChange={(e) => handleFileRead(e)}
+                    <div className="form-floating mb-3">
+                        <input type="text"
+                               name="imageLink"
+                               value={user.base64ImageData}
+                               onChange={(e9) => handleChange(e9)}
                                className="form-control"
                                style={{borderRadius: '16px!important'}}
-                               ref={ inputFile }
-                               id="inputFile"
-                               placeholder="Attach Profile Picture"/>
+                               id="inputImageLink"
+                               placeholder="Upload Profile Picture Link"
+                        ></input>
+                        <label htmlFor="inputUploadLink">Upload Profile Picture Link</label>
                     </div>
                     <br/>
                     <br/>

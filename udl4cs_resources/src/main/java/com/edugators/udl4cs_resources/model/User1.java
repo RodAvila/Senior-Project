@@ -3,7 +3,10 @@ package com.edugators.udl4cs_resources.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @Entity
 @Table
@@ -35,10 +38,11 @@ public class User1 {
     private String base64ImageData;
 
     @Column(name = "PFP")
-    //@JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private byte[] imageData = new byte[524288];
 
-    public User1(int id, String firstName, String lastName, String role, String email, String userName, String password, String base64ImageData, byte[] imageData) {
+    public User1(int id, String firstName, String lastName, String role, String email, String userName,
+                 String password, String base64ImageData, byte[] imageData) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

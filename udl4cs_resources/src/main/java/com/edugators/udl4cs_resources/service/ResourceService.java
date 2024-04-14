@@ -1,10 +1,7 @@
 package com.edugators.udl4cs_resources.service;
 
-import com.edugators.udl4cs_resources.model.Likes;
-import com.edugators.udl4cs_resources.model.Resource;
-import com.edugators.udl4cs_resources.model.User1;
-import com.edugators.udl4cs_resources.repository.LikesRepository;
-import com.edugators.udl4cs_resources.repository.ResourceRepository;
+import com.edugators.udl4cs_resources.model.*;
+import com.edugators.udl4cs_resources.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -26,6 +23,15 @@ public class ResourceService {
     @Autowired
     private User1Service userService;
 
+    @Autowired
+    private User1Repository user1Repository;
+
+    @Autowired
+    private TagRepository tagRepository;
+
+    @Autowired
+    private ResourceTagRepository resourceTagRepository;
+
     public List<Resource> getAllResources() {
         List<Resource> resources = new ArrayList<Resource>();
         resourceRepository.findAll().forEach(Resource::setNumLikes);
@@ -37,6 +43,10 @@ public class ResourceService {
     @Transactional
     public void saveResource(Resource resource, int userid) {
         User1 user = userService.getuser1ById(userid);
+        Iterable<Tag> tagIterable;
+        List<Tag> tags = new ArrayList<>();
+
+
         Resource newResource = new Resource();
         newResource.setResourceName(resource.getResourceName());
         newResource.setTopic(resource.getTopic());
@@ -51,6 +61,25 @@ public class ResourceService {
         newResource.setModule(resource.getModule());
         newResource.setUser(user);
         newResource.setUploadDate(LocalDateTime.now());
+
+        if (resource.getTagIds() != null)
+        {
+            //Gathers tagsIds from json
+            tagIterable = tagRepository.findAllById(resource.getTagIds());
+            for (Tag tag : tagIterable) {
+                tags.add(tag);
+            }
+
+            //Populates Resource_Tag Table
+            for (Tag tag : tags) {
+                ResourceTag resourceTag = new ResourceTag();
+                resourceTag.setTag(tag);
+                resourceTag.setResource(newResource);
+                newResource.getTags().add(resourceTag);
+                resourceTagRepository.save(resourceTag);
+            }
+        }
+
         resourceRepository.save(newResource);
     }
 
@@ -66,7 +95,10 @@ public class ResourceService {
         User1 u = userService.getuser1ById(userid);
 
         if (r.getUser().getId() == u.getId() || r.getUser().getRole().equalsIgnoreCase("Admin"))
+        {
+            resourceTagRepository.deleteByResource(id);
             resourceRepository.delete(r);
+        }
     }
 
     public void likeResource(int id, int userid)
@@ -91,11 +123,75 @@ public class ResourceService {
     {
         Likes existingLike = likesRepository.findByUserAndResource(resourceid, userid);
         Resource resource = getResourceById(resourceid);
+
         if (existingLike != null)
         {
             likesRepository.delete(existingLike);
+
             resource.getLikes().remove(existingLike);
             resourceRepository.save(resource);
+        }
+    }
+
+    public void updateResource(Resource resource, int id, int userID)
+    {
+        Resource oldResource = resourceRepository.findById(id).get();
+
+        if (oldResource.getUser().getId() == userID || oldResource.getUser().getRole().equals("Admin"))
+        {
+            if (resource.getResourceName() != null)
+                oldResource.setResourceName(resource.getResourceName());
+
+            if (resource.getTopic() != null)
+                oldResource.setTopic(resource.getTopic());
+
+            if (resource.getResourceDesc() != null)
+                oldResource.setResourceDesc(resource.getResourceDesc());
+
+            if (resource.getAudience() != null)
+                oldResource.setAudience(resource.getAudience());
+
+            if(resource.getResourceType() != null)
+                oldResource.setResourceType(resource.getResourceType());
+
+            if (resource.getResourceLink() != null)
+                oldResource.setResourceLink(resource.getResourceLink());
+
+            if (resource.getCSTA() != null)
+                oldResource.setCSTA(resource.getCSTA());
+
+            if (resource.getGradeLevel() != null)
+                oldResource.setGradeLevel(resource.getGradeLevel());
+
+            if (resource.getImageLink() != null)
+                oldResource.setImageLink(resource.getImageLink());
+
+            if (resource.getModule() != null)
+                oldResource.setModule(resource.getModule());
+
+            if (resource.getTagIds() != null)
+            {
+                resourceTagRepository.deleteByResource(oldResource.getId());
+                oldResource.getTags().clear();
+
+                //Gathers tagsIds from json
+                Iterable<Tag> tagIterable = tagRepository.findAllById(resource.getTagIds());
+                List<Tag> tags = new ArrayList<>();
+                for (Tag tag : tagIterable) {
+                    tags.add(tag);
+                }
+
+                //Populates Resource_Tag Table
+                for (Tag tag : tags) {
+                    ResourceTag resourceTag = new ResourceTag();
+                    resourceTag.setTag(tag);
+                    resourceTag.setResource(oldResource);
+                    oldResource.getTags().add(resourceTag);
+                    resourceTagRepository.save(resourceTag);
+                }
+            }
+
+            resourceRepository.save(oldResource);
         }
     }
 

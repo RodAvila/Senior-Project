@@ -1,6 +1,6 @@
 package com.edugators.udl4cs_resources.service;
 import com.edugators.udl4cs_resources.model.User1;
-import com.edugators.udl4cs_resources.repository.User1Repository;
+import com.edugators.udl4cs_resources.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,18 @@ public class User1Service {
 
     @Autowired
     private User1Repository user1Repository;
+
+    @Autowired
+    private ResourceRepository resourceRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private LikesRepository likesRepository;
+
+    @Autowired
+    private ResourceTagRepository resourceTagRepository;
 
 
     public List<User1> getAlluser1s() {
@@ -72,6 +84,10 @@ public class User1Service {
 
     public void deleteuser1(int id)
     {
+        commentRepository.deleteByUser(id);
+        likesRepository.deleteByUser(id);
+        resourceRepository.deleteResourceTagsByUser(id);
+        resourceRepository.deleteByUser(id);
         user1Repository.delete(user1Repository.findById(id).get());
     }
 }

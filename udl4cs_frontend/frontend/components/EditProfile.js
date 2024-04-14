@@ -115,7 +115,7 @@ export default function EditProfile({ }) {
                                     <div className="form-floating mb-3">
                                         <input type="text"
                                                name="user1name"
-                                               value={userData.user1name}
+                                               value={userData.userName}
                                                onChange={(e5) => handleChange(e5)}
                                                className="form-control"
                                                style={{ borderRadius: '16px!important' }}
