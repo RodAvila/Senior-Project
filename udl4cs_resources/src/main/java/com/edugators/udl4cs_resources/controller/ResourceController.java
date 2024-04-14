@@ -18,10 +18,12 @@ public class ResourceController {
 
     @Autowired
     ResourceService resourceService;
+    Email email;
 
     @PostMapping(value = "/resources/user1/{id}")
     public void saveResource(@Valid @RequestBody Resource resource, @PathVariable("id") int userID) {
         resourceService.saveResource(resource, userID);
+        email.sendEmail(resource.getResourceName(), resource.getId());
     }
 
     @GetMapping(value = "/resources")
