@@ -25,8 +25,9 @@ export async function signToken(payload) {
 }
 
 export async function generateToken(userName, id, role) {
-    const expiration = Math.floor(Date.now() / 1000) + 60
-    const expjwt = new Date(Date.now() + 60 * 1000)
+    // Time set for 30 minutes
+    const expiration = Math.floor(Date.now() / 1000) + 60 * 30
+    const expjwt = new Date(Date.now() + 60 * 1000 * 30)
     const token = await signToken({ id, userName, role, expjwt})
     const cookie = serialize ("jwt-token", token, {
         maxAge: expiration,
