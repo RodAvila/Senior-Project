@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import {authenticateToken} from "@/pages/api/auth/lib.js"
+import {decodeJwt} from "jose";
 const AuthContext = createContext()
 
 export function useAuth() {
@@ -9,6 +10,7 @@ export function useAuth() {
 export function AuthProvider(props){
     const AUTH_API_URL = "http://localhost:3000/api/auth/auth";
     const [authUser, setAuthUser] = useState(null)
+    const [userRole, setUserRole] = useState(null)
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
@@ -28,9 +30,14 @@ export function AuthProvider(props){
                     body: JSON.stringify(token),
                 });
                 if (response.ok) {
+                    const tokenData = decodeJwt(token)
                     setIsAuthenticated(true)
+                    setAuthUser(tokenData.userName)
+                    setUserRole(tokenData.role)
                 } else {
                     setIsAuthenticated(false)
+                    setUserRole(null)
+                    setAuthUser(null)
                 }
             }
         } catch (error) {
