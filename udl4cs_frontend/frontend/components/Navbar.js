@@ -1,7 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { firaSans } from '@/pages/index.js'
+import UDL4CS_logo from '/public/UDL4CS Logo-horizontal.svg'
 import Button from '@mui/material/Button'
+import '../styles/component.module.css'
+
+
+
 import { useState, useEffect, useContext } from 'react';
 import { useAuth } from '@/AuthContext'
 import { useRouter } from "next/router";
@@ -13,14 +18,14 @@ export default function Navbar() {
         <>
             <nav className="navbar bg-light navbar-expand-lg border p-4">
                 <div className='container'>
-                    <a className="navbar-brand" href="/">
-                        <Image src="/udl4cs.png"
-                               width={371.52}
-                               height={23.04}
-                               alt="UDL4CS Logo"
-                               priority={true}
-                        />
-                    </a>
+                    <div>
+                        <a className="navbar-brand" href="/">
+                            <Image
+                                priority={true}
+                                src={UDL4CS_logo}
+                                alt="UDL4CS Logo"/>
+                        </a>
+                    </div>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -29,17 +34,17 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto">
 
-                            <li className={`${firaSans.className} nav-item px-2`} >
-                                <Link className="nav-link" href="/about" style={{ color: 'var(--bs-blue)', fontSize: '20px' }}>About</Link>
+                            <li className="nav-item px-2" >
+                                <a className="nav-link" href="/" style={{ fontSize: '20px', fontWeight: "bold"}}>About</a>
                             </li>
 
-                            <li className={`${firaSans.className} nav-item px-2 `}>
-                                <Link className="nav-link" href="/resources" style={{ color: 'var(--bs-blue)', fontSize: '20px' }}>Resources<span className="sr-only"></span></Link>
+                            <li className="nav-item px-2">
+                                <a className="nav-link" href="/resources" style={{ fontSize: '20px', fontWeight: "bold"}}>Resources<span className="sr-only"></span></a>
                             </li>
 
                             {isUserLoggedIn ? (
                                 <>
-                                    <li className={`${firaSans}nav-item ms-2 d-none d-md-inline px-2`} >
+                                    <li className="nav-item ms-2 d-none d-md-inline px-2" >
                                         <Link href="/profile">
                                             <Image
                                                 src={"/icon.png"}
@@ -58,11 +63,11 @@ export default function Navbar() {
                                         <Link className='btn btn-secondary btn-rounded' href="/signup">Sign Up
                                         </Link>
                                     </li> */}
-                                    <li className={`${firaSans.className} nav-item px-2`}>
-                                        <Link className="nav-link" href="/login" style={{ color: 'var(--bs-blue)', fontSize: '20px' }}>Log In</Link>
+                                    <li className="nav-item px-2">
+                                        <a className="nav-link" href="/login" style={{ fontSize: '20px', fontWeight: "bold" }}>Log In</a>
                                     </li>
                                     <li className="nav-item d-md-none">
-                                        <Link className="nav-link" href="/signup">Sign Up</Link>
+                                        <a className="nav-link subheader" href="/signup">Sign Up</a>
                                     </li>
                                     <li className="nav-item d-md-none">
                                         <a className="nav-link" href="/login">Log In</a>

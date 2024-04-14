@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useRef, useState} from "react";
 
 export default function SignUpComp() {
     const USER_API_BASE_URL = "http://localhost:8080/user1";
@@ -9,7 +9,8 @@ export default function SignUpComp() {
         role: "",
         email: "",
         userName: "",
-        password: ""
+        password: "",
+        base64ImageData : ""
     });
 
     const [responseUser, setResponseUser] = useState({
@@ -18,16 +19,21 @@ export default function SignUpComp() {
         role: "",
         email: "",
         userName: "",
-        password: ""
+        password: "",
+        base64ImageData : ""
     });
+
+    const[image, setImage] = useState("")
 
     const handleChange = (event) => {
         const value = event.target.value;
         setUser({ ...user, [event.target.name]: value });
     };
 
+
     const saveUser = async(e) => {
         e.preventDefault();
+
         const response = await fetch(USER_API_BASE_URL, {
             method: "POST",
             headers: {
@@ -35,6 +41,7 @@ export default function SignUpComp() {
             },
             body: JSON.stringify(user),
         });
+        console.log(user);
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
@@ -49,7 +56,8 @@ export default function SignUpComp() {
             role: "",
             email: "",
             userName: "",
-            password: ""
+            password: "",
+            base64ImageData : ""
         });
     };
 
@@ -137,6 +145,19 @@ export default function SignUpComp() {
                                placeholder="Password"
                                required/>
                         <label htmlFor="inputPassword">Password</label>
+                    </div>
+                    <br/>
+                    <div className="form-floating mb-3">
+                        <input type="text"
+                               name="imageLink"
+                               value={user.base64ImageData}
+                               onChange={(e9) => handleChange(e9)}
+                               className="form-control"
+                               style={{borderRadius: '16px!important'}}
+                               id="inputImageLink"
+                               placeholder="Upload Profile Picture Link"
+                        ></input>
+                        <label htmlFor="inputUploadLink">Upload Profile Picture Link</label>
                     </div>
                     <br/>
                     <br/>

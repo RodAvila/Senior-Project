@@ -12,7 +12,7 @@ const Resource = ({ resource }) => {
                 {resource.numComments}
             </td>
             <td>
-                {resource.resourceTitle}
+                {resource.resourceName}
             </td>
             <td>
                 {resource.resourceDesc}
