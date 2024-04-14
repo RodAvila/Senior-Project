@@ -5,7 +5,15 @@ public class LoginResponse {
     private Long userId;
 
     public LoginResponse(Long id, boolean isValid) {
-        this.userId = null;
+        this.userId = id;
         this.validated = isValid;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public boolean isValidated() {
+        return validated;
     }
 }

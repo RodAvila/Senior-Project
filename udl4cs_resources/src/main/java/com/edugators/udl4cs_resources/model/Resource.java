@@ -78,10 +78,6 @@ public class Resource {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private int numComments;
 
-    public Resource() {
-
-    }
-
     public Resource(int id, String resourceName, String topic, String resourceDesc, String audience,
                     String resourceType, String resourceLink, String CSTA, String gradeLevel,
                     String imageLink, LocalDateTime uploadDate, String module, User1 user,

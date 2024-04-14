@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 export default function Navbar() {
     const {isAuthenticated } = useAuth()
-    const isUserLoggedIn = false
+    const isUserLoggedIn = isAuthenticated
     return (
         <>
             <nav className="navbar bg-light navbar-expand-lg border p-4">

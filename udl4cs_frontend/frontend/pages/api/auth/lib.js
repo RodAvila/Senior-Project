@@ -28,10 +28,10 @@ export async function signToken(payload) {
         .sign(jwtKey);
 }
 
-export async function generateToken(userName) {
+export async function generateToken(userName, id) {
     const minute = 1000 * 60
     const expiration = new Date(Date.now() + minute * 10)
-    const token = await signToken({ userName, expiration})
+    const token = await signToken({ id, userName, expiration})
     const cookie = serialize ("jwt-token", token, {
         maxAge: expiration,
         path: '/',
@@ -55,13 +55,12 @@ async function validateCredentials(userName, password) {
             },
             body: JSON.stringify(loginData)
         })
-        const validated = await response.json()
-
-        if (validated) {
-            return true
+        const resp = await response.json()
+        if (resp.validated) {
+            return resp
         } else {
             console.error('Failed to validate user')
-            return false
+            return resp
         }
     } catch (error) {
         console.error('Error validating user credentials');
@@ -70,12 +69,11 @@ async function validateCredentials(userName, password) {
 }
 
 export async function loginUser({ userName, password }) {
-    const isValidCredentials = await validateCredentials(userName, password)
-
-    if (!isValidCredentials) {
+    const {validated, id} = await validateCredentials(userName, password)
+    if (!validated) {
         throw new Error('Invalid credentials')
     } else {
-        const cookie = await generateToken(userName)
+        const cookie = await generateToken(userName, id)
         return cookie
     }
 }

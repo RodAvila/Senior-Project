@@ -1,16 +1,12 @@
 package com.edugators.udl4cs_resources.controller;
-import com.edugators.udl4cs_resources.model.LoginRequest;
-import com.edugators.udl4cs_resources.model.LoginResponse;
 import com.edugators.udl4cs_resources.model.User1;
-import com.edugators.udl4cs_resources.model.Resource;
-import com.edugators.udl4cs_resources.service.ResourceService;
 import com.edugators.udl4cs_resources.service.User1Service;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -28,20 +24,6 @@ public class User1Controller {
         String plainPassword = user1.getPassword();
         user1.setPassword(passwordEncoder.encode(plainPassword));
         user1Service.saveuser1(user1);
-    }
-
-    @PostMapping(value = "/validate", headers = "Accept=application/json")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
-        String username = loginRequest.getUsername();
-        String password = loginRequest.getPassword();
-        User1 user = user1Service.findByUsername(username);
-        int userId = user.getId();
-
-        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            return ResponseEntity.ok(new LoginResponse(Long.valueOf(user.getId()), true));
-        } else {
-            return ResponseEntity.ok(new LoginResponse(null, false));
-        }
     }
 
     @GetMapping(value = "/user1")
