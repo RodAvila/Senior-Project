@@ -9,13 +9,9 @@ export async function authenticateToken(jwtToken) {
         if (!jwtKey || jwtKey.length === 0 ) {
             throw new Error("No key has been set")
         }
-
-
         const authenticated = await jwtVerify(jwtToken, jwtKey, {algorithms: ["HS256"]})
         return authenticated.payload
-
     } catch (error) {
-        //console.error(error)
         throw new Error("Failed to authenticate token");
     }
 }
@@ -24,14 +20,14 @@ export async function signToken(payload) {
     return await new SignJWT(payload)
         .setProtectedHeader({ alg: "HS256" })
         .setIssuedAt()
-        .setExpirationTime("10 minutes")
+        .setExpirationTime("1 minute")
         .sign(jwtKey);
 }
 
-export async function generateToken(userName, id) {
-    const minute = 1000 * 60
-    const expiration = new Date(Date.now() + minute * 10)
-    const token = await signToken({ id, userName, expiration})
+export async function generateToken(userName, id, role) {
+    const expiration = Math.floor(Date.now() / 1000) + 60
+    const expjwt = new Date(Date.now() + 60 * 1000)
+    const token = await signToken({ id, userName, role, expjwt})
     const cookie = serialize ("jwt-token", token, {
         maxAge: expiration,
         path: '/',
@@ -69,11 +65,11 @@ async function validateCredentials(userName, password) {
 }
 
 export async function loginUser({ userName, password }) {
-    const {validated, id} = await validateCredentials(userName, password)
+    const { validated, userId, role } = await validateCredentials(userName, password)
     if (!validated) {
         throw new Error('Invalid credentials')
     } else {
-        const cookie = await generateToken(userName, id)
+        const cookie = await generateToken(userName, userId, role)
         return cookie
     }
 }

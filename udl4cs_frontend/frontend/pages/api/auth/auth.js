@@ -5,11 +5,11 @@ export default async function handler(req, res) {
     try {
         const token = req.body
         if (!token) {
-            throw new Error ("no token?")
+            res.status(400).json({ error: "No token"})
         }
 
         const authentic = await authenticateToken(token).catch((err) => {
-            res.status(400).json({ error: "Authentication failed" })
+            res.status(400).json({ error: "Authentication failed: " + err })
         })
 
         if (authentic) {
