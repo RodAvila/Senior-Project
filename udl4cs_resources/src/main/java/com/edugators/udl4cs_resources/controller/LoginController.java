@@ -26,10 +26,10 @@ public class LoginController {
         User1 user = user1Service.findByUsername(username);
 
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            LoginResponse resp = new LoginResponse((long) user.getId(), true);
+            LoginResponse resp = new LoginResponse((long) user.getId(), true, user.getRole());
             return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(resp);
         } else {
-            LoginResponse resp = new LoginResponse(null, false);
+            LoginResponse resp = new LoginResponse(null, false, null);
             return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(resp);
         }
     }
