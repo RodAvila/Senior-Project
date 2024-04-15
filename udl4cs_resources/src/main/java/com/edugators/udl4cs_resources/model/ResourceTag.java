@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "resource_tags")
+@Table(name = "Resource_Tags")
 public class ResourceTag {
 
     @Id

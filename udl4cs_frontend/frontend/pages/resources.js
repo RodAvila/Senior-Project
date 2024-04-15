@@ -13,7 +13,7 @@ export default function Resources() {
     return (
         <>
             <Navbar></Navbar>
-            <div className=" py-5 border-bottom">
+            <div className="py-5 border-bottom">
                 <Search setResults = {setResults}></Search>
                 <SearchResults results = {results}></SearchResults>
             </div>

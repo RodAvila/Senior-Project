@@ -39,7 +39,8 @@ public class User1 {
 
     @Column(name = "PFP")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private byte[] imageData = new byte[524288];
+    private byte[] imageData = new byte[255];
+    //Need to change this back ^ lowered value because it was causing issues with large value...
 
     public User1(int id, String firstName, String lastName, String role, String email, String userName,
                  String password, String base64ImageData, byte[] imageData) {
@@ -118,9 +119,7 @@ public class User1 {
         return imageData;
     }
 
-    public void setImageData() {
-        this.imageData = Base64.getDecoder().decode(this.base64ImageData);
-    }
+    public void setImageData() { this.imageData = this.base64ImageData != null ? Base64.getDecoder().decode(this.base64ImageData) : null; }
 
     public String getBase64ImageData() {
         return base64ImageData;
