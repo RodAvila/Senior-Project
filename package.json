@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "jose": "^5.2.4"
+  },
+  "dependencies": {
+    "cookie": "^0.6.0"
+  }
+}
