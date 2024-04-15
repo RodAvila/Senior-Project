@@ -1,15 +1,15 @@
 import { SignJWT, jwtVerify } from "jose";
-import {serialize} from "cookie";
+import { serialize } from "cookie";
 import { NextRequest, NextResponse } from "next/server";
 
 const jwtKey = new TextEncoder().encode(process.env.REACT_APP_JWT_KEY)
 
 export async function authenticateToken(jwtToken) {
     try {
-        if (!jwtKey || jwtKey.length === 0 ) {
+        if (!jwtKey || jwtKey.length === 0) {
             throw new Error("No key has been set")
         }
-        const authenticated = await jwtVerify(jwtToken, jwtKey, {algorithms: ["HS256"]})
+        const authenticated = await jwtVerify(jwtToken, jwtKey, { algorithms: ["HS256"] })
         return authenticated.payload
     } catch (error) {
         throw new Error("Failed to authenticate token");
@@ -28,8 +28,8 @@ export async function generateToken(userName, id, role) {
     // Time set for 30 minutes
     const expiration = Math.floor(Date.now() / 1000) + 60 * 30
     const expjwt = new Date(Date.now() + 60 * 1000 * 30)
-    const token = await signToken({ id, userName, role, expjwt})
-    const cookie = serialize ("jwt-token", token, {
+    const token = await signToken({ id, userName, role, expjwt })
+    const cookie = serialize("jwt-token", token, {
         maxAge: expiration,
         path: '/',
         sameSite: 'None',
@@ -47,7 +47,7 @@ async function validateCredentials(userName, password) {
         }
         const response = await fetch(backendurl, {
             method: 'POST',
-                headers: {
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(loginData)

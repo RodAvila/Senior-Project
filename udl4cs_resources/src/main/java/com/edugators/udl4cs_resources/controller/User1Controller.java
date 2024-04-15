@@ -1,4 +1,5 @@
 package com.edugators.udl4cs_resources.controller;
+
 import com.edugators.udl4cs_resources.model.User1;
 import com.edugators.udl4cs_resources.service.User1Service;
 import org.springframework.web.bind.annotation.*;
@@ -7,9 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 import java.util.List;
-
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -32,8 +31,7 @@ public class User1Controller {
     }
 
     @GetMapping("/user1/{id}")
-    public User1 getuser1(@PathVariable("id") int id)
-    {
+    public User1 getuser1(@PathVariable("id") int id) {
         return user1Service.getuser1ById(id);
     }
 
@@ -43,8 +41,7 @@ public class User1Controller {
     }
 
     @DeleteMapping("/user1/{id}")
-    public void deleteUser1(@PathVariable("id") int id)
-    {
+    public void deleteUser1(@PathVariable("id") int id) {
         user1Service.deleteuser1(id);
     }
 }
