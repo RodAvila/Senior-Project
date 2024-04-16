@@ -1,15 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import {authenticateToken} from "@/pages/api/auth/lib.js"
-import {decodeJwt} from "jose";
+import { authenticateToken } from "@/pages/api/auth/lib.js"
+import { decodeJwt } from "jose";
 const AuthContext = createContext()
 
 export function useAuth() {
     return useContext(AuthContext)
 }
 
-export function AuthProvider(props){
+export function AuthProvider(props) {
     const AUTH_API_URL = "http://localhost:3000/api/auth/auth";
     const [authUser, setAuthUser] = useState(null)
+    const [authId, setAuthId] = useState(null)
     const [userRole, setUserRole] = useState(null)
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -33,6 +34,7 @@ export function AuthProvider(props){
                     const tokenData = decodeJwt(token)
                     setIsAuthenticated(true)
                     setAuthUser(tokenData.userName)
+                    setAuthId(tokenData.id)
                     setUserRole(tokenData.role)
                 } else {
                     setIsAuthenticated(false)
@@ -58,6 +60,7 @@ export function AuthProvider(props){
 
     const value = {
         authUser,
+        authId,
         setAuthUser,
         isAuthenticated,
         setIsAuthenticated

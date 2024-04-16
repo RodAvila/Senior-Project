@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "jose": "^5.2.4"
+  },
+  "dependencies": {
+    "cookie": "^0.6.0",
+    "react-bootstrap": "^2.10.2"
+  }
+}

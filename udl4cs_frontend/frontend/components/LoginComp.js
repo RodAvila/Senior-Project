@@ -1,6 +1,12 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
+import loginpic from "/public/Asset 21.svg";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import Link from "next/link";
+
 
 export default function LoginComp() {
+    const router = useRouter();
     const USER_API_BASE_URL = "http://localhost:3000/api/auth/login";
 
     const [user, setUser] = useState({
@@ -26,7 +32,7 @@ export default function LoginComp() {
         setUser({ ...user, [event.target.name]: value });
     };
 
-    const saveUser = async(e) => {
+    const saveUser = async (e) => {
         e.preventDefault();
         const response = await fetch(USER_API_BASE_URL, {
             method: "POST",
@@ -38,7 +44,6 @@ export default function LoginComp() {
         if (response.ok) {
             const responseData = await response.json();
             const { cookie } = responseData;
-
             if (cookie) {
                 window.location.reload();
             } else {
@@ -63,45 +68,63 @@ export default function LoginComp() {
     };
 
     return (
-        <div className="container d-flex align-items-center justify-content-center">
-            <div className="col-lg-6 col-sm-12 col-12">
-                <br/>
-                <h1>Login</h1>
-                <br/>
-                <form>
-                    <div className="form-floating mb-3">
-                        <input type="text"
-                               name="userName"
-                               value={user.userName}
-                               onChange={(e) => handleChange(e)}
-                               className="form-control"
-                               style={{borderRadius: '16px!important'}}
-                               id="inputuserName"
-                               placeholder="Username"
-                               required/>
-                        <label htmlFor="inputuserName">Username</label>
+        <div className="container-lg align-items-center justify-content-center py-2">
+
+            <div className="row">
+                <div className="col-lg-6 col-sm-12 col-12">
+                    <Image
+                        src={loginpic}
+                        height={400}
+                    />
+                </div>
+                <div className="col-lg-6 col-sm-12 col-12">
+                    <div className="row pb-5">
+                        <br />
+                        <h1 className="primary">Login</h1>
+                        <br />
+                        <form>
+                            <div className="form-floating mb-3">
+                                <input type="text"
+                                    name="userName"
+                                    value={user.userName}
+                                    onChange={(e) => handleChange(e)}
+                                    className="form-control"
+                                    style={{ borderRadius: '16px!important' }}
+                                    id="inputuserName"
+                                    placeholder="Username"
+                                    required />
+                                <label htmlFor="inputuserName">Username</label>
+                            </div>
+                            <br />
+                            <div className="form-floating mb-3">
+                                <input type="password"
+                                    name="password"
+                                    value={user.password}
+                                    onChange={(e2) => handleChange(e2)}
+                                    className="form-control"
+                                    style={{ borderRadius: '16px!important' }}
+                                    id="inputPassword"
+                                    placeholder="Password"
+                                    required />
+                                <label htmlFor="inputPassword">Password</label>
+                            </div>
+                            <br />
+                            <br />
+                            <div className="text-center">
+                                <button type="submit" className="btn btn-primary" onClick={saveUser}
+                                    style={{ borderRadius: '16px!important', width: '200px', height: '50px', backgroundColorcolor: '#0B1A73' }}>Login
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
-                    <br/>
-                    <div className="form-floating mb-3">
-                        <input type="password"
-                               name="password"
-                               value={user.password}
-                               onChange={(e2) => handleChange(e2)}
-                               className="form-control"
-                               style={{borderRadius: '16px!important'}}
-                               id="inputPassword"
-                               placeholder="Password"
-                               required/>
-                        <label htmlFor="inputPassword">Password</label>
+                    {/* <div className='py-2 row border-top'>
+                            <p>Dont have an account? Sign up</p>
+                        </div> */}
+                    <div className="col d-flex justify-content-center py-5 border-top">
+                        <p>Dont have an account? <Link href={`/signup`}>Sign up</Link></p>
                     </div>
-                    <br/>
-                    <br/>
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-primary" onClick={saveUser}
-                                style={{borderRadius: '16px!important', width: '200px', height: '50px'}}>Login
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     )
