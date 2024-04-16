@@ -11,7 +11,7 @@ export default function LogIn() {
                 <LoginComp></LoginComp>
             </div>
 
-            <div className='container d-flex flex-column align-items-center justify-content-center'>
+            {/* <div className='container d-flex flex-column align-items-center justify-content-center'>
                 <div className='py-2 row border-top'>
                     <p>Dont have an account? Sign up</p>
                 </div>
@@ -22,7 +22,7 @@ export default function LogIn() {
                         </Link>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

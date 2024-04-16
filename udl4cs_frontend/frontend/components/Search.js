@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {Typeahead} from "react-bootstrap-typeahead";
-import {Form} from "react-bootstrap";
+import React, { useEffect, useRef, useState } from 'react'
+import { Typeahead } from "react-bootstrap-typeahead";
+import { Form } from "react-bootstrap";
 
 
 export default function Search({ setResults, tag }) {
@@ -35,7 +35,7 @@ export default function Search({ setResults, tag }) {
 
     const fetchData = (value) => {
         fetch("http://localhost:8080/resources")
-            .then((response)=>response.json())
+            .then((response) => response.json())
             .then((json) => {
                 const results = json.filter((resource) => {
                     return (
@@ -43,7 +43,7 @@ export default function Search({ setResults, tag }) {
                         resource &&
                         resource.resourceName &&
                         resource.resourceName.toUpperCase().includes(value.toUpperCase()) &&
-                            tagsExist(resource)
+                        tagsExist(resource)
                     );
                 });
                 setResults(results);
@@ -60,7 +60,7 @@ export default function Search({ setResults, tag }) {
             resourceTags.push(resource.tags[i].tag.tagName);
         }
 
-        for (let i = 0 ; i < multiSelections.length; i++) {
+        for (let i = 0; i < multiSelections.length; i++) {
             if (resourceTags.indexOf(multiSelections[i]) == -1)
                 return false;
         }
@@ -92,21 +92,21 @@ export default function Search({ setResults, tag }) {
 
     return (
         <>
-            {!loading &&(
+            {!loading && (
                 <div className="row align-items-center justify-content-center">
                     <div className="col-md-4 col-sm-4">
                         <div className="input-group" id="search-box">
                             <input className="form-control border-end-0 border"
-                                   type="search"
-                                   placeholder="Search resource"
-                                   aria-label="Search resource"
-                                   id="example-search-input"
-                                   value={input}
-                                   onChange={(e) => handleChange(e.target.value)}
+                                type="search"
+                                placeholder="Search resource"
+                                aria-label="Search resource"
+                                id="example-search-input"
+                                value={input}
+                                onChange={(e) => handleChange(e.target.value)}
                             />
 
-                            <button className="btn btn-outline-secondary border-spacing-0.5" type="button"
-                                    id="button-addon2"><i className="bi bi-search"></i></button>
+                            <button className="btn btn-light btn-outline-secondary border-spacing-0.5 custom-button " type="button"
+                                id="button-addon2"><i className="bi bi-search"></i></button>
                         </div>
                     </div>
                     <div className="col-md-2 col-sm-2">
@@ -121,7 +121,7 @@ export default function Search({ setResults, tag }) {
                                     options={tags.map(el => el.tagName)}
                                     placeholder="Filter with tags..."
                                     selected={multiSelections}
-                                    style={{border: '1px solid #0576B8', borderRadius: '7px'}}
+                                    style={{ border: '1px solid #0576B8', borderRadius: '7px' }}
                                 />
                             </Form.Group>
                         </div>

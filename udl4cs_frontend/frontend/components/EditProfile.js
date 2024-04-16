@@ -107,15 +107,15 @@ export default function EditProfile({ userData, refreshData, authId }) {
 
                   <div className="form-floating mb-3">
                     <input
-                      name="password"
+                      name="lastName"
                       value={newUser.lastName}
                       onChange={(e2) => handleChange(e2)}
                       className="form-control"
                       style={{ borderRadius: '16px!important' }}
-                      id="inputPassword"
-                      placeholder="Password"
+                      id="inputLastName"
+                      placeholder="Last Name"
                       required />
-                    <label htmlFor="inputPassword">Last Name</label>
+                    <label htmlFor="inputLastName">Last Name</label>
                   </div>
 
                   <div className="form-floating mb-3">
@@ -145,15 +145,15 @@ export default function EditProfile({ userData, refreshData, authId }) {
                   </div>
                   <div className="form-floating mb-3">
                     <input type="text"
-                      name="user1name"
+                      name="userName"
                       value={newUser.userName}
                       onChange={(e5) => handleChange(e5)}
                       className="form-control"
                       style={{ borderRadius: '16px!important' }}
-                      id="inputuser1name"
+                      id="inputuserName"
                       placeholder="Username"
                       required />
-                    <label htmlFor="inputuser1name">Username</label>
+                    <label htmlFor="inputuserName">Username</label>
                   </div>
                   <div className="form-floating mb-3">
                     <input type="password"

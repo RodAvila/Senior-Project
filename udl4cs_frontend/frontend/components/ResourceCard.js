@@ -39,9 +39,9 @@ const ResourceCard = ({ resource }) => {
                     <div>
                         <div className="row">
                             <div className="col-md-6">
-                                <h2 className="subheader">Resources</h2>
+                                <h2 className="primary">Resources</h2>
                             </div>
-                            <div className="col-md-6" style={{textAlign: 'right'}}>
+                            <div className="col-md-6" style={{ textAlign: 'right' }}>
                                 <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button">+
                                     Upload
                                     Resource</a>
@@ -52,12 +52,12 @@ const ResourceCard = ({ resource }) => {
                             {resources.map((resource) => (
                                 <div className="col-8 col-lg-4 col-xl-3" >
                                     <div className="card h-100" key={resource.id}>
-                                        <div style={{width: '100%', height: '100%', position: 'relative'}}>
+                                        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
                                             {resource.imageLink && <img src={resource.imageLink} className='card-img-top'
-                                                                        layout='fill'
-                                                                        objectFit='contain'/>}
-                                            {!resource.imageLink && <div style={{paddingRight: '50px', paddingLeft: '50px', paddingTop: '50px', paddingBottom: '50px'}}><img src={"/Resources_icon.png"} className='card-img-top' layout='fill'
-                                                                                         objectFit='contain'/></div>}
+                                                layout='fill'
+                                                objectFit='contain' />}
+                                            {!resource.imageLink && <div style={{ paddingRight: '50px', paddingLeft: '50px', paddingTop: '50px', paddingBottom: '50px' }}><img src={"/Resources_icon.png"} className='card-img-top' layout='fill'
+                                                objectFit='contain' /></div>}
                                         </div>
                                         <div className="card-body scrollable">
                                             <h5 className="card-title">{resource.resourceName}</h5>
