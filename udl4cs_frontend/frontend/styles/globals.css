@@ -1,0 +1,66 @@
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 60px 0;
+}
+
+.headerFont {
+    font-weight: 800;
+    color: #0B1873
+}
+
+.card{
+    transition: all 0.3s;
+}
+
+.scrollable{
+    overflow-y: scroll;
+    max-height: 230px;
+}
+
+.card:hover {
+    transform: scale(1.10);
+
+}
+
+.results-list {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 0px 1px #ddd;
+    border-radius: 10px;
+    margin-top: 1rem;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.searchItem {
+    padding: 5px 10px;
+}
+
+.searchItem:hover {
+    background-color: #efefef;
+}
+
+.col-lg-4 {
+    height: 450px;
+}
+
+.primary {
+    font-weight: 800;
+
+}
+.subheader {
+    font-weight: 700;
+}
+
+.primary, .subheader, a.nav-link{
+    color: #0B1873
+}
+/*.btn-bd-primary {*/
+/*    background-color: #0B1873 !important;*/
+/*}*/

@@ -46,7 +46,8 @@ public class User1Service {
         newUser.setEmail(user1.getEmail());
         newUser.setUserName(user1.getUserName());
         newUser.setPassword(user1.getPassword());
-        newUser.setImageLink(user1.getImageLink());
+        newUser.setBase64ImageData(user1.getBase64ImageData());
+        newUser.setImageData();
         user1Repository.save(user1);
     }
 
@@ -72,8 +73,11 @@ public class User1Service {
         if (user1.getPassword() != null)
             oldUser.setPassword(user1.getPassword());
 
-        if (user1.getImageLink() != null)
-            oldUser.setImageLink(user1.getImageLink());
+        if (user1.getBase64ImageData() != null)
+        {
+            oldUser.setBase64ImageData(user1.getBase64ImageData());
+            oldUser.setImageData();
+        }
 
         user1Repository.save(oldUser);
     }
@@ -85,5 +89,10 @@ public class User1Service {
         resourceRepository.deleteResourceTagsByUser(id);
         resourceRepository.deleteByUser(id);
         user1Repository.delete(user1Repository.findById(id).get());
+    }
+    
+    public User1 findByUsername(String username)
+    {
+        return user1Repository.findByUsername(username);
     }
 }
