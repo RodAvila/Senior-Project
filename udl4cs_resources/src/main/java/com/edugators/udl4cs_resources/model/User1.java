@@ -33,17 +33,11 @@ public class User1 {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Transient
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String base64ImageData;
-
     @Column(name = "PFP")
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private byte[] imageData = new byte[255];
-    //Need to change this back ^ lowered value because it was causing issues with large value...
+    private String imageLink;
 
-    public User1(int id, String firstName, String lastName, String role, String email, String userName,
-                 String password, String base64ImageData, byte[] imageData) {
+    public User1(int id, String firstName, String lastName, String role,
+                 String email, String userName, String password, String imageLink) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,8 +45,7 @@ public class User1 {
         this.email = email;
         this.userName = userName;
         this.password = password;
-        this.base64ImageData = base64ImageData;
-        this.imageData = imageData;
+        this.imageLink = imageLink;
     }
 
     public User1() {
@@ -115,18 +108,12 @@ public class User1 {
         this.password = _password;
     }
 
-    public byte[] getImageData() {
-        return imageData;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setImageData() { this.imageData = this.base64ImageData != null ? Base64.getDecoder().decode(this.base64ImageData) : null; }
-
-    public String getBase64ImageData() {
-        return base64ImageData;
-    }
-
-    public void setBase64ImageData(String base64ImageData) {
-        this.base64ImageData = base64ImageData;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     @Override

@@ -46,8 +46,7 @@ public class User1Service {
         newUser.setEmail(user1.getEmail());
         newUser.setUserName(user1.getUserName());
         newUser.setPassword(user1.getPassword());
-        newUser.setBase64ImageData(user1.getBase64ImageData());
-        newUser.setImageData();
+        newUser.setImageLink(user1.getImageLink());
         user1Repository.save(user1);
     }
 
@@ -73,11 +72,8 @@ public class User1Service {
         if (user1.getPassword() != null)
             oldUser.setPassword(user1.getPassword());
 
-        if (user1.getBase64ImageData() != null)
-        {
-            oldUser.setBase64ImageData(user1.getBase64ImageData());
-            oldUser.setImageData();
-        }
+        if (user1.getImageLink() != null)
+            oldUser.setImageLink(user1.getImageLink());
 
         user1Repository.save(oldUser);
     }
