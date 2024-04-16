@@ -1,0 +1,329 @@
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM_[Changes]/shelved.patch	(revision d23a93009e8368d41172bb467ebe13a5cdfdcb18)
++++ /dev/null	(revision d23a93009e8368d41172bb467ebe13a5cdfdcb18)
+@@ -1,64 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"67cc054e-7d5c-4100-9e33-4e9de8404722\" name=\"Changes\" comment=\"\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"JavaScript File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$/..\" value=\"Jon\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$/..\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;mliamkin&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"26f5ae39-5575-4bbb-b538-1e23a03c70e6\" />\r\n        <option name=\"url\" value=\"https://github.com/RodAvila/Senior-Project\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2cy1DcmBUfCFtmwiNaKMhrbF93w\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Node.js.AddResource.js.executor&quot;: &quot;Run&quot;,\r\n    &quot;Node.js.ResourceComponent.js.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;mliamkin&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;ts.external.directory.path&quot;: &quot;C:\\\\Program Files\\\\JetBrains\\\\IntelliJ IDEA 2023.3.3\\\\plugins\\\\javascript-impl\\\\jsLanguageServicesImpl\\\\external&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ReactDesignerToolWindowState\">\r\n    <option name=\"myId2Visible\">\r\n      <map>\r\n        <entry key=\"com.intellij.reactbuddy.reactComponents\" value=\"false\" />\r\n        <entry key=\"com.intellij.reactbuddy.reactInspector\" value=\"false\" />\r\n        <entry key=\"com.intellij.reactbuddy.storybook\" value=\"false\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"67cc054e-7d5c-4100-9e33-4e9de8404722\" name=\"Changes\" comment=\"\" />\r\n      <created>1709068887247</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1709068887247</updated>\r\n      <workItem from=\"1709068888050\" duration=\"7240000\" />\r\n      <workItem from=\"1709497338391\" duration=\"39000\" />\r\n      <workItem from=\"1709497462072\" duration=\"823000\" />\r\n      <workItem from=\"1709584955963\" duration=\"1081000\" />\r\n      <workItem from=\"1709586440240\" duration=\"3456000\" />\r\n      <workItem from=\"1709589910119\" duration=\"8862000\" />\r\n      <workItem from=\"1709602585537\" duration=\"6222000\" />\r\n      <workItem from=\"1709609478194\" duration=\"729000\" />\r\n      <workItem from=\"1709665102750\" duration=\"140000\" />\r\n      <workItem from=\"1709674067248\" duration=\"716000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 30e722acd07e84f103b5a217ead5836f7e279bfa)
+-+++ b/.idea/workspace.xml	(date 1710275538690)
+-@@ -52,26 +52,26 @@
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+--  <component name="PropertiesComponent">{
+--  &quot;keyToString&quot;: {
+--    &quot;Node.js.AddResource.js.executor&quot;: &quot;Run&quot;,
+--    &quot;Node.js.ResourceComponent.js.executor&quot;: &quot;Run&quot;,
+--    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+--    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+--    &quot;git-widget-placeholder&quot;: &quot;mliamkin&quot;,
+--    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+--    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+--    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mishka/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend&quot;,
+--    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+--    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+--    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+--    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+--    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+--    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+--    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+--    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+-+  <component name="PropertiesComponent"><![CDATA[{
+-+  "keyToString": {
+-+    "Node.js.AddResource.js.executor": "Run",
+-+    "Node.js.ResourceComponent.js.executor": "Run",
+-+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-+    "RunOnceActivity.ShowReadmeOnStart": "true",
+-+    "git-widget-placeholder": "mliamkin",
+-+    "ignore.virus.scanning.warn.message": "true",
+-+    "kotlin-language-version-configured": "true",
+-+    "last_opened_file_path": "C:/Users/mliam/OneDrive/Documents/Code/SeniorProject/Senior-Project/udl4cs_frontend",
+-+    "node.js.detected.package.eslint": "true",
+-+    "node.js.detected.package.tslint": "true",
+-+    "node.js.selected.package.eslint": "(autodetect)",
+-+    "node.js.selected.package.tslint": "(autodetect)",
+-+    "nodejs_package_manager_path": "npm",
+-+    "settings.editor.selected.configurable": "preferences.pluginManager",
+-+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+-+    "vue.rearranger.settings.migration": "true"
+-   }
+--}</component>
+-+}]]></component>
+-   <component name="ReactDesignerToolWindowState">
+-     <option name="myId2Visible">
+-       <map>
+-@@ -106,6 +106,7 @@
+-       <workItem from="1709609478194" duration="729000" />
+-       <workItem from="1709665102750" duration="140000" />
+-       <workItem from="1709674067248" duration="716000" />
+-+      <workItem from="1710273961488" duration="597000" />
+-     </task>
+-     <servers />
+-   </component>
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM__Changes_.xml	(revision d23a93009e8368d41172bb467ebe13a5cdfdcb18)
++++ /dev/null	(revision d23a93009e8368d41172bb467ebe13a5cdfdcb18)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM_[Changes]" date="1710275673926" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_12_2024_4_33_PM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 3/12/2024 4:33 PM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: frontend/dev/palette.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/dev/palette.tsx b/frontend/dev/palette.tsx
+new file mode 100644
+--- /dev/null	(date 1710881462532)
++++ b/frontend/dev/palette.tsx	(date 1710881462532)
+@@ -0,0 +1,27 @@
++import {Fragment} from "react";
++import {
++    Category,
++    Component,
++    Variant,
++    Palette,
++} from "@react-buddy/ide-toolbox-next";
++import MUIPalette from "@react-buddy/palette-mui";
++
++export const PaletteTree = () => (
++    <Palette>
++        <Category name="App">
++            <Component name="Loader">
++                <Variant>
++                    <ExampleLoaderComponent/>
++                </Variant>
++            </Component>
++        </Category>
++        <MUIPalette/>
++    </Palette>
++);
++
++export function ExampleLoaderComponent() {
++    return (
++        <Fragment>Loading...</Fragment>
++    );
++}
+\ No newline at end of file
+Index: frontend/dev/previews.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/dev/previews.tsx b/frontend/dev/previews.tsx
+new file mode 100644
+--- /dev/null	(date 1710881462506)
++++ b/frontend/dev/previews.tsx	(date 1710881462506)
+@@ -0,0 +1,11 @@
++import {Previews} from "@react-buddy/ide-toolbox-next";
++import {PaletteTree} from "./palette";
++
++const ComponentPreviews = () => {
++    return (
++        <Previews palette={<PaletteTree/>}>
++        </Previews>
++    );
++};
++
++export default ComponentPreviews;
+\ No newline at end of file
+Index: frontend/pages/_app.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import \"@/styles/globals.css\";\r\nimport type { AppProps } from \"next/app\";\r\nimport 'bootstrap/dist/css/bootstrap.css';\r\nimport {useEffect} from \"react\";\r\nimport Layout from \"@/components/layout\";\r\n\r\nexport default function App({ Component, pageProps }: AppProps) {\r\n\r\n  useEffect(() => {\r\n    typeof document !== undefined\r\n        ? require('bootstrap/dist/js/bootstrap')\r\n        : null\r\n  }, [])\r\n\r\n  return (\r\n    <Layout>\r\n    <Component {...pageProps} />\r\n    </Layout>\r\n  );\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/pages/_app.tsx b/frontend/pages/_app.tsx
+--- a/frontend/pages/_app.tsx	(revision d23a93009e8368d41172bb467ebe13a5cdfdcb18)
++++ b/frontend/pages/_app.tsx	(date 1710881462565)
+@@ -6,15 +6,15 @@
+ 
+ export default function App({ Component, pageProps }: AppProps) {
+ 
+-  useEffect(() => {
+-    typeof document !== undefined
+-        ? require('bootstrap/dist/js/bootstrap')
+-        : null
+-  }, [])
++    useEffect(() => {
++        typeof document !== undefined
++            ? require('bootstrap/dist/js/bootstrap')
++            : null
++    }, [])
+ 
+-  return (
+-    <Layout>
+-    <Component {...pageProps} />
+-    </Layout>
+-  );
+-}
++    return (
++        <Layout>
++            <Component {...pageProps} />
++        </Layout>
++    );
++}
+\ No newline at end of file
+Index: frontend/dev/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/dev/index.ts b/frontend/dev/index.ts
+new file mode 100644
+--- /dev/null	(date 1710881462478)
++++ b/frontend/dev/index.ts	(date 1710881462478)
+@@ -0,0 +1,9 @@
++import React from "react";
++import {useInitial} from "./useInitial";
++
++const ComponentPreviews = React.lazy(() => import("./previews"));
++
++export {
++    ComponentPreviews,
++    useInitial
++};
+\ No newline at end of file
+Index: frontend/dev/useInitial.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/dev/useInitial.ts b/frontend/dev/useInitial.ts
+new file mode 100644
+--- /dev/null	(date 1710881462453)
++++ b/frontend/dev/useInitial.ts	(date 1710881462453)
+@@ -0,0 +1,16 @@
++import {useState} from "react";
++import {InitialHookStatus} from "@react-buddy/ide-toolbox-next";
++
++export const useInitial: () => InitialHookStatus = () => {
++    const [status, setStatus] = useState<InitialHookStatus>({
++        loading: false,
++        error: false,
++    });
++    /*
++      Implement hook functionality here.
++      If you need to execute async operation, set loading to true and when it's over, set loading to false.
++      If you caught some errors, set error status to true.
++      Initial hook is considered to be successfully completed if it will return {loading: false, error: false}.
++    */
++    return status;
++};
+Index: frontend/dev/README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/dev/README.md b/frontend/dev/README.md
+new file mode 100644
+--- /dev/null	(date 1710881462445)
++++ b/frontend/dev/README.md	(date 1710881462445)
+@@ -0,0 +1,70 @@
++This directory contains utility files which enable some visual features of the
++[React Buddy](https://plugins.jetbrains.com/plugin/17467-react-buddy/) plugin.
++Files in the directory should be committed to source control.
++
++React Buddy palettes describe reusable components and building blocks. `React Palette` tool window becomes available
++when an editor with React components is active. You can drag and drop items from the tool window to the code editor or
++JSX Outline. Alternatively, you can insert components from the palette using code generation
++action (`alt+insert` / `⌘ N`).
++
++Add components to the palette using `Add to React Palette` intention or via palette editor (look for the corresponding
++link in `palette.tsx`). There are some ready-to-use palettes for popular React libraries which are published as npm
++packages and can be added as a dependency:
++
++```jsx
++import AntdPalette from "@react-buddy/palette-antd";
++import ReactIntlPalette from "@react-buddy/palette-react-intl";
++
++export const PaletteTree = () => (
++  <Palette>
++    <AntdPalette/> 
++    <ReactIntlPalette/>
++    <Category name="App templates">
++      <Component name="Card">
++        <Variant name="Loading">
++          <Card title="Card title">
++            <Skeleton loading={true} avatar active>
++                Card content
++            </Skeleton>
++          </Card>
++        </Variant>
++      </Component>
++      <Component name="Form">
++        <Variant proto={FormTemplate}/>
++      </Component>
++    </Category>
++  </Palette>
++)
++```
++
++React Buddy explicitly registers any previewed component in the `previews.tsx` file so that you can specify required
++props.
++
++```jsx
++<ComponentPreview path="/Page">
++    <Page title={'Hello'}/>
++</ComponentPreview>
++```
++
++You can add some global initialization logic for the preview mode in `useInitital.ts`,
++e.g. implicitly obtain user session:
++
++```typescript
++export const useInitial: () => InitialHookStatus = () => {
++    const [loading, setLoading] = useState<boolean>(false);
++    const [error, setError] = useState<boolean>(false);
++
++    useEffect(() => {
++        setLoading(true);
++        async function login() {
++            const response = await loginRequest(DEV_LOGIN, DEV_PASSWORD);
++            if (response?.status !== 200) {
++                setError(true);
++            }
++            setLoading(false);
++        }
++        login();
++    }, []);
++    return { loading, error };
++};
++```
+\ No newline at end of file
+Index: frontend/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"name\": \"frontend\",\r\n  \"version\": \"0.1.0\",\r\n  \"private\": true,\r\n  \"scripts\": {\r\n    \"dev\": \"next dev\",\r\n    \"build\": \"next build\",\r\n    \"start\": \"next start\",\r\n    \"lint\": \"next lint\"\r\n  },\r\n  \"dependencies\": {\r\n    \"@headlessui/react\": \"^1.7.18\",\r\n    \"axios\": \"^1.6.7\",\r\n    \"bootstrap\": \"^5.3.3\",\r\n    \"next\": \"14.1.0\",\r\n    \"react\": \"^18\",\r\n    \"react-dom\": \"^18\"\r\n  },\r\n  \"devDependencies\": {\r\n    \"@types/node\": \"^20\",\r\n    \"@types/react\": \"^18\",\r\n    \"@types/react-dom\": \"^18\",\r\n    \"autoprefixer\": \"^10.0.1\",\r\n    \"postcss\": \"^8\",\r\n    \"tailwindcss\": \"^3.3.0\",\r\n    \"typescript\": \"^5\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/package.json b/frontend/package.json
+--- a/frontend/package.json	(revision d23a93009e8368d41172bb467ebe13a5cdfdcb18)
++++ b/frontend/package.json	(date 1710881462576)
+@@ -14,7 +14,9 @@
+     "bootstrap": "^5.3.3",
+     "next": "14.1.0",
+     "react": "^18",
+-    "react-dom": "^18"
++    "react-dom": "^18",
++    "@react-buddy/ide-toolbox-next": "^2.4.1",
++    "@react-buddy/palette-mui": "^5.0.1"
+   },
+   "devDependencies": {
+     "@types/node": "^20",
