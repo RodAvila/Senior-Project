@@ -72,17 +72,8 @@ export default function Navbar() {
 
                             {isUserLoggedIn ? (
                                 <>
-                                    <li className="nav-item ms-2 d-none d-md-inline px-2" >
-                                        <Link href="/profile">
-                                            <Image
-                                                src={'/icon.png'}
-                                                width={37}
-                                                height={37}
-
-                                                objectFit='contain'
-                                                className="rounded-circle">
-                                            </Image>
-                                        </Link>
+                                    <li className="nav-item px-2">
+                                        <a className="nav-link" href="/resources" style={{ fontSize: '20px', fontWeight: "bold" }}>Logout<span className="sr-only"></span></a>
                                     </li>
                                 </>
 
