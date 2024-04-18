@@ -42,7 +42,7 @@ const ResourceCard = ({ resource }) => {
                                 <h2 className="primary">Resources</h2>
                             </div>
                             <div className="col-md-6" style={{ textAlign: 'right' }}>
-                                <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button">+
+                                <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button" style={{backgroundColor: "#0576B8", borderColor: "#0576B8"}}>+
                                     Upload
                                     Resource</a>
                             </div>
@@ -72,7 +72,7 @@ const ResourceCard = ({ resource }) => {
                                             {/*<span className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>*/}
                                             <Link href={`/resources/${encodeURIComponent(resource.id)}`}
                                             >
-                                                <button className="btn btn-primary">View more</button>
+                                                <button className="btn btn-primary" style={{backgroundColor: "#0576b8", borderColor: "#0576b8"}}>View more</button>
                                             </Link>
                                         </div>
                                     </div>

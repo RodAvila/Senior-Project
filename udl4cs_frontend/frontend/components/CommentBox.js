@@ -1,11 +1,13 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
+import { useAuth } from '@/AuthContext';
 import Image from 'next/image';
 import SearchResultItem from "./SearchResultItem";
 
 const CommentBox = ({ resourceId, refreshData }) => {
+    const { authId } = useAuth();
 
-    const COMMENT_BASE_API = "http://localhost:8080/comments/resources/" + resourceId + "/user1/1";
+    const COMMENT_BASE_API = "http://localhost:8080/comments/resources/" + resourceId + "/user1/" + authId;
 
     const [comment, setComment] = useState({
         comment: ""

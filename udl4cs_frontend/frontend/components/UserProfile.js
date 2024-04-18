@@ -78,7 +78,6 @@ export default function UserProfile({ }) {
                     width={80}
                     height={80}
                     className="rounded-circle">
-
                   </Image>
                 </div>
 

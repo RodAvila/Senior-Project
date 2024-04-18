@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {Form} from "react-bootstrap";
 import {Typeahead} from "react-bootstrap-typeahead";
+import { useAuth } from '@/AuthContext';
 import * as PropTypes from "prop-types";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 import Link from "next/link";
@@ -18,9 +19,10 @@ Typeahead.propTypes = {
 };
 
 export default function EditProfile({ resource, refetchData }) {
+    const { authId } = useAuth();
     // for now
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources/" + resource.id;
-    const UPDATE_RESOURCE_API_BASE_URL = "http://localhost:8080/resources/" + resource.id + "/user1/1";
+    const UPDATE_RESOURCE_API_BASE_URL = "http://localhost:8080/resources/" + resource.id + "/user1/" + authId;
     const [resourceUp, setResourceUp] = useState(resource);
     const [loading, setLoading] = useState(true);
 

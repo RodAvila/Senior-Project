@@ -105,7 +105,7 @@ export default function Search({ setResults, tag }) {
                                    onChange={(e) => handleChange(e.target.value)}
                             />
 
-                            <button className="btn btn-outline-secondary border-spacing-0.5" type="button"
+                            <button className="btn btn-outline-light border-spacing-0.5" type="button"
                                     id="button-addon2"><i className="bi bi-search"></i></button>
                         </div>
                     </div>

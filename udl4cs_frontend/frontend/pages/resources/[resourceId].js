@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Navbar from "../../components/Navbar";
 import { useRouter } from 'next/router';
+import { useAuth } from '@/AuthContext';
 import CommentBox from "../../components/CommentBox";
 import Image from 'next/image';
 import moment from "moment";
@@ -11,14 +12,14 @@ export default function ResourceId({ resource }) {
     //TODO need to update this later with resource attributes like likes, and num comments
     //TODO need to do API call to get and structure comments
     const router = useRouter();
-
+    const { authId } = useAuth();
     const refreshData = () => {
         router.replace(router.asPath);
     }
 
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
-    const LIKE_BASE_API = "http://localhost:8080/resources/like/" + id + "/user1/1";
-    const DELETE_BASE_API = "http://localhost:8080/resources/" + id + "/user1/1";
+    const LIKE_BASE_API = "http://localhost:8080/resources/like/" + id + "/user1/" + authId;
+    const DELETE_BASE_API = "http://localhost:8080/resources/" + id + "/user1/" + authId;
     const [resources, setResources] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -180,7 +181,7 @@ export default function ResourceId({ resource }) {
                                         borderRadius: "10px"
                                     }}> &nbsp; {txt.tag.tagName} &nbsp; </span> &nbsp;</span>)}</div>}
                             {resource.uploadDate && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <i>Uploaded {moment(resource.uploadDate).format("MM/DD/YYYY, h:mm a")}</i></p>}
+                                <i>Uploaded {moment(resource.uploadDate[0]).format("MM/DD/YYYY, h:mm a")}</i></p>}
                             <div>
                                 <a style={{borderRadius: '16px!important'}}
                                    className="btn btn-secondary border-spacing-0.5"
@@ -231,6 +232,8 @@ export default function ResourceId({ resource }) {
                                     style={{
                                         width: 'fit-content',
                                         borderRadius: '16px!important',
+                                        backgroundColor: "#0576B8",
+                                        borderColor: "#0576B8"
                                     }}
                                     onClick={likeFunc}
                             ><i className="bi bi-hand-thumbs-up"></i> Like
@@ -260,7 +263,7 @@ export default function ResourceId({ resource }) {
                                         {/*        {userItem.firstName} + ' ' + {userItem.lastName}*/}
                                         {/*    </p>*/}
                                         {/*})}*/}
-                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b> <i>Uploaded {moment(commentItem.uploadDate).format("MM/DD/YYYY, h:mm a")}</i>
+                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b> <i>Uploaded {moment(commentItem.uploadDate[0]).format("MM/DD/YYYY, h:mm a")}</i>
                                         <p>{commentItem.comment}</p>
                                     </div>
                                 );

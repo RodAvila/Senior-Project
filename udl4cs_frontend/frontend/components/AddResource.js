@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
 import ResourceTable from "./ResourceTable";
+import { useAuth } from '@/AuthContext';
 import {CommentBox} from "./CommentBox";
 import { Form } from "react-bootstrap";
 import { Typeahead } from 'react-bootstrap-typeahead';
@@ -19,7 +20,9 @@ Typeahead.propTypes = {
 };
 
 const AddResource = ({ tag }) => {
-    const RESOURCE_API_BASE_URL = "http://localhost:8080/resources/user1/1";
+    const { authId } = useAuth();
+
+    const RESOURCE_API_BASE_URL = "http://localhost:8080/resources/user1/" + authId;
     const TAGS_API_BASE_URL = "http://localhost:8080/tags";
 
     const [loading, setLoading] = useState(true);
@@ -87,6 +90,7 @@ const AddResource = ({ tag }) => {
 
     const saveResource = async(e) => {
         e.preventDefault();
+        console.log(authId);
         for (let i = 0; i < multiSelections.length; i++) {
             for (let j = 0; j < tags.length; j++) {
                 if (tags[j].tagName == multiSelections[i]) {
@@ -274,7 +278,7 @@ const AddResource = ({ tag }) => {
                                     <div className="col-md-4">
                                         <button onClick={saveResource}
                                                 className="btn btn-primary"
-                                                style={{borderRadius: '16px!important'}}>
+                                                style={{borderRadius: '16px!important', backgroundColor: "#0576B8", borderColor: "#0576B8"}}>
                                             Submit for Approval
                                         </button>
                                     </div>
