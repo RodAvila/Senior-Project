@@ -60,7 +60,7 @@ export default function UserProfile({ }) {
           }}>
             <div class="row">
               <div class="col-md-6">
-                <h1 style={{ fontSize: '32px', marginBottom: '10px', color: '#333' }}>Profile</h1>
+                <h1 className="primary">Profile</h1>
               </div>
               <div className="col-md-6" style={{ textAlign: 'right' }}>
                 <a style={{ borderRadius: '16px!important' }} className="btn btn-secondary border-spacing-0.5" data-bs-toggle="modal" data-bs-target="#editprofile" role="button">Edit Profile</a>
@@ -74,7 +74,7 @@ export default function UserProfile({ }) {
               <div className="row ">
                 <div class="col-md-12 " style={{ textAlign: 'center' }}>
                   <Image
-                    src={"/icon.png"}
+                    src={userData.imageLink}
                     width={80}
                     height={80}
                     className="rounded-circle">
@@ -88,29 +88,29 @@ export default function UserProfile({ }) {
 
               <br />
               <div className="row">
-                <p>First Name: {userData.firstName} </p>
+                <p className="text"><strong className="profiletext">First Name: </strong>{userData.firstName} </p>
 
               </div>
               <br />
               <div className="row">
-                <p>Last Name: {userData.lastName}</p>
+                <p className="text"><strong className="profiletext">Last Name: </strong>{userData.lastName} </p>
               </div>
               <br />
               <div className="row">
-                <p>Role: {userData.role}</p>
+                <p className="text"><strong className="profiletext">Role: </strong>{userData.role} </p>
               </div>
 
               <br />
               <div className="row">
-                <p>Email: {userData.email}</p>
+                <p className="text"><strong className="profiletext">Email: </strong>{userData.email} </p>
               </div>
 
               <br />
               <div className="row">
-                <p>Username: {userData.userName}</p>
+                <p className="text"><strong className="profiletext">Username: </strong>{userData.userName} </p>
               </div>
 
-              <br />
+
             </div>
           </div>
         </div>

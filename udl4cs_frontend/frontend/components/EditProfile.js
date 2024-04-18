@@ -177,7 +177,7 @@ export default function EditProfile({ userData, refreshData, authId }) {
                       id="inputImageLink"
                       placeholder="Upload Image Link"
                     ></input>
-                    <label htmlFor="inputUploadLink">Upload Image Link</label>
+                    <label htmlFor="inputImageLink">Upload Image Link</label>
                   </div>
                 </form>
               </div>

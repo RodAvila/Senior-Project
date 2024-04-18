@@ -12,7 +12,9 @@ export function AuthProvider(props) {
     const [authUser, setAuthUser] = useState(null)
     const [authId, setAuthId] = useState(null)
     const [userRole, setUserRole] = useState(null)
+    const [userProfile, setUserProfile] = useState(null)
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userEmail, setUserEmail] = useState(null)
 
     useEffect(() => {
         checkAuthentication();
@@ -36,10 +38,13 @@ export function AuthProvider(props) {
                     setAuthUser(tokenData.userName)
                     setAuthId(tokenData.id)
                     setUserRole(tokenData.role)
+                    setUserProfile(tokenData.imageLink);
+                    setUserEmail(tokenData.email)
                 } else {
                     setIsAuthenticated(false)
                     setUserRole(null)
                     setAuthUser(null)
+
                 }
             }
         } catch (error) {
@@ -63,7 +68,11 @@ export function AuthProvider(props) {
         authId,
         setAuthUser,
         isAuthenticated,
-        setIsAuthenticated
+        setIsAuthenticated,
+        userProfile,
+        userEmail,
+        userRole
+
     }
 
     return (
