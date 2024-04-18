@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
-import signuppic from "/public/Asset 22.svg";
+import signuppic from "/public/Asset 24.svg";
 
 export default function SignUpComp() {
     const USER_API_BASE_URL = "http://localhost:8080/user1";
