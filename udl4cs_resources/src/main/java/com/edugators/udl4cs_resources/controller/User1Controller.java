@@ -39,6 +39,8 @@ public class User1Controller {
 
     @PutMapping(value = "/user1/{id}")
     public void updateUser1(@RequestBody User1 user, @PathVariable("id") int id) {
+        String plainPassword = user.getPassword();
+        user.setPassword(passwordEncoder.encode(plainPassword));
         user1Service.updateuser1(user, id);
     }
 

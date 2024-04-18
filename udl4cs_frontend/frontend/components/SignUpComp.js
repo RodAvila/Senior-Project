@@ -10,7 +10,7 @@ export default function SignUpComp() {
         email: "",
         userName: "",
         password: "",
-        base64ImageData: ""
+        imageLink: ""
     });
 
     const [responseUser, setResponseUser] = useState({
@@ -20,7 +20,7 @@ export default function SignUpComp() {
         email: "",
         userName: "",
         password: "",
-        base64ImageData: ""
+        imageLink: ""
     });
 
     const [image, setImage] = useState("")
@@ -57,7 +57,7 @@ export default function SignUpComp() {
             email: "",
             userName: "",
             password: "",
-            base64ImageData: ""
+            imageLink: ""
         });
     };
 
@@ -149,8 +149,8 @@ export default function SignUpComp() {
                     <br />
                     <div className="form-floating mb-3">
                         <input type="text"
-                            name="imageData"
-                            value={user.ImageData}
+                            name="imageLink"
+                            value={user.imageLink}
                             onChange={(e9) => handleChange(e9)}
                             className="form-control"
                             style={{ borderRadius: '16px!important' }}

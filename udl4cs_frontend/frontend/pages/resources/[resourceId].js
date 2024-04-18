@@ -181,7 +181,7 @@ export default function ResourceId({ resource }) {
                                         borderRadius: "10px"
                                     }}> &nbsp; {txt.tag.tagName} &nbsp; </span> &nbsp;</span>)}</div>}
                             {resource.uploadDate && <p style={{fontSize: '16px', color: '#555', marginBottom: '20px'}}>
-                                <i>Uploaded {moment(resource.uploadDate[0]).format("MM/DD/YYYY, h:mm a")}</i></p>}
+                                <i>Uploaded {moment(resource.uploadDate).format("MM/DD/YYYY, h:mm a")}</i></p>}
                             <div>
                                 <a style={{borderRadius: '16px!important'}}
                                    className="btn btn-secondary border-spacing-0.5"
@@ -263,7 +263,7 @@ export default function ResourceId({ resource }) {
                                         {/*        {userItem.firstName} + ' ' + {userItem.lastName}*/}
                                         {/*    </p>*/}
                                         {/*})}*/}
-                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b> <i>Uploaded {moment(commentItem.uploadDate[0]).format("MM/DD/YYYY, h:mm a")}</i>
+                                        <b>{commentItem.user.firstName} {commentItem.user.lastName}</b> <i>Uploaded {moment(commentItem.uploadDate).format("MM/DD/YYYY, h:mm a")}</i>
                                         <p>{commentItem.comment}</p>
                                     </div>
                                 );

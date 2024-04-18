@@ -158,7 +158,6 @@ export default function EditProfile({ userData, refreshData, authId }) {
                   <div className="form-floating mb-3">
                     <input type="password"
                       name="password"
-                      value={newUser.password}
                       onChange={(e6) => handleChange(e6)}
                       className="form-control"
                       style={{ borderRadius: '16px!important' }}
