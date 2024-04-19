@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { authenticateToken } from "@/pages/api/auth/lib.js"
 import { decodeJwt } from "jose";
-const AuthContext = createContext()
+const AuthContext = createContext();
 
 export function useAuth() {
     return useContext(AuthContext)

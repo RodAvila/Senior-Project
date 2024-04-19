@@ -56,38 +56,46 @@ section {
 }
 .subheader {
     font-weight: 800;
-    font-size: 24px;
+
+    
+}
+
+/* .resource {
+    font-weight: ;
+} */
+
+.text {
+    
+    font-size: 20px;
 }
 
 .primary, .subheader, a.nav-link{
     color: #0B1873
 }
 
-.svg-background {
-    width: 300px; /* Adjust width and height as needed */
-    height: 200px;
-    background-image: url('/public/Asset 16.svg'); /* Path to your SVG image */
-    background-repeat: no-repeat;
-    background-size: cover; /* or 'contain' depending on your preference */
+.profiletext {
+    color: black;
+    font-weight: 800;
 }
 
+
 .custom-button {
-    background-color: blue; /* Set your desired background color here */
-    color: white; /* Set the text color here */
+    background-color: blue; 
+    color: white; 
 }
 
 .btn{
     background-color: #0B1873;
 }
 .double-space {
-    line-height: 2; /* Adjust the spacing as needed */
+    line-height: 2; 
   }
   .bullet-list {
-    padding-left: 20px; /* Adjust as needed */
+    padding-left: 20px;
   }
   
   .bullet-list li {
-    margin-bottom: 10px; /* Adjust as needed */
+    margin-bottom: 10px; 
   }
 
 
