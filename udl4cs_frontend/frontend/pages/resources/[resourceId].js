@@ -153,7 +153,7 @@ export default function ResourceId({ resource }) {
                             {resource.csta && <p style={{ fontSize: '16px', color: 'black', marginBottom: '20px' }}>
                                 <b>CSTA: </b>{resource.csta}</p>}
                             {resource.csta && <p style={{ fontSize: '16px', color: 'black', marginBottom: '20px' }}>
-                                <a target="_blank" href="https://csteachers.org/k12standards/interactive/"
+                                <a target="_blank" href="https://csteachers.org/teacherstandards/interactive/"
                                    className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i>🛈 Learn more about CSTA
                                     Standards</i></a></p>}
                             {resource.gradeLevel && <p style={{ fontSize: '16px', color: 'black', marginBottom: '20px' }}>

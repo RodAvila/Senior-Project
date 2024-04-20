@@ -72,13 +72,13 @@ export default function UserProfile({ authId }) {
 
                   <div className="row ">
                     <div className="col-md-12 " style={{ textAlign: 'center' }}>
-                      <Image
+                      {userData.imageLink && <Image
                           src={userData.imageLink}
                           width={80}
                           height={80}
                           className="rounded-circle">
 
-                      </Image>
+                      </Image>}
                     </div>
 
 

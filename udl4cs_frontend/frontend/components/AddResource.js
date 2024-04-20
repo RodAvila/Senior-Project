@@ -230,7 +230,7 @@ const AddResource = ({ tag }) => {
                                     </Form.Group>
                                 </div>
                                 <br/>
-                                <a target="_blank" href="https://csteachers.org/k12standards/interactive/"
+                                <a target="_blank" href="https://csteachers.org/teacherstandards/interactive/"
                                    className="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i>🛈 Learn more about CSTA
                                     Standards</i></a>
                                 <br />
