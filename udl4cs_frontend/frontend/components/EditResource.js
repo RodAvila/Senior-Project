@@ -7,7 +7,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import Link from "next/link";
 import BootstrapModalManager from "react-bootstrap/BootstrapModalManager";
 
-
+// Establishes the REACT plugin called typeahead (used for creating dynamic inputs for resource tags)
 Typeahead.propTypes = {
     onChange: PropTypes.func,
     multiple: PropTypes.bool,
@@ -18,18 +18,31 @@ Typeahead.propTypes = {
     selected: PropTypes.arrayOf(PropTypes.any)
 };
 
-export default function EditProfile({ resource, refetchData }) {
+// Edit Resource component which opens in a modal window and includes form to edit any resource attribute, allowing users to save updated information dynamically
+export default function EditResource({ resource, refetchData }) {
+    // Retrieve the user ID that is currently logged in using token data
     const { authId } = useAuth();
-    // for now
+
+    // Establish relevant URLS to the database API for resources and updating resources
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources/" + resource.id;
     const UPDATE_RESOURCE_API_BASE_URL = "http://localhost:8080/resources/" + resource.id + "/user1/" + authId;
+
+    // resourceUp holds the state of the current resource attributes that will be updated
     const [resourceUp, setResourceUp] = useState(resource);
+
+    // Keep track of when data fetching is loading (and to only display data when fully loaded)
     const [loading, setLoading] = useState(true);
 
+    // Establish relevant URL to the database API for tag information
     const TAGS_API_BASE_URL = "http://localhost:8080/tags";
+
+    // Keep track of tags from database
     const [tags, setTags] = useState(null);
+
+    // Keeps track of all tags selected from the tag input
     const [multiSelections, setMultiSelections] = useState([]);
 
+    // Fetches all the tags from the database, updating the tag input options
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -50,8 +63,7 @@ export default function EditProfile({ resource, refetchData }) {
         fetchData();
     }, []);
 
-    const tagValues =[{  }];
-
+    // Fetches data from the resources API, setting up the initial resource attributes for all the resourceUp attributes
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -70,17 +82,24 @@ export default function EditProfile({ resource, refetchData }) {
             setLoading(false);
         };
         fetchData();
+
+        // If the resource has tags, initialize the multi-selections of the tag input to include the already added tags
         if (resource.tags.length != 0)
             setMultiSelections(resourceUp.tags.map(el => el.tag.tagName));
     }, []);
 
+    // Handle change on any input attributes of the resource updating form (attributes are linked by the 'name' attribute in inputs)
     const handleChange = (event) => {
         const value = event.target.value;
         setResourceUp({ ...resourceUp, [event.target.name]: value });
     }
 
+    // Save new updated resource to the database
     const saveResource = async(e) => {
+        // Prevent page refresh after form submission
         e.preventDefault();
+
+        // Create an array of tagId's based on the inputs in the tag multi-selection input (API takes tagId's rather than tag names)
         const tagIds = [];
         for (let i = 0; i < multiSelections.length; i++) {
             for (let j = 0; j < tags.length; j++) {
@@ -89,7 +108,11 @@ export default function EditProfile({ resource, refetchData }) {
                 }
             }
         }
+
+        // Update the resource's tagIds to reflect current tag multi-selection input data
         resourceUp.tagIds = tagIds;
+
+        // Put response to update the resource using all of its attributes
         const response = await fetch(UPDATE_RESOURCE_API_BASE_URL, {
             method: "PUT",
             headers: {
@@ -100,6 +123,8 @@ export default function EditProfile({ resource, refetchData }) {
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
+
+        // Calls passed-in refetch data function to fetch data again in the parent component '[resourceId].js' to prevent needing to refresh the page
         refetchData();
     };
 

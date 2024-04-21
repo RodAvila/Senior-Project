@@ -6,9 +6,12 @@ import Link from "next/link";
 
 
 export default function LoginComp() {
+
+    // Establish API URL to JWT token creation on user login
     const router = useRouter();
     const USER_API_BASE_URL = "http://localhost:3000/api/auth/login";
 
+    // Sets the intial user attribute values to empty on page load
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -18,6 +21,7 @@ export default function LoginComp() {
         password: ""
     });
 
+    // Re-initializes the user attribute values to empty on getting a server response
     const [responseUser, setResponseUser] = useState({
         firstName: "",
         lastName: "",
@@ -27,11 +31,13 @@ export default function LoginComp() {
         password: ""
     });
 
+    // Handle form input change for users (user attributes are mapped to the 'name' attribute in inputs)
     const handleChange = (event) => {
         const value = event.target.value;
         setUser({ ...user, [event.target.name]: value });
     };
 
+    // Save user to the server database on form submission
     const saveUser = async (e) => {
         e.preventDefault();
         const response = await fetch(USER_API_BASE_URL, {
@@ -41,6 +47,7 @@ export default function LoginComp() {
             },
             body: JSON.stringify(user),
         });
+        // generate a cookie based on the responseData, then relocate user to the main resources page if logged in, otherwise log an error to the console
         if (response.ok) {
             const responseData = await response.json();
             const { cookie } = responseData;
@@ -52,9 +59,12 @@ export default function LoginComp() {
         } else {
             console.error(response.status)
         }
+
+        // Reset all user inputs to empty after posting user data
         reset(e);
     };
 
+    // Resets all user inputs to empty, called after posting data to database
     const reset = (e) => {
         e.preventDefault();
         setUser({
