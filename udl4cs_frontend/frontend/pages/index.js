@@ -67,16 +67,28 @@ export default function Home() {
             </section>
             <div className="footer">
                 <div className="image-container">
-                    <Image
-                        src={NFS}
-                        alt="Image 1"
+                    <div className="row align-items-center justify-content-center">
+                        <div className="col">
+                            <Image
+                                src={NFS}
+                                alt="Image 1"
 
-                    />
-                    <Image
-                        src={google}
-                        height={100}
-                        alt="Image 2"
-                    />
+                            />
+
+                        </div>
+                        <div className="col">
+                            <Image
+                                src={google}
+                                height={100}
+                                alt="Image 2"
+                            />
+
+                        </div>
+
+                    </div>
+
+
+
                 </div>
                 <style jsx>{`
                     .footer {

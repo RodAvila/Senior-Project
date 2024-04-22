@@ -3,7 +3,7 @@ import { useAuth } from '@/AuthContext'
 import { useRouter } from 'next/router';
 import Link from "next/link";
 
-export default function EditProfile({ userData, refreshData, authId }) {
+export default function EditProfile({ userData, refreshData, authId}) {
   const router = useRouter();
 
   console.log(userData.firstName);
@@ -83,14 +83,14 @@ export default function EditProfile({ userData, refreshData, authId }) {
     <>
 
       {!loading && (
-        <div class="modal fade" id="editprofile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editProfileLabel">Edit Profile</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade" id="editprofile" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="editProfileLabel">Edit Profile</h1>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <form>
                   <div className="form-floating mb-3">
                     <input type="text"
@@ -176,17 +176,17 @@ export default function EditProfile({ userData, refreshData, authId }) {
                       id="inputImageLink"
                       placeholder="Upload Image Link"
                     ></input>
-                    <label htmlFor="inputUploadLink">Upload Image Link</label>
+                    <label htmlFor="inputImageLink">Upload Image Link</label>
                   </div>
                 </form>
               </div>
-              <div class="modal-footer">
-                <div class="d-flex justify-content-start me-auto">
-                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onClick={deleteCurrUser}>Delete User</button>
+              <div className="modal-footer">
+                <div className="d-flex justify-content-start me-auto">
+                  <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={deleteCurrUser}>Delete User</button>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
-                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onClick={saveUser}>Save changes</button>
+                  <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                  <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={saveUser}>Save changes</button>
                 </div>
               </div>
             </div>

@@ -4,26 +4,37 @@ import { useAuth } from '@/AuthContext';
 import Image from 'next/image';
 import SearchResultItem from "./SearchResultItem";
 
+// CommentBox plugin focuses on posting new comments for resources added by user
 const CommentBox = ({ resourceId, refreshData }) => {
+
+    // Retrieve the user ID that is currently logged in using token data
     const { authId } = useAuth();
 
+    // Establish URL for database API holding comments data tied to the currently logged-in user
     const COMMENT_BASE_API = "http://localhost:8080/comments/resources/" + resourceId + "/user1/" + authId;
 
+    // Initialize comment attribute to empty
     const [comment, setComment] = useState({
         comment: ""
     });
 
+    // Re-initialize comment attribute to empty after server response
     const [responseComment, setResponseComment] = useState({
         comment: ""
     });
 
+    // Handle input changes to comment box, updating value on every input
     const handleChange = (event) => {
         const value = event.target.value;
         setComment({ ...comment, [event.target.name]: value });
     };
 
+    // Saves comment posted by user when user submits comment
     const saveComment = async(e) => {
+
+        // Prevent page refresh after form submission
         e.preventDefault();
+
         const response = await fetch(COMMENT_BASE_API, {
             method: "POST",
             headers: {
@@ -34,12 +45,18 @@ const CommentBox = ({ resourceId, refreshData }) => {
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
+        // Calls reset attributes of comment after posting
         reset(e);
+
+        // Calls a passed-in refresh data function of the parent page '[resourceId].js' so that comment is updated without a page refresh
         refreshData();
     };
 
+    // Reset comment data to empty after posting data to server
     const reset = (e) => {
+        // Prevent page refresh after reset
         e.preventDefault();
+
         setComment({
             comment: ""
         });
