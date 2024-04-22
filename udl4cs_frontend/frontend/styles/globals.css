@@ -7,8 +7,18 @@ section {
     padding: 60px 0;
 }
 
+.headerFont {
+    font-weight: 800;
+    color: #0B1873
+}
+
 .card{
     transition: all 0.3s;
+}
+
+.scrollable{
+    overflow-y: scroll;
+    max-height: 230px;
 }
 
 .card:hover {
@@ -35,3 +45,60 @@ section {
 .searchItem:hover {
     background-color: #efefef;
 }
+
+.col-lg-4 {
+    height: 450px;
+}
+
+.primary {
+    font-weight: 800;
+
+}
+.subheader {
+    font-weight: 800;
+
+    
+}
+
+/* .resource {
+    font-weight: ;
+} */
+
+.text {
+    
+    font-size: 20px;
+}
+
+.primary, .subheader, a.nav-link{
+    color: #0B1873
+}
+
+.profiletext {
+    color: black;
+    font-weight: 800;
+}
+
+
+.custom-button {
+    background-color: blue; 
+    color: white; 
+}
+
+.btn{
+    background-color: #0B1873;
+}
+.double-space {
+    line-height: 2; 
+  }
+  .bullet-list {
+    padding-left: 20px;
+  }
+  
+  .bullet-list li {
+    margin-bottom: 10px; 
+  }
+
+
+/*.btn-bd-primary {*/
+/*    background-color: #0B1873 !important;*/
+/*}*/

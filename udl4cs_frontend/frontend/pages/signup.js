@@ -6,7 +6,10 @@ export default function SignUp() {
     return (
         <>
             <Navbar></Navbar>
-            <SignUpComp></SignUpComp>
+            <div className='py-5 '>
+                <SignUpComp></SignUpComp>
+            </div>
+
         </>
     )
 }

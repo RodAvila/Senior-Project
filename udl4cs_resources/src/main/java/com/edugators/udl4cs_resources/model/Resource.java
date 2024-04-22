@@ -1,6 +1,16 @@
 package com.edugators.udl4cs_resources.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -38,21 +48,45 @@ public class Resource {
     private String imageLink;
 
     @Column(name = "UPLOADDATE")
-    private String uploadDate;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private LocalDateTime uploadDate;
 
     @Column(name = "MODULE")
     private String module;
 
-    @Column(name = "NUMLIKES")
-    private Integer numLikes;
+    @ManyToOne
+    private User1 user;
 
-    @Column(name = "NUMCOMMENTS")
-    private Integer numComments;
+    @OneToMany(mappedBy = "resource", orphanRemoval = true)
+    @JsonIgnore
+    private List<Likes> likes = new ArrayList<>();
 
-    public Resource(String resourceName, String topic, String resourceDesc, String audience, String resourceType,
-                    String resourceLink, String CSTA, String gradeLevel, String imageLink, String uploadDate,
-                    String module, int numLikes, int numComments) {
-        super();
+    @OneToMany(mappedBy = "resource", orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "resource", orphanRemoval = true)
+    private List<ResourceTag> tags = new ArrayList<>();
+
+    @Transient
+    private Iterable<Integer> tagIds;
+
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private int numLikes;
+
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private int numComments;
+
+    public Resource() {
+
+    }
+
+    public Resource(int id, String resourceName, String topic, String resourceDesc, String audience,
+                    String resourceType, String resourceLink, String CSTA, String gradeLevel,
+                    String imageLink, LocalDateTime uploadDate, String module, User1 user,
+                    List<Likes> likes, List<Comment> comments, List<ResourceTag> tags, int numLikes, int numComments) {
+        this.id = id;
         this.resourceName = resourceName;
         this.topic = topic;
         this.resourceDesc = resourceDesc;
@@ -64,15 +98,13 @@ public class Resource {
         this.imageLink = imageLink;
         this.uploadDate = uploadDate;
         this.module = module;
+        this.user = user;
+        this.likes = likes;
+        this.comments = comments;
+        this.tags = tags;
         this.numLikes = numLikes;
         this.numComments = numComments;
     }
-
-
-    public Resource() {
-
-    }
-
 
     public int getId() {
         return id;
@@ -114,20 +146,12 @@ public class Resource {
         return imageLink;
     }
 
-    public String getUploadDate() {
+    public LocalDateTime getUploadDate() {
         return uploadDate;
     }
 
     public String getModule() {
         return module;
-    }
-
-    public int getNumLikes() {
-        return numLikes;
-    }
-
-    public int getNumComments() {
-        return numComments;
     }
 
     public void setId(int id) {
@@ -170,7 +194,7 @@ public class Resource {
         this.imageLink = imageLink;
     }
 
-    public void setUploadDate(String uploadDate) {
+    public void setUploadDate(LocalDateTime uploadDate) {
         this.uploadDate = uploadDate;
     }
 
@@ -178,11 +202,59 @@ public class Resource {
         this.module = module;
     }
 
-    public void setNumLikes(int numLikes) {
-        this.numLikes = numLikes;
+    public User1 getUser() {
+        return user;
     }
 
-    public void setNumComments(int numComments) {
-        this.numComments = numComments;
+    public void setUser(User1 user1) {
+        this.user = user1;
+    }
+
+    public List<Likes> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(List<Likes> likedUsers) {
+        this.likes = likedUsers;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+   public void setNumLikes() {
+        this.numLikes = this.likes.size();
+    }
+
+    public int getNumLikes() {
+        return numLikes;
+    }
+
+    public int getNumComments() {
+        return numComments;
+    }
+
+    public void setNumComments() {
+        this.numComments = this.comments.size();
+    }
+
+    public List<ResourceTag> getTags(){
+        return tags;
+    }
+
+    public void setTags(List<ResourceTag> tags){
+        this.tags = tags;
+    }
+
+    public Iterable<Integer> getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(Iterable<Integer> tagIds) {
+        this.tagIds = tagIds;
     }
 }

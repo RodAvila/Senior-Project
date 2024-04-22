@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from 'next/image'
-import { firaSans } from '@/pages/index.js'
+import Link from "next/link";
 import useResourceData from "../useResourceData"
 
 const ResourceCard = ({ resource }) => {
@@ -32,50 +32,58 @@ const ResourceCard = ({ resource }) => {
 
     return (
         <>
-
             {!loading && (
 
+
                 <section className="mt-5 px-3">
-                    <div className="container-lg ">
+                    <div>
                         <div className="row">
                             <div className="col-md-6">
-                                <h2 className={`${firaSans.className}`} style={{color: 'var(--bs-blue)'}}>Resources</h2>
+                                <h2 className="primary">Resources</h2>
                             </div>
-                            <div className="col-md-6" style={{textAlign: 'right'}}>
-                                <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button">+ Upload
-                                Resource</a>
+                            <div className="col-md-6" style={{ textAlign: 'right' }}>
+                                <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button" style={{backgroundColor: "#0576B8", borderColor: "#0576B8"}}>+
+                                    Upload
+                                    Resource</a>
                             </div>
                         </div>
 
                         <div className="row my-5 align-items-center justify-content-center g-5">
                             {resources.map((resource) => (
-                                <div className="col-8 col-lg-4 col-xl-3">
-                                    <div className="card shadow border-0" key={resource.id}>
-                                        <Image src={"/cover.png"} className='card-img-top'
-                                               width={300}
-                                               height={200}/>
-                                        <div className="card-body py-4">
-                                            <h4 className={`${firaSans.className} card-title`}>{resource.resourceName}</h4>
-                                            <p className="lead card-subtitle">
-                                                {resource.resourceDesc}
-                                            </p>
-                                            <span className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>
+                                <div className="col-8 col-lg-4 col-xl-3" >
+                                    <div className="card h-100" key={resource.id}>
+                                        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+                                            {resource.imageLink && <img src={resource.imageLink} className='card-img-top'
+                                                layout='fill'
+                                                objectFit='contain' />}
+                                            {!resource.imageLink && <div style={{ paddingRight: '50px', paddingLeft: '50px', paddingTop: '50px', paddingBottom: '50px' }}><img src={"/Resources_icon.png"} className='card-img-top' layout='fill'
+                                                objectFit='contain' /></div>}
+                                        </div>
+                                        <div className="card-body scrollable">
+                                            <h5 className="card-title">{resource.resourceName}</h5>
+                                            {resource.resourceDesc ? (
+                                                <p className="card-text">{resource.resourceDesc}</p>
+                                            ) : (
+                                                <p className="card-text">No description provided</p>
+                                            )}
+                                        </div>
 
+                                        <div className="card-footer">
+                                            {/*<span className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>*/}
+                                            <Link href={`/resources/${encodeURIComponent(resource.id)}`}
+                                            >
+                                                <button className="btn btn-primary" style={{backgroundColor: "#0576b8", borderColor: "#0576b8"}}>View more</button>
+                                            </Link>
                                         </div>
                                     </div>
-
                                 </div>
                             ))}
                         </div>
                     </div>
-
                 </section>
-
-
             )
             }
         </>
-
     )
 }
 

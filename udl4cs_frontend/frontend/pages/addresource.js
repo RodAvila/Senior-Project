@@ -5,11 +5,11 @@ import Navbar from '../components/Navbar';
 
 const addresource = () => {
     return (
-        <div>
+        <>
             <Navbar />
             <br />
             <AddResource></AddResource>
-        </div>
+        </>
     )
 }
 

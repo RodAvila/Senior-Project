@@ -1,9 +1,15 @@
 package com.edugators.udl4cs_resources.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
+
 @Entity
-@Table(name = "User1")
+@Table
 public class User1 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +33,19 @@ public class User1 {
     @Column(name = "PASSWORD")
     private String password;
 
-    public User1(String _firstName, String _lastName, String _role, String _email, String _username, String _password) {
-        super();
-        this.firstName = _firstName;
-        this.lastName = _lastName;
-        this.role = _role;
-        this.email = _email;
-        this.userName = _username;
-        this.password = _password;
+    @Column(name = "PFP")
+    private String imageLink;
+
+    public User1(int id, String firstName, String lastName, String role,
+                 String email, String userName, String password, String imageLink) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.role = role;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.imageLink = imageLink;
     }
 
     public User1() {
@@ -97,4 +108,20 @@ public class User1 {
         this.password = _password;
     }
 
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof User1)) {
+            return false;
+        }
+        User1 u = (User1) obj;
+        return this.id == u.getId();
+    }
 }
