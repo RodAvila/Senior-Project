@@ -23,7 +23,7 @@ public class ResourceController {
     @PostMapping(value = "/resources/user1/{id}")
     public void saveResource(@Valid @RequestBody Resource resource, @PathVariable("id") int userID) {
         resourceService.saveResource(resource, userID);
-        email.sendEmail(resource.getResourceName(), resource.getId());
+        email.sendEmail(resource.getResourceName(), resource.getId(), resource.getResourceDesc());
     }
 
     @GetMapping(value = "/resources")
