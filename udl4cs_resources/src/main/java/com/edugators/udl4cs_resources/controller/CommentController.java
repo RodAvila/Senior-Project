@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
-@RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@RestController // Indicates that this class is a REST controller
+@CrossOrigin(origins = "http://localhost:3000")  // Enables Cross-Origin Resource Sharing (CORS) for requests from a specific origin
 public class CommentController {
     @Autowired
-    CommentService commentService;
+    CommentService commentService; // Autowires the CommentService bean for handling comment-related operations
 
-    @PostMapping(value = "/comments/resources/{resourceID}/user1/{userID}")
+    @PostMapping(value = "/comments/resources/{resourceID}/user1/{userID}") // Endpoint value for each of the following functions
     public void savecomment(@Valid @RequestBody Comment comment, @PathVariable("resourceID") int rID, @PathVariable("userID") int userID) {
         commentService.saveComment(comment, rID, userID);
     }
