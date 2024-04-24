@@ -7,17 +7,18 @@ import java.util.*;
 import java.io.*;
 
 public class Email {
-    //File -> Full file attached if reasonable size-wise, alt. first page/screenshot
-    //Title -> title of proposed file
 
     //bot account = udl4cs.no.reply@gmail.com
     //bot password = RumpledTurtle49
+
+    //All variabbles are static and defined here. Update these variables
+    //to update email sender or destination
     static String  d_email = "udl4cs.no.reply@gmail.com",
             d_password = "mjyw whii oece unwt",
             d_port = "465",
             d_host = "smtp.gmail.com",
             m_to = "udl4cs.no.reply@gmail.com",
-            m_subject = "Test File";
+            m_subject = "A New Resource has been Suggested";
     public void sendEmail(String title, int ID) {
         //API used to send email
         Properties prop = new Properties();
@@ -65,23 +66,30 @@ public class Email {
     }
 
     //Composes body of the email
-    private static Multipart getMultipart(int ID, String title) throws MessagingException, IOException {
+    private static Multipart getMultipart(int ID, String title, String description) throws MessagingException, IOException {
         String text = "A new file has been suggested: " + title + "<br><br>";
 
+        //MimeBodyPart makes up each section of the email
         MimeBodyPart textBodyPart = new MimeBodyPart();
         textBodyPart.setContent(text, "text/html; charset=utf-8");
 
+        //Multipart holds all MimeBodyParts
         Multipart Body = new MimeMultipart();
         Body.addBodyPart(textBodyPart);
 
         String s = "http://localhost:3000/resources/user1/";
         s += String.valueOf(ID);
 
-        text = "<br><br><a href='" + s + "'>Approve this document</a><br>";;
-
+        text = description + "<br><br>";
         MimeBodyPart textBodyPart2 = new MimeBodyPart();
         textBodyPart2.setContent(text, "text/html; charset=utf-8");
         Body.addBodyPart(textBodyPart2);
+        
+        text = "<a href='" + s + "'>Approve this document</a><br>";;
+
+        MimeBodyPart textBodyPart3 = new MimeBodyPart();
+        textBodyPart3.setContent(text, "text/html; charset=utf-8");
+        Body.addBodyPart(textBodyPart3);
         return Body;
     }
 }
