@@ -14,9 +14,6 @@ const About = () => {
                 </div>
             </section>
         </>
-
-        //<div>About</div>
-
     )
 }
 

@@ -8,21 +8,36 @@ import moment from "moment";
 import EditResource from "../../components/EditResource";
 
 export default function ResourceId({ resource }) {
+    // Establishes the fields of resources with all components from JSON
     const {id, resourceName, resourceDesc, topic, audience, resourceType, resourceLink, csta, gradeLevel, imageLink, uploadDate, module, comments, likes} = resource;
-    //TODO need to update this later with resource attributes like likes, and num comments
-    //TODO need to do API call to get and structure comments
+
+    // Router used to refresh data without refreshing page
     const router = useRouter();
+
+    // Retrieve the user id from the token of the person logged in
     const { authId } = useAuth();
+
+    // Refreshing the data on the page after form submissions
     const refreshData = () => {
         router.replace(router.asPath);
     }
 
+    // Establishes Resource back-end API to retrieve resources
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
+
+    // Establishes Like back-end API to post and retrieve likes
     const LIKE_BASE_API = "http://localhost:8080/resources/like/" + id + "/user1/" + authId;
+
+    // Establishes Delete back-end API to delete resources
     const DELETE_BASE_API = "http://localhost:8080/resources/" + id + "/user1/" + authId;
+
+    // Use state for resources, set upon fetching resource data
     const [resources, setResources] = useState(null);
+
+    // Use stae for loading so that it tracks when fetching data
     const [loading, setLoading] = useState(true);
 
+    // Fetch data about resources
     const fetchData = async () => {
         setLoading(true);
         try {
@@ -37,19 +52,21 @@ export default function ResourceId({ resource }) {
         } catch (error) {
             console.log(error);
         }
-        console.log("Auth Id " + authId);
         setLoading(false);
     };
 
+    // Use effect to fetch resource data
     useEffect(() => {
         fetchData();
     }, [resource]);
 
+    // Like information saved mapped to user use state
     const [like, setLike] = useState({
         id: resource.id,
-        userId: "1"
+        userId: authId
     });
 
+    // Like function creates PUT request to like api to post like (likes/unlikes resource for given user)
     const likeFunc = async(e) => {
         fetch(LIKE_BASE_API, {
             method: "PUT",
@@ -61,11 +78,13 @@ export default function ResourceId({ resource }) {
         refreshData();
     };
 
+    // Delete resource use state to store information about resource id to delete and user id who deletes
     const [deleteRes, setDeleteRes] = useState({
         id: resource.id,
-        userId: "1"
+        userId: authId
     })
 
+    // Delete function creates DELETE request to delete a resource
     const deleteResourceFunc = async(e) => {
         fetch(DELETE_BASE_API, {
             method: "DELETE",
@@ -77,11 +96,12 @@ export default function ResourceId({ resource }) {
         refreshData();
     }
 
+    // Resets like information for a certain user
     const reset = (e) => {
         e.preventDefault();
         setLike({
             id: resource.id,
-            userId: "1"
+            userId: authId
         });
     };
 
