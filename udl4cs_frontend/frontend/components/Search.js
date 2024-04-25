@@ -40,7 +40,7 @@ export default function Search({ setResults, tag }) {
         fetchData();
     }, [tag]);
 
-    // Fetch all resources that match up name-wise from the search input field and our database as well as match the selected tas from the inputs as our search results
+    // Fetch all resources that match up name-wise from the search input field and our database as well as match the selected tags from the inputs as our search results
     const fetchData = (value) => {
         fetch("http://localhost:8080/resources")
             .then((response)=>response.json())

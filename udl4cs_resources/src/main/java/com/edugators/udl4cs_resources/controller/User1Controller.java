@@ -11,15 +11,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.List;
 
 
-@RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@RestController // Indicates that this class is a REST controller
+@CrossOrigin(origins = "http://localhost:3000") // Enables Cross-Origin Resource Sharing (CORS) for requests from a specific origin
 public class User1Controller {
     @Autowired
-    User1Service user1Service;
+    User1Service user1Service; // Autowires the User1Service bean for handling user-related operations
     @Autowired
-    PasswordEncoder passwordEncoder;
+    PasswordEncoder passwordEncoder; // Autowires the PasswordEncoder bean for handling password encryption
 
-    @PostMapping(value = "/user1", headers = "Accept=application/json")
+    @PostMapping(value = "/user1", headers = "Accept=application/json") // Endpoint value for function below, this one is for saving a new user
     public void saveuser1(@Valid @RequestBody User1 user1) {
         String plainPassword = user1.getPassword();
         user1.setPassword(passwordEncoder.encode(plainPassword));
