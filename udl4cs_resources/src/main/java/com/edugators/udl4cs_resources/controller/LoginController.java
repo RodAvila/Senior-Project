@@ -17,7 +17,7 @@ public class LoginController {
     @Autowired
     PasswordEncoder passwordEncoder; // Autowires the PasswordEncoder bean for handling login-related operations
 
-    @PostMapping(value = "/validate", headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE // Endpoint values indicate location of function output
+    @PostMapping(value = "/validate", headers = "Accept=application/json", produces = MediaType.APPLICATION_JSON_VALUE) // Endpoint values indicate location of function output
     public @ResponseBody ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();

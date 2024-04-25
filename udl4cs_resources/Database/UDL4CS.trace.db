@@ -16447,3 +16447,6 @@ java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supporte
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:840)
+2024-04-24 22:56:38.787788-04:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE FROM USER1 WHERE id =[*]= 7"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE FROM USER1 WHERE id == 7 [42001-224]
