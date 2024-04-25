@@ -4,12 +4,16 @@ import Link from "next/link";
 import useResourceData from "../useResourceData"
 
 const ResourceCard = ({ resource }) => {
-
-    //const { resources, loading } = useResourceData();
+    
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
+    
+    // State variable to hold the fetched resources from the API, initially set to null
     const [resources, setResources] = useState(null);
+
+    // State variable to track the loading state, initially set to true
     const [loading, setLoading] = useState(true);
 
+    // Fetch resources from the API when the 'resource' dependency changes
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
