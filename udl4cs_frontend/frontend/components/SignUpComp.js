@@ -3,8 +3,10 @@ import Image from "next/image";
 import signuppic from "/public/Asset 24.svg";
 
 export default function SignUpComp() {
+    // Set User API URL to be able to sign up and add new users
     const USER_API_BASE_URL = "http://localhost:8080/user1";
 
+    // Set user use state to make sure all fields for new users are accounted for
     const [user, setUser] = useState({
         firstName: "",
         lastName: "",
@@ -15,6 +17,7 @@ export default function SignUpComp() {
         imageLink: ""
     });
 
+    // Set user use state to empty after server response
     const [responseUser, setResponseUser] = useState({
         firstName: "",
         lastName: "",
@@ -25,14 +28,16 @@ export default function SignUpComp() {
         imageLink: ""
     });
 
+    // Set image as empty initially
     const [image, setImage] = useState("")
 
+    // Handle change to user inputs on sign up page to reflect user inputs
     const handleChange = (event) => {
         const value = event.target.value;
         setUser({ ...user, [event.target.name]: value });
     };
 
-
+    // Save users by posting data to the User API URL and with filled in fields
     const saveUser = async (e) => {
         e.preventDefault();
 
@@ -47,9 +52,11 @@ export default function SignUpComp() {
         if (!response.ok) {
             throw new Error("Something went wrong");
         }
+        // Reset all inputs to empty
         reset(e);
     };
 
+    // Reset all user inputs to empty after signing up
     const reset = (e) => {
         e.preventDefault();
         setUser({

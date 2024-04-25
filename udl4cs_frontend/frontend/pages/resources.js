@@ -14,6 +14,7 @@ const divStyle = {
 
 export default function Resources() {
     const [results, setResults] = useState([]);
+    // Retrieves search results, from Search component, and displays them in the SearchResults component. Additionally, display all resources as resource cards below this
     return (
         <>
             <Navbar></Navbar>
