@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { firaSans } from '@/pages/index.js'
 import UDL4CS_logo from '/public/UDL4CS Logo-horizontal.svg'
-import Button from '@mui/material/Button'
 import '../styles/component.module.css'
 import { useState, useEffect, useContext } from 'react';
 import { useAuth } from '@/AuthContext'
@@ -36,9 +34,10 @@ export default function Navbar() {
 
         };
         fetchData();
-    }, []);
+    }, [authId]);
     //console.log(userData.userName)
     return (
+        /* The navbar includes the buttons to access the pages of the website. There is the About page, the Resources page, and the profile page.  */
         <>
 
             <nav className="navbar bg-light navbar-expand-lg border p-4">
@@ -67,30 +66,23 @@ export default function Navbar() {
                                 <a className="nav-link" href="/resources" style={{ fontSize: '20px', fontWeight: "bold" }}>Resources<span className="sr-only"></span></a>
                             </li>
 
-                            {isUserLoggedIn ? (
-                                <>
-                                    <li className="nav-item ms-2 d-none d-md-inline px-2">
-                                        <Link href="/profile">
-                                            <Image
-                                                src={"/icon.png"}
-                                                alt="User Profile"
-                                                width={37}
-                                                height={37}
-                                                className="rounded-circle">
-                                            </Image>
-                                        </Link>
-                                    </li>
-                                </>
 
-                            ) : (
+                            {isUserLoggedIn && userData?.imageLink && (
+                                <li className="nav-item ms-2 d-none d-md-inline px-2" >
+                                    <Link href="/profile">
+                                        <Image
+                                            src={userData.imageLink}
+                                            width={37}
+                                            height={37}
+                                            className="rounded-circle"
+                                        />
+                                    </Link>
+                                </li>
+                            )}
+                            {!isUserLoggedIn && (
                                 <>
-                                    {/* <li className={`${firaSans}nav-item ms-2 d-none d-md-inline px-2`}>
-                                        <Link className='btn btn-secondary btn-rounded' href="/signup">Sign Up
-                                        </Link>
-                                    </li> */}
                                     <li className="nav-item px-2">
-                                        <a className="nav-link" href="/login"
-                                           style={{ fontSize: '20px', fontWeight: "bold" }}>Log In</a>
+                                        <a className="nav-link" href="/login" style={{ fontSize: '20px', fontWeight: "bold" }}>Log In</a>
                                     </li>
                                     <li className="nav-item d-md-none">
                                         <a className="nav-link subheader" href="/signup">Sign Up</a>

@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import { useAuth } from '@/AuthContext'
 import { useRouter } from 'next/router';
-import Link from "next/link";
 
-export default function EditProfile({ userData, refreshData, authId}) {
+
+export default function EditProfile({ refreshData, authId }) {
   const router = useRouter();
 
-  console.log(userData.firstName);
   const USER_API_BASE_URL = "http://localhost:8080/user1/" + authId;
   const UPDATEUSER_API_BASE_URL = "http://localhost:8080/user1/" + authId;
   const DELETEUSER_BASE_API = "http://localhost:8080/user1/" + authId;
+
+  // Keep track of when data fetching is loading (and to only display data when fully loaded)
   const [loading, setLoading] = useState(true);
   const [newUser, setNewUser] = useState(null);
 
-
+  // fetches the data from localhost8080
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -34,12 +35,14 @@ export default function EditProfile({ userData, refreshData, authId}) {
     fetchData();
   }, []);
 
+  // when user changes the input of any attribute, the 
   const handleChange = (event) => {
     const value = event.target.value;
     setNewUser({ ...newUser, [event.target.name]: value });
   }
 
   const saveUser = async (e) => {
+    // Prevents page reload after submission
     e.preventDefault();
     const response = await fetch(UPDATEUSER_API_BASE_URL, {
       method: "PUT",
@@ -59,6 +62,8 @@ export default function EditProfile({ userData, refreshData, authId}) {
     id: authId
   })
 
+  // when a user chooses to delete their user, it deletes the user in the backend and reroutes the user to the resources page. 
+
   const deleteCurrUser = async (e) => {
 
 
@@ -69,15 +74,11 @@ export default function EditProfile({ userData, refreshData, authId}) {
       },
       body: JSON.stringify(deleteUser),
     });
-    const { isAuthenticated } = false;
     router.push('/resources');
     refreshData();
 
 
   }
-
-
-
 
   return (
     <>

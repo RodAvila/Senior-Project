@@ -5,17 +5,15 @@ import { useAuth } from '@/AuthContext';
 import { useRouter } from 'next/router';
 
 export default function UserProfile({ authId }) {
+  // grabbing router to know what path we are currently on 
   const router = useRouter();
-
-  // const refreshData = () => {
-  //   router.replace(router.asPath);
-  // }
-
-  const USER_API_BASE_URL = "http://localhost:8080/user1/" + authId;
+  // keep track of user Data state
   const [userData, setUserData] = useState(null);
+  // Keep track of when data fetching is loading (and to only display data when fully loaded)
   const [loading, setLoading] = useState(true);
 
 
+  // fetching the data from the backend to grab the info if the current user logged in using the authId
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -37,8 +35,6 @@ export default function UserProfile({ authId }) {
     fetchData();
   };
 
-
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -47,74 +43,72 @@ export default function UserProfile({ authId }) {
   return (
 
 
-      <>
-        {!loading && (
-            <div className="container d-flex align-items-center justify-content-center">
-              <div className="col-lg-8 col-sm-12 col-12" style={{
-                borderRadius: '16px',
-                margin: 'auto',
-                padding: '20px',
-                backgroundColor: '#F9F9F9',
-                boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)'
-              }}>
-                <div className="row">
-                  <div className="col-md-6">
-                    <h1 className="primary">Profile</h1>
-                  </div>
-                  <div className="col-md-6" style={{ textAlign: 'right' }}>
-                    <a style={{ borderRadius: '16px!important' }} className="btn btn-secondary border-spacing-0.5" data-bs-toggle="modal" data-bs-target="#editprofile" role="button">Edit Profile</a>
-                    <EditProfile userData={userData} refreshData={refreshData} authId={authId}></EditProfile>
-                  </div>
-                </div>
-                <br />
-                <div className="col-md-12">
-
-
-                  <div className="row ">
-                    <div className="col-md-12 " style={{ textAlign: 'center' }}>
-                      {userData.imageLink && <Image
-                          src={userData.imageLink}
-                          width={80}
-                          height={80}
-                          className="rounded-circle">
-
-                      </Image>}
-                    </div>
-
-
-                  </div>
-
-
-                  <br />
-                  <div className="row">
-                    <p className="text"><strong className="profiletext">First Name: </strong>{userData.firstName} </p>
-
-                  </div>
-                  <br />
-                  <div className="row">
-                    <p className="text"><strong className="profiletext">Last Name: </strong>{userData.lastName} </p>
-                  </div>
-                  <br />
-                  <div className="row">
-                    <p className="text"><strong className="profiletext">Role: </strong>{userData.role} </p>
-                  </div>
-
-                  <br />
-                  <div className="row">
-                    <p className="text"><strong className="profiletext">Email: </strong>{userData.email} </p>
-                  </div>
-
-                  <br />
-                  <div className="row">
-                    <p className="text"><strong className="profiletext">Username: </strong>{userData.userName} </p>
-                  </div>
-
-
-                </div>
+    <>
+      {!loading && (
+        <div className="container d-flex align-items-center justify-content-center">
+          <div className="col-lg-8 col-sm-12 col-12" style={{
+            borderRadius: '16px',
+            margin: 'auto',
+            padding: '20px',
+            backgroundColor: '#F9F9F9',
+            boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)'
+          }}>
+            <div className="row">
+              <div className="col-md-6">
+                <h1 className="primary">Profile</h1>
+              </div>
+              <div className="col-md-6" style={{ textAlign: 'right' }}>
+                <a style={{ borderRadius: '16px!important' }} className="btn btn-secondary border-spacing-0.5" data-bs-toggle="modal" data-bs-target="#editprofile" role="button">Edit Profile</a>
+                <EditProfile userData={userData} refreshData={refreshData} authId={authId}></EditProfile>
               </div>
             </div>
-        )}
-      </>
+            <br />
+            <div className="col-md-12">
+
+
+              <div className="row ">
+                <div className="col-md-12 " style={{ textAlign: 'center' }}>
+                  {userData.imageLink && <Image
+                    src={userData.imageLink}
+                    width={80}
+                    height={80}
+                    className="rounded-circle">
+
+                  </Image>}
+                </div>
+
+
+              </div>
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">First Name: </strong>{userData.firstName} </p>
+
+              </div>
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Last Name: </strong>{userData.lastName} </p>
+              </div>
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Role: </strong>{userData.role} </p>
+              </div>
+
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Email: </strong>{userData.email} </p>
+              </div>
+
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Username: </strong>{userData.userName} </p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 export async function getServerSideProps(context) {
