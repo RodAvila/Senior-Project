@@ -1,119 +1,136 @@
 import Image from "next/image"
 import EditProfile from "./EditProfile"
 import { useEffect, useState } from "react";
-export default function UserProfile() {
-    // const [user, setuser] = useState(null);
+import { useAuth } from '@/AuthContext';
+import { useRouter } from 'next/router';
 
-    // useEffect(() => {
-    //   const fetchUserData = async () => {
-    //     try{
-    //       const response = await fetch('"http://localhost:8080/user1s"')
-    //       if(!response.ok){
-    //         throw new Error('Failed to fetch user data')
-    //       }
-    //       const userData = await response.json();
-    //       setuser(userData);
-    //     }
-    //     catch{
+export default function UserProfile({ authId }) {
+  // grabbing router to know what path we are currently on 
+  const router = useRouter();
+  // keep track of user Data state
+  const [userData, setUserData] = useState(null);
+  // Keep track of when data fetching is loading (and to only display data when fully loaded)
+  const [loading, setLoading] = useState(true);
 
 
-    //     }
-    //   }
-    // }
-    // )
-    const USER_API_BASE_URL = "http://localhost:8080/user1/1";
-    const [userData, setUserData] = useState(null);
-    const [loading, setLoading] = useState(true);
+  // fetching the data from the backend to grab the info if the current user logged in using the authId
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch("http://localhost:8080/user1/" + authId, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const userData = await response.json();
+      setUserData(userData);
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+  };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch(USER_API_BASE_URL, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
-                const userData = await response.json();
-                setUserData(userData);
-            } catch (error) {
-                console.log(error);
-            }
-            setLoading(false);
-        };
-        fetchData();
-    }, []);
-    return (
+  const refreshData = () => {
+    fetchData();
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
 
-        <>
-            {!loading && (
-                <div className="container d-flex align-items-center justify-content-center">
-                    <div className="col-lg-8 col-sm-12 col-12" style={{
-                        borderRadius: '16px',
-                        margin: 'auto',
-                        padding: '20px',
-                        backgroundColor: '#F9F9F9',
-                        boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)'
-                    }}>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h1 style={{ fontSize: '32px', marginBottom: '10px', color: '#333' }}>Profile</h1>
-                            </div>
-                            <div className="col-md-6" style={{ textAlign: 'right' }}>
-                                <a style={{ borderRadius: '16px!important' }} className="btn btn-secondary border-spacing-0.5" data-bs-toggle="modal" data-bs-target="#editprofile" role="button">Edit Profile</a>
-                                <EditProfile userData={userData}></EditProfile>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="col-md-12">
+  return (
 
 
-                            <div className="row ">
-                                <div class="col-md-12 " style={{ textAlign: 'center' }}>
-                                    <Image
-                                        src={"/icon.png"}
-                                        width={80}
-                                        height={80}
-                                        className="rounded-circle">
+    <>
+      {!loading && (
+        <div className="container d-flex align-items-center justify-content-center">
+          <div className="col-lg-8 col-sm-12 col-12" style={{
+            borderRadius: '16px',
+            margin: 'auto',
+            padding: '20px',
+            backgroundColor: '#F9F9F9',
+            boxShadow: '0 0 10px rgba(234, 234, 234, 0.8)'
+          }}>
+            <div className="row">
+              <div className="col-md-6">
+                <h1 className="primary">Profile</h1>
+              </div>
+              <div className="col-md-6" style={{ textAlign: 'right' }}>
+                <a style={{ borderRadius: '16px!important' }} className="btn btn-secondary border-spacing-0.5" data-bs-toggle="modal" data-bs-target="#editprofile" role="button">Edit Profile</a>
+                <EditProfile userData={userData} refreshData={refreshData} authId={authId}></EditProfile>
+              </div>
+            </div>
+            <br />
+            <div className="col-md-12">
 
-                                    </Image>
-                                </div>
 
+              <div className="row ">
+                <div className="col-md-12 " style={{ textAlign: 'center' }}>
+                  {userData.imageLink && <Image
+                    src={userData.imageLink}
+                    width={80}
+                    height={80}
+                    className="rounded-circle">
 
-                            </div>
-
-
-                            <br />
-                            <div className="row">
-                                <p>First Name: {userData.firstName} </p>
-
-                            </div>
-                            <br />
-                            <div className="row">
-                                <p>Last Name: {userData.lastName}</p>
-                            </div>
-                            <br />
-                            <div className="row">
-                                <p>Role: {userData.role}</p>
-                            </div>
-
-                            <br />
-                            <div className="row">
-                                <p>Email: {userData.email}</p>
-                            </div>
-
-                            <br />
-                            <div className="row">
-                                <p>Username: {userData.user1name}</p>
-                            </div>
-
-                            <br />
-                        </div>
-                    </div>
+                  </Image>}
                 </div>
-            )}
-        </>
-    )
+
+
+              </div>
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">First Name: </strong>{userData.firstName} </p>
+
+              </div>
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Last Name: </strong>{userData.lastName} </p>
+              </div>
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Role: </strong>{userData.role} </p>
+              </div>
+
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Email: </strong>{userData.email} </p>
+              </div>
+
+              <br />
+              <div className="row">
+                <p className="text"><strong className="profiletext">Username: </strong>{userData.userName} </p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+export async function getServerSideProps(context) {
+  // Fetch user data here using context
+  const authId = useAuth();// Get authId from context (e.g., cookies or session)
+  const USER_API_BASE_URL = "http://localhost:8080/user1/" + authId;
+
+  try {
+    const response = await fetch(USER_API_BASE_URL);
+    const userData = await response.json();
+
+    return {
+      props: {
+        userData,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+    return {
+      props: {
+        userData: null,
+      },
+    };
+  }
 }

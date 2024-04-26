@@ -3,6 +3,7 @@ import SearchResultItem from "../components/SearchResultItem"
 
 
 export default function SearchResults({ results }) {
+    // Return all search items as SearchResultItem components
     return (
         <div className="row align-items-center justify-content-center">
             <div className="col-md-6 col-sm-6">

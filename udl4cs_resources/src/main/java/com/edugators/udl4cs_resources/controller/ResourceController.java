@@ -12,15 +12,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "http://localhost:3000")
-@RestController
+@CrossOrigin(origins = "http://localhost:3000") // Enables Cross-Origin Resource Sharing (CORS) for requests from a specific origin
+@RestController // Indicates that this class is a REST controller
 public class ResourceController {
 
     @Autowired
-    ResourceService resourceService;
-    Email email;
 
-    @PostMapping(value = "/resources/user1/{id}")
+    Email email; //Creates object used to send email on resource creation
+    ResourceService resourceService; // Autowires the ResourceService bean for handling resource-related operations
+
+    @PostMapping(value = "/resources/user1/{id}") // Endpoint value for function below, this one is saving a new resource
     public void saveResource(@Valid @RequestBody Resource resource, @PathVariable("id") int userID) {
         resourceService.saveResource(resource, userID);
         email.sendEmail(resource.getResourceName(), resource.getId(), resource.getResourceDesc());

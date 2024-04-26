@@ -4,12 +4,16 @@ import Link from "next/link";
 import useResourceData from "../useResourceData"
 
 const ResourceCard = ({ resource }) => {
-
-    //const { resources, loading } = useResourceData();
+    
     const RESOURCE_API_BASE_URL = "http://localhost:8080/resources";
+    
+    // State variable to hold the fetched resources from the API, initially set to null
     const [resources, setResources] = useState(null);
+
+    // State variable to track the loading state, initially set to true
     const [loading, setLoading] = useState(true);
 
+    // Fetch resources from the API when the 'resource' dependency changes
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -39,10 +43,10 @@ const ResourceCard = ({ resource }) => {
                     <div>
                         <div className="row">
                             <div className="col-md-6">
-                                <h2 className="subheader">Resources</h2>
+                                <h2 className="primary">Resources</h2>
                             </div>
-                            <div className="col-md-6" style={{textAlign: 'right'}}>
-                                <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button">+
+                            <div className="col-md-6" style={{ textAlign: 'right' }}>
+                                <a href="/addresource" className="btn btn-primary border-spacing-0.5" role="button" style={{backgroundColor: "#0576B8", borderColor: "#0576B8"}}>+
                                     Upload
                                     Resource</a>
                             </div>
@@ -52,12 +56,12 @@ const ResourceCard = ({ resource }) => {
                             {resources.map((resource) => (
                                 <div className="col-8 col-lg-4 col-xl-3" >
                                     <div className="card h-100" key={resource.id}>
-                                        <div style={{width: '100%', height: '100%', position: 'relative'}}>
+                                        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
                                             {resource.imageLink && <img src={resource.imageLink} className='card-img-top'
-                                                                        layout='fill'
-                                                                        objectFit='contain'/>}
-                                            {!resource.imageLink && <div style={{paddingRight: '50px', paddingLeft: '50px', paddingTop: '50px', paddingBottom: '50px'}}><img src={"/Resources_icon.png"} className='card-img-top' layout='fill'
-                                                                                         objectFit='contain'/></div>}
+                                                layout='fill'
+                                                objectFit='contain' />}
+                                            {!resource.imageLink && <div style={{ paddingRight: '50px', paddingLeft: '50px', paddingTop: '50px', paddingBottom: '50px' }}><img src={"/Resources_icon.png"} className='card-img-top' layout='fill'
+                                                objectFit='contain' /></div>}
                                         </div>
                                         <div className="card-body scrollable">
                                             <h5 className="card-title">{resource.resourceName}</h5>
@@ -72,7 +76,7 @@ const ResourceCard = ({ resource }) => {
                                             {/*<span className="badge rounded-pill text-bg-primary outline-1 ">Tags</span>*/}
                                             <Link href={`/resources/${encodeURIComponent(resource.id)}`}
                                             >
-                                                <button className="btn btn-primary">View more</button>
+                                                <button className="btn btn-primary" style={{backgroundColor: "#0576b8", borderColor: "#0576b8"}}>View more</button>
                                             </Link>
                                         </div>
                                     </div>

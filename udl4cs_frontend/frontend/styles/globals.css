@@ -55,12 +55,56 @@ section {
 
 }
 .subheader {
-    font-weight: 700;
+    font-weight: 800;
+
+    
+}
+.aboutext {
+    color: white;
+    font-weight: 800;
+    
+}
+
+/* .resource {
+    font-weight: ;
+} */
+
+.text {
+    
+    font-size: 20px;
 }
 
 .primary, .subheader, a.nav-link{
     color: #0B1873
 }
+
+.profiletext {
+    color: black;
+    font-weight: 800;
+}
+
+
+.custom-button {
+    background-color: blue; 
+    color: white; 
+}
+
+.btn{
+    background-color: #0B1873;
+}
+.double-space {
+    line-height: 2; 
+  }
+  .bullet-list {
+    padding-left: 20px;
+  }
+  
+  .bullet-list li {
+    margin-bottom: 10px; 
+  }
+
+
 /*.btn-bd-primary {*/
 /*    background-color: #0B1873 !important;*/
 /*}*/
+

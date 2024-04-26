@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
-@RestController
+@CrossOrigin(origins = "http://localhost:3000") // Enables Cross-Origin Resource Sharing (CORS) for requests from a specific origin
+@RestController // Indicates that this class is a REST controller
 public class TagController {
 
     @Autowired
-    TagService tagService;
+    TagService tagService; // Autowires the TagService bean for handling tag-related operations
 
-    @PostMapping(value = "/tags/user1/{id}")
+    @PostMapping(value = "/tags/user1/{id}") // Endpoint value for functions, this one is saving a new tag
     public void saveTag(@Valid @RequestBody Tag tag, @PathVariable("id") int userID) {
         tagService.saveTag(tag, userID);
     }

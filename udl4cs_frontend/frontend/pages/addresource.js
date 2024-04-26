@@ -4,6 +4,7 @@ import {ACTION_NAVIGATE} from "next/dist/client/components/router-reducer/router
 import Navbar from '../components/Navbar';
 
 const addresource = () => {
+    // Returns navbar and add resource component when redirected to /addresource
     return (
         <>
             <Navbar />

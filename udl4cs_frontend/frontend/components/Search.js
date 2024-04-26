@@ -4,14 +4,22 @@ import {Form} from "react-bootstrap";
 
 
 export default function Search({ setResults, tag }) {
+    // input holds user search bar input (changes when user changes input field)
     const [input, setInput] = useState("");
+
+    // multiSelections holds all tag selections made by user in the tag input field
     const [multiSelections, setMultiSelections] = useState([]);
 
+    // Tags API to retrieve all available tags to put on resources
     const TAGS_API_BASE_URL = "http://localhost:8080/tags";
 
+    // Loading use state keeps track of the fetched data and if it has been loaded in yet
     const [loading, setLoading] = useState(true);
+
+    // Tags use state keeps track of all the tags from the Tags API
     const [tags, setTags] = useState(null);
 
+    // Fetch all tags from the Tags URL API
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -32,12 +40,13 @@ export default function Search({ setResults, tag }) {
         fetchData();
     }, [tag]);
 
-
+    // Fetch all resources that match up name-wise from the search input field and our database as well as match the selected tags from the inputs as our search results
     const fetchData = (value) => {
         fetch("http://localhost:8080/resources")
             .then((response)=>response.json())
             .then((json) => {
                 const results = json.filter((resource) => {
+                    // Must return resources that match the search input and have selected tags
                     return (
                         value &&
                         resource &&
@@ -50,6 +59,7 @@ export default function Search({ setResults, tag }) {
             });
     }
 
+    // Check if the current resource being searched has the tags that user has selected as search filter
     function tagsExist(resource) {
         if (multiSelections.length == 0) {
             return true;
@@ -67,11 +77,13 @@ export default function Search({ setResults, tag }) {
         return true;
     }
 
+    // Handle change when user input field changes
     const handleChange = (value) => {
         setInput(value);
         fetchData(value);
     }
 
+    // When new filters are added, go through all resources in the Resource URL API and check if any of the resources have the input tags
     const handleFilterChange = () => {
         if (multiSelections.length != 0 && !input) {
             fetch("http://localhost:8080/resources")
@@ -105,7 +117,7 @@ export default function Search({ setResults, tag }) {
                                    onChange={(e) => handleChange(e.target.value)}
                             />
 
-                            <button className="btn btn-outline-secondary border-spacing-0.5" type="button"
+                            <button className="btn btn-outline-light border-spacing-0.5" type="button"
                                     id="button-addon2"><i className="bi bi-search"></i></button>
                         </div>
                     </div>
